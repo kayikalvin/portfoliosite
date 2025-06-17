@@ -1,5 +1,7 @@
 import { Code, Database, Brain, BarChart3, Github, Linkedin, Mail, ExternalLink, ChevronDown, Terminal, Cpu, LineChart, Snail } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
+import RotatingText from './components/RotatingText';
+import ScrollVelocity from './components/ScrollVelocity';
 
 const App = () => {
   const heroRef = useRef(null);
@@ -379,7 +381,7 @@ const App = () => {
                   ref={logoRef}
                   className="relative text-6xl md:text-8xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
                 >
-                  KK
+                  Kalvin Kayi
                 </h1>
               </div>
             </div>
@@ -436,7 +438,7 @@ const App = () => {
         </div>
 
         {/* Hero Section */}
-        <div ref={heroRef} className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6">
+        <div ref={heroRef} className="relative z-10 h-[90dvh] flex flex-col items-center justify-center px-6">
           <div className="text-center max-w-4xl mx-auto">
             <div className="mb-8 relative">
               <div className="absolute inset-0 blur-3xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-30" />
@@ -446,8 +448,23 @@ const App = () => {
             </div>
 
             <div className="space-y-2 mb-8">
-              <p className="hero-subtitle text-xl md:text-2xl text-gray-300 font-light">
-                Data Web Developer • ML Engineer • Data Analyst
+              <p className="hero-subtitle  flex gap-2 justify-center md:text-2xl text-gray-300 font-light">
+                <div className='flex justify-center items-center gap-4'>
+                  <span className='text-2xl font-bold'>I AM A</span>
+                  <RotatingText
+                    texts={['Web Developer', 'ML Engineer', 'Data Analyst']}
+                    mainClassName="font-bold text-white px-2 md:px-3 bg-cyan-300 text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+                    staggerFrom={"last"}
+                    initial={{ y: "100%" }}
+                    animate={{ y: 0 }}
+                    exit={{ y: "-120%" }}
+                    staggerDuration={0.025}
+                    splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                    transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                    rotationInterval={2000}
+                  />
+                </div>
+               
               </p>
               <p className="hero-subtitle text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
                 Transforming complex data into intelligent web experiences.
@@ -506,6 +523,12 @@ const App = () => {
             <ChevronDown size={32} className="text-gray-400 animate-bounce" />
           </div>
         </div>
+  
+          <ScrollVelocity
+            texts={['React Bits', 'Scroll Down']} 
+            velocity={100} 
+            className="custom-scroll-text"
+          />
 
         {/* Skills Section */}
         <section ref={skillsRef} className="relative z-10 py-20 px-6">
