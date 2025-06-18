@@ -2,6 +2,7 @@ import { Code, Database, Brain, BarChart3, Github, Linkedin, Mail, ExternalLink,
 import { useState, useEffect, useRef } from 'react';
 import RotatingText from './components/RotatingText';
 import ScrollVelocity from './components/ScrollVelocity';
+import Projects from './components/Projects';
 
 const App = () => {
   const heroRef = useRef(null);
@@ -112,11 +113,15 @@ const App = () => {
           y: "-100%",
           duration: 1,
           ease: "power4.inOut",
-          onComplete: () => {
-            setShowReveal(false);
-            // Start main content animations
+         onComplete: () => {
+          setShowReveal(false);
+
+          // Wait for DOM to fully render before animating hero
+          setTimeout(() => {
             initMainAnimations();
-          }
+          }, 10); // small delay to ensure DOM is ready
+}
+
         });
       }
     });
@@ -146,20 +151,28 @@ const App = () => {
         stagger: 0.2,
         ease: "power3.out"
       }, "-=0.8")
-      .from(".hero-badge", {
-        scale: 0,
-        opacity: 0,
+      .fromTo(".hero-badge",
+      { scale: 0, opacity: 0 },
+      {
+        scale: 1,
+        opacity: 1,
         duration: 0.8,
         stagger: 0.1,
         ease: "back.out(1.7)"
-      }, "-=0.6")
-      .from(".social-icon", {
-        y: 30,
-        opacity: 0,
+      }
+    )
+    .fromTo(".social-icon",
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
         duration: 0.6,
         stagger: 0.1,
         ease: "power2.out"
-      }, "-=0.4");
+      },
+      "-=0.4"
+    );
+
 
       // Scroll-triggered animations
       ScrollTrigger.batch(".skill-card", {
@@ -309,33 +322,12 @@ const App = () => {
     { name: 'Cloud/DevOps', level: 80, icon: Cpu, color: 'from-indigo-500 to-blue-500', iconColor: 'text-indigo-400' }
   ];
 
-  const projects = [
-    {
-      title: 'Real-time Analytics Dashboard',
-      description: 'Interactive dashboard processing 1M+ data points with live visualizations using React, D3.js, and WebSocket connections.',
-      tech: ['React', 'D3.js', 'Python', 'FastAPI', 'Redis'],
-      gradient: 'from-blue-600 via-purple-600 to-pink-600'
-    },
-    {
-      title: 'ML Model Deployment Platform',
-      description: 'Full-stack platform for deploying and monitoring ML models with A/B testing capabilities and automated retraining.',
-      tech: ['TensorFlow', 'Docker', 'Kubernetes', 'React', 'PostgreSQL'],
-      gradient: 'from-green-600 via-teal-600 to-blue-600'
-    },
-    {
-      title: 'Data Pipeline Orchestrator',
-      description: 'Scalable ETL pipeline processing TB-scale data with fault tolerance and real-time monitoring dashboards.',
-      tech: ['Apache Airflow', 'Spark', 'Kafka', 'MongoDB', 'Grafana'],
-      gradient: 'from-orange-600 via-red-600 to-pink-600'
-    }
-  ];
+
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white overflow-hidden">
       {/* Mouse Follower */}
-      <div className="mouse-follower fixed w-6 h-6 bg-gradient-to-r rounded-full opacity-20 pointer-events-none z-50 mix-blend-screen" >
-        <Snail className='text-green-600'/>
-      </div>
+      <div className="mouse-follower fixed w-6 h-6 bg-gradient-to-r from-green-400 to-red-400 rounded-full opacity-20 pointer-events-none z-50 mix-blend-screen" />
       {/* <div
       className="w-10 h-"
       style={{ cursor: "url('https://img.icons8.com/?size=100&id=TdbpMMmYMvER&format=png&color=000000'), auto" }}
@@ -417,7 +409,7 @@ const App = () => {
       )}
 
       {/* Main Site Content */}
-      <div ref={mainContentRef} className={showReveal ? 'invisible' : 'visible'}>
+      <div ref={mainContentRef} className={showReveal ? 'hidden' : 'block'}>
         {/* Animated Background */}
         <div className="fixed inset-0 z-0">
           <div
@@ -575,60 +567,7 @@ const App = () => {
 
         {/* Projects Section */}
         <section ref={projectsRef} className="relative z-10 py-20 px-6 bg-gradient-to-b from-gray-900 to-black">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
-                  Featured Projects
-                </span>
-              </h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">
-                Real-world applications showcasing the power of data-driven web development
-              </p>
-            </div>
-
-            <div className="space-y-12">
-              {projects.map((project, index) => (
-                <div
-                  key={index}
-                  className="project-card hover-scale overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 cursor-pointer"
-                >
-                  <div className={`absolute inset-0 bg-gradient-to-r ${project.gradient} opacity-5`} />
-
-                  <div className="relative p-8 md:p-12">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
-                      <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 md:mb-0">
-                        {project.title}
-                      </h3>
-                      <div className="flex space-x-3">
-                        <button className="hover-lift p-2 rounded-lg bg-white bg-opacity-10">
-                          <Github size={20} className="text-black" />
-                        </button>
-                        <button className="hover-lift p-2 rounded-lg bg-white bg-opacity-10">
-                          <ExternalLink size={20} className="text-black" />
-                        </button>
-                      </div>
-                    </div>
-
-                    <p className="text-gray-300 text-lg mb-6 leading-relaxed">
-                      {project.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-3">
-                      {project.tech.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="hover-scale px-4 py-2 rounded-full bg-white bg-opacity-10 text-sm font-medium text-black cursor-pointer"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <Projects/>
         </section>
 
         {/* Contact Section */}
