@@ -1,8 +1,22 @@
-import { Code, Database, Brain, BarChart3, Github, Linkedin, Mail, ExternalLink, ChevronDown, Terminal, Cpu, LineChart, Snail } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
-import RotatingText from './components/RotatingText';
-import ScrollVelocity from './components/ScrollVelocity';
-import Projects from './components/Projects';
+import {
+  Code,
+  Database,
+  Brain,
+  BarChart3,
+  Github,
+  Linkedin,
+  Mail,
+  ExternalLink,
+  ChevronDown,
+  Terminal,
+  Cpu,
+  LineChart,
+  Snail,
+} from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import RotatingText from "./components/RotatingText";
+import ScrollVelocity from "./components/ScrollVelocity";
+import Projects from "./components/Projects";
 
 const App = () => {
   const heroRef = useRef(null);
@@ -13,7 +27,7 @@ const App = () => {
   const progressRef = useRef(null);
   const mainContentRef = useRef(null);
   const particlesRef = useRef([]);
-  
+
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [showReveal, setShowReveal] = useState(true);
   const [gsapLoaded, setGsapLoaded] = useState(false);
@@ -22,11 +36,13 @@ const App = () => {
   useEffect(() => {
     const loadGSAP = async () => {
       // Load GSAP from CDN
-      const script = document.createElement('script');
-      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
+      const script = document.createElement("script");
+      script.src =
+        "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js";
       script.onload = () => {
-        const scrollScript = document.createElement('script');
-        scrollScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js';
+        const scrollScript = document.createElement("script");
+        scrollScript.src =
+          "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js";
         scrollScript.onload = () => {
           window.gsap.registerPlugin(window.ScrollTrigger);
           setGsapLoaded(true);
@@ -35,7 +51,7 @@ const App = () => {
       };
       document.head.appendChild(script);
     };
-    
+
     loadGSAP();
   }, []);
 
@@ -56,16 +72,16 @@ const App = () => {
           x: Math.random() * window.innerWidth,
           y: Math.random() * window.innerHeight,
           scale: Math.random() * 0.5 + 0.5,
-          opacity: 0
+          opacity: 0,
         });
-        
+
         gsap.to(particle, {
           opacity: 0.6,
           duration: 1,
           delay: i * 0.1,
-          ease: "power2.out"
+          ease: "power2.out",
         });
-        
+
         gsap.to(particle, {
           y: "-=100",
           x: "+=50",
@@ -73,34 +89,43 @@ const App = () => {
           duration: 3 + Math.random() * 2,
           repeat: -1,
           yoyo: true,
-          ease: "sine.inOut"
+          ease: "sine.inOut",
         });
       }
     });
 
     // Logo animation
-    revealTL.from(logoRef.current, {
-      scale: 0,
-      rotation: -180,
-      opacity: 0,
-      duration: 1,
-      ease: "back.out(1.7)"
-    })
-    .from(".reveal-text", {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: "power3.out"
-    }, "-=0.5")
-    .from(".geometric-shape", {
-      scale: 0,
-      rotation: 180,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.3,
-      ease: "elastic.out(1, 0.5)"
-    }, "-=0.5");
+    revealTL
+      .from(logoRef.current, {
+        scale: 0,
+        rotation: -180,
+        opacity: 0,
+        duration: 1,
+        ease: "back.out(1.7)",
+      })
+      .from(
+        ".reveal-text",
+        {
+          y: 50,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: "power3.out",
+        },
+        "-=0.5"
+      )
+      .from(
+        ".geometric-shape",
+        {
+          scale: 0,
+          rotation: 180,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.3,
+          ease: "elastic.out(1, 0.5)",
+        },
+        "-=0.5"
+      );
 
     // Progress bar animation
     gsap.to(progressRef.current, {
@@ -113,17 +138,16 @@ const App = () => {
           y: "-100%",
           duration: 1,
           ease: "power4.inOut",
-         onComplete: () => {
-          setShowReveal(false);
+          onComplete: () => {
+            setShowReveal(false);
 
-          // Wait for DOM to fully render before animating hero
-          setTimeout(() => {
-            initMainAnimations();
-          }, 10); // small delay to ensure DOM is ready
-}
-
+            // Wait for DOM to fully render before animating hero
+            setTimeout(() => {
+              initMainAnimations();
+            }, 10); // small delay to ensure DOM is ready
+          },
         });
-      }
+      },
     });
 
     // Shimmer effect on progress bar
@@ -131,48 +155,54 @@ const App = () => {
       x: "200%",
       duration: 1.5,
       repeat: -1,
-      ease: "none"
+      ease: "none",
     });
 
     const initMainAnimations = () => {
       // Hero section entrance
       const heroTL = gsap.timeline();
-      
-      heroTL.from(".hero-title", {
-        y: 100,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power4.out"
-      })
-      .from(".hero-subtitle", {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power3.out"
-      }, "-=0.8")
-      .fromTo(".hero-badge",
-      { scale: 0, opacity: 0 },
-      {
-        scale: 1,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "back.out(1.7)"
-      }
-    )
-    .fromTo(".social-icon",
-      { y: 30, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "power2.out"
-      },
-      "-=0.4"
-    );
 
+      heroTL
+        .from(".hero-title", {
+          y: 100,
+          opacity: 0,
+          duration: 1.2,
+          ease: "power4.out",
+        })
+        .from(
+          ".hero-subtitle",
+          {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power3.out",
+          },
+          "-=0.8"
+        )
+        .fromTo(
+          ".hero-badge",
+          { scale: 0, opacity: 0 },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "back.out(1.7)",
+          }
+        )
+        .fromTo(
+          ".social-icon",
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: "power2.out",
+          },
+          "-=0.4"
+        );
 
       // Scroll-triggered animations
       ScrollTrigger.batch(".skill-card", {
@@ -182,22 +212,22 @@ const App = () => {
             opacity: 0,
             duration: 1,
             stagger: 0.15,
-            ease: "power3.out"
+            ease: "power3.out",
           });
-          
+
           // Animate skill bars
           elements.forEach((element, i) => {
-            const skillBar = element.querySelector('.skill-bar');
+            const skillBar = element.querySelector(".skill-bar");
             const level = skills[i % skills.length].level;
             gsap.to(skillBar, {
               width: `${level}%`,
               duration: 1.5,
               delay: 0.5,
-              ease: "power2.out"
+              ease: "power2.out",
             });
           });
         },
-        start: "top bottom-=100"
+        start: "top bottom-=100",
       });
 
       ScrollTrigger.batch(".project-card", {
@@ -207,10 +237,10 @@ const App = () => {
             opacity: 0,
             duration: 1.2,
             stagger: 0.2,
-            ease: "power3.out"
+            ease: "power3.out",
           });
         },
-        start: "top bottom-=100"
+        start: "top bottom-=100",
       });
 
       // Continuous animations
@@ -220,7 +250,7 @@ const App = () => {
         duration: 3,
         repeat: -1,
         yoyo: true,
-        ease: "sine.inOut"
+        ease: "sine.inOut",
       });
 
       gsap.to(".floating-shape-2", {
@@ -229,7 +259,7 @@ const App = () => {
         duration: 4,
         repeat: -1,
         yoyo: true,
-        ease: "sine.inOut"
+        ease: "sine.inOut",
       });
 
       gsap.to(".floating-shape-3", {
@@ -239,63 +269,63 @@ const App = () => {
         duration: 5,
         repeat: -1,
         yoyo: true,
-        ease: "sine.inOut"
+        ease: "sine.inOut",
       });
 
       // Mouse follower effect
       const updateMousePosition = (e) => {
         setMousePosition({ x: e.clientX, y: e.clientY });
-        
+
         gsap.to(".mouse-follower", {
           x: e.clientX,
           y: e.clientY,
           duration: 0.1,
-          ease: "power2.out"
+          ease: "power2.out",
         });
       };
 
-      window.addEventListener('mousemove', updateMousePosition);
+      window.addEventListener("mousemove", updateMousePosition);
 
       // Hover animations for interactive elements
-      document.querySelectorAll('.hover-scale').forEach(element => {
-        element.addEventListener('mouseenter', () => {
+      document.querySelectorAll(".hover-scale").forEach((element) => {
+        element.addEventListener("mouseenter", () => {
           gsap.to(element, {
             scale: 1.05,
             duration: 0.3,
-            ease: "power2.out"
+            ease: "power2.out",
           });
         });
-        
-        element.addEventListener('mouseleave', () => {
+
+        element.addEventListener("mouseleave", () => {
           gsap.to(element, {
             scale: 1,
             duration: 0.3,
-            ease: "power2.out"
+            ease: "power2.out",
           });
         });
       });
 
-      document.querySelectorAll('.hover-lift').forEach(element => {
-        element.addEventListener('mouseenter', () => {
+      document.querySelectorAll(".hover-lift").forEach((element) => {
+        element.addEventListener("mouseenter", () => {
           gsap.to(element, {
             y: -10,
             duration: 0.3,
-            ease: "power2.out"
+            ease: "power2.out",
           });
         });
-        
-        element.addEventListener('mouseleave', () => {
+
+        element.addEventListener("mouseleave", () => {
           gsap.to(element, {
             y: 0,
             duration: 0.3,
-            ease: "power2.out"
+            ease: "power2.out",
           });
         });
       });
 
       // Parallax scrolling effects
       gsap.registerPlugin(ScrollTrigger);
-      
+
       gsap.to(".parallax-bg", {
         yPercent: -50,
         ease: "none",
@@ -303,26 +333,60 @@ const App = () => {
           trigger: ".parallax-bg",
           start: "top bottom",
           end: "bottom top",
-          scrub: true
-        }
+          scrub: true,
+        },
       });
     };
 
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, [gsapLoaded]);
 
   const skills = [
-    { name: 'Python', level: 95, icon: Code, color: 'from-blue-500 to-cyan-500', iconColor: 'text-blue-400' },
-    { name: 'JavaScript/React', level: 90, icon: Code, color: 'from-yellow-500 to-orange-500', iconColor: 'text-yellow-400' },
-    { name: 'Machine Learning', level: 88, icon: Brain, color: 'from-purple-500 to-pink-500', iconColor: 'text-purple-400' },
-    { name: 'Data Analysis', level: 92, icon: BarChart3, color: 'from-green-500 to-emerald-500', iconColor: 'text-green-400' },
-    { name: 'SQL/NoSQL', level: 85, icon: Database, color: 'from-red-500 to-rose-500', iconColor: 'text-red-400' },
-    { name: 'Cloud/DevOps', level: 80, icon: Cpu, color: 'from-indigo-500 to-blue-500', iconColor: 'text-indigo-400' }
+    {
+      name: "Python",
+      level: 95,
+      icon: Code,
+      color: "from-blue-500 to-cyan-500",
+      iconColor: "text-blue-400",
+    },
+    {
+      name: "JavaScript/React",
+      level: 90,
+      icon: Code,
+      color: "from-yellow-500 to-orange-500",
+      iconColor: "text-yellow-400",
+    },
+    {
+      name: "Machine Learning",
+      level: 88,
+      icon: Brain,
+      color: "from-purple-500 to-pink-500",
+      iconColor: "text-purple-400",
+    },
+    {
+      name: "Data Analysis",
+      level: 92,
+      icon: BarChart3,
+      color: "from-green-500 to-emerald-500",
+      iconColor: "text-green-400",
+    },
+    {
+      name: "SQL/NoSQL",
+      level: 85,
+      icon: Database,
+      color: "from-red-500 to-rose-500",
+      iconColor: "text-red-400",
+    },
+    {
+      name: "Cloud/DevOps",
+      level: 80,
+      icon: Cpu,
+      color: "from-indigo-500 to-blue-500",
+      iconColor: "text-indigo-400",
+    },
   ];
-
-
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
@@ -337,7 +401,7 @@ const App = () => {
 
       {/* Page Reveal Overlay */}
       {showReveal && (
-        <div 
+        <div
           ref={revealRef}
           className="fixed inset-0 z-50 bg-black flex items-center justify-center overflow-hidden"
         >
@@ -345,12 +409,12 @@ const App = () => {
           <div className="absolute inset-0 parallax-bg">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-pink-900 opacity-20" />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-10" />
-            
+
             {/* Floating Particles */}
             {[...Array(25)].map((_, i) => (
               <div
                 key={i}
-                ref={el => particlesRef.current[i] = el}
+                ref={(el) => (particlesRef.current[i] = el)}
                 className="absolute w-2 h-2 bg-white rounded-full"
               />
             ))}
@@ -369,7 +433,7 @@ const App = () => {
             <div className="mb-12">
               <div className="relative inline-block">
                 <div className="absolute inset-0 blur-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-50" />
-                <h1 
+                <h1
                   ref={logoRef}
                   className="relative text-6xl md:text-8xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
                 >
@@ -394,7 +458,7 @@ const App = () => {
 
             {/* Progress Bar */}
             <div className="relative w-64 h-2 mx-auto bg-gray-800 rounded-full overflow-hidden">
-              <div 
+              <div
                 ref={progressRef}
                 className="absolute left-0 top-0 h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 w-0"
               />
@@ -409,114 +473,82 @@ const App = () => {
       )}
 
       {/* Main Site Content */}
-      <div ref={mainContentRef} className={showReveal ? 'hidden' : 'block'}>
+      <div ref={mainContentRef} className={showReveal ? "hidden" : "block"}>
         {/* Animated Background */}
         <div className="fixed inset-0 z-0">
           <div
             className="absolute inset-0 opacity-30 transition-all duration-300"
             style={{
-              background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(139, 92, 246, 0.15) 0%, transparent 50%)`
+              background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(139, 92, 246, 0.15) 0%, transparent 50%)`,
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black">
             <div className="absolute inset-0 opacity-20">
-              <div className="absolute inset-0" style={{
-                backgroundImage: `radial-gradient(circle at 20% 20%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: `radial-gradient(circle at 20% 20%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
                                  radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
-                                 radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%)`
-              }} />
+                                 radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%)`,
+                }}
+              />
             </div>
           </div>
         </div>
 
         {/* Hero Section */}
-        <div ref={heroRef} className="relative z-10 h-[90dvh] flex flex-col items-center justify-center px-6">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="mb-8 relative">
-              <div className="absolute inset-0 blur-3xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-30" />
-              <h1 className="hero-title relative text-6xl md:text-8xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent mb-4">
-                Kalvin Kayi
-              </h1>
-            </div>
+        <div
+          ref={heroRef}
+          className="relative h-screen flex flex-col items-center justify-center px-6 bg-black text-white overflow-hidden"
+        >
+          {/* Headline */}
+          <h1 className="text-center text-5xl md:text-7xl font-extrabold mb-4 tracking-tight">
+            Hey, I’m Kalvin 👋
+          </h1>
 
-            <div className="space-y-2 mb-8">
-              <p className="hero-subtitle  flex gap-2 justify-center md:text-2xl text-gray-300 font-light">
-                <div className='flex justify-center items-center gap-4'>
-                  <span className='text-2xl font-bold'>I AM A</span>
-                  <RotatingText
-                    texts={['Web Developer', 'ML Engineer', 'Data Analyst']}
-                    mainClassName="font-bold text-white px-2 md:px-3 bg-cyan-300 text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
-                    staggerFrom={"last"}
-                    initial={{ y: "100%" }}
-                    animate={{ y: 0 }}
-                    exit={{ y: "-120%" }}
-                    staggerDuration={0.025}
-                    splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
-                    transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                    rotationInterval={2000}
-                  />
+          {/* Tagline */}
+          <p className="text-center text-xl md:text-2xl text-gray-400 max-w-xl mb-6">
+            I build intelligent web apps that bridge data, design, and human
+            experience.
+          </p>
+
+          {/* Animated gradient line */}
+          <div className="h-1 w-24 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full animate-pulse mb-8"></div>
+
+          {/* Skills badges */}
+          <div className="flex flex-wrap justify-center gap-4 mb-10">
+            {[
+              { icon: Code, label: "Full-Stack Dev" },
+              { icon: Brain, label: "ML Engineer" },
+              { icon: BarChart3, label: "Data Analyst" },
+            ].map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={index}
+                  className="flex items-center gap-2 px-5 py-2 rounded-full border border-white/10 bg-white/5 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-purple-500 hover:scale-105 transition-all duration-300 cursor-pointer"
+                >
+                  <Icon size={20} className="text-gray-300" />
+                  <span className="text-sm font-medium">{item.label}</span>
                 </div>
-               
-              </p>
-              <p className="hero-subtitle text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                Transforming complex data into intelligent web experiences.
-                Building the future where data science meets beautiful user interfaces.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-4 mb-12">
-              {[
-                { icon: Code, label: 'Full-Stack Dev', color: 'from-blue-500 to-cyan-500', iconColor: 'text-blue-400' },
-                { icon: Brain, label: 'ML Engineer', color: 'from-purple-500 to-pink-500', iconColor: 'text-purple-400' },
-                { icon: BarChart3, label: 'Data Analyst', color: 'from-green-500 to-emerald-500', iconColor: 'text-green-400' }
-              ].map((item, index) => {
-                const Icon = item.icon; // ✅ Capitalized so JSX sees it as a component
-                return (
-                  <div
-                    key={index}
-                    className={`hero-badge hover-scale px-6 py-3 rounded-full bg-gradient-to-r ${item.color} bg-opacity-10 border border-white border-opacity-20 cursor-pointer transition-all duration-300`}
-                  >
-                    <div className="flex items-center space-x-2">
-                      <Icon size={20} className={item.iconColor} /> {/* ✅ Valid JSX now */}
-                      <span className="text-white font-medium">{item.label}</span>
-                    </div>
-                  </div>
-                );
-              })}
-
-            </div>
-            
-
-            <div className=" flex justify-center space-x-6">
-              {[
-                { icon: Github, href: 'https://github.com/kayikalvin', label: 'GitHub' },
-                { icon: Linkedin, href: 'https://www.linkedin.com/in/kayikalvin/', label: 'LinkedIn' },
-                { icon: Mail, href: 'mailto:kayikalvin@gmail.com', label: 'Email' }
-              ].map((social, index) => {
-                const Icon = social.icon;
-                return (
-                  <a
-                    key={index}
-                    href={social.href}
-                    className="social-icon hover-lift group relative p-4 rounded-full bg-white bg-opacity-5 transition-all duration-300"
-                  >
-                    <Icon size={24} className="text-black group-hover:text-blue-400 transition-colors duration-300" />
-                    <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="text-sm text-gray-400">{social.label}</span>
-                    </div>
-                  </a>
-                );
-              })}
-
-            </div>
+              );
+            })}
           </div>
 
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-            <ChevronDown size={32} className="text-gray-400 animate-bounce" />
-          </div>
+          {/* Call to action */}
+          <a
+            href="#projects"
+            className="inline-block mt-4 px-8 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 text-black font-semibold hover:scale-105 transition-all duration-300"
+          >
+            See My Work
+          </a>
+
+          {/* Subtle background shape */}
+          <div className="absolute -top-20 -left-20 w-[300px] h-[300px] bg-gradient-to-br from-cyan-500 to-purple-500 opacity-20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-20 -right-20 w-[300px] h-[300px] bg-gradient-to-br from-pink-500 to-purple-500 opacity-20 rounded-full blur-3xl"></div>
         </div>
-  
-          {/* <ScrollVelocity
+
+        {/* <ScrollVelocity
             texts={['React Bits', 'Scroll Down']} 
             velocity={100} 
             className="custom-scroll-text"
@@ -532,7 +564,8 @@ const App = () => {
                 </span>
               </h2>
               <p className="text-gray-400 max-w-2xl mx-auto">
-                Mastering the intersection of data science, machine learning, and modern web development
+                Mastering the intersection of data science, machine learning,
+                and modern web development
               </p>
             </div>
 
@@ -543,12 +576,18 @@ const App = () => {
                   className="skill-card hover-scale p-6 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 cursor-pointer"
                 >
                   <div className="flex items-center mb-4">
-                    <div className={`p-3 rounded-xl bg-gradient-to-r ${skill.color} bg-opacity-20 mr-4`}>
+                    <div
+                      className={`p-3 rounded-xl bg-gradient-to-r ${skill.color} bg-opacity-20 mr-4`}
+                    >
                       <skill.icon size={24} className={skill.iconColor} />
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-white">{skill.name}</h3>
-                      <p className="text-gray-400 text-sm">{skill.level}% Proficiency</p>
+                      <h3 className="text-xl font-semibold text-white">
+                        {skill.name}
+                      </h3>
+                      <p className="text-gray-400 text-sm">
+                        {skill.level}% Proficiency
+                      </p>
                     </div>
                   </div>
 
@@ -566,8 +605,11 @@ const App = () => {
         </section>
 
         {/* Projects Section */}
-        <section ref={projectsRef} className="relative z-10 py-20 px-6 bg-gradient-to-b from-gray-900 to-black">
-          <Projects/>
+        <section
+          ref={projectsRef}
+          className="relative z-10 py-20 px-6 bg-gradient-to-b from-gray-900 to-black"
+        >
+          <Projects />
         </section>
 
         {/* Contact Section */}
@@ -579,7 +621,8 @@ const App = () => {
               </span>
             </h2>
             <p className="text-gray-400 text-lg mb-12 max-w-2xl mx-auto">
-              Ready to turn your data into powerful web experiences? Let's discuss your next project.
+              Ready to turn your data into powerful web experiences? Let's
+              discuss your next project.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -606,9 +649,24 @@ const App = () => {
               © 2025 Kayi Kalvin. All rights reserved
             </p>
             <div className="flex space-x-6">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Privacy</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Terms</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">Contact</a>
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white transition-colors duration-300"
+              >
+                Privacy
+              </a>
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white transition-colors duration-300"
+              >
+                Terms
+              </a>
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white transition-colors duration-300"
+              >
+                Contact
+              </a>
             </div>
           </div>
         </footer>
@@ -618,11 +676,6 @@ const App = () => {
 };
 
 export default App;
-
-
-
-
-
 
 // import { Code, Database, Brain, BarChart3, Github, Linkedin, Mail, ExternalLink, ChevronDown, Terminal, Cpu, LineChart } from 'lucide-react';
 // import { useState, useEffect, useRef } from 'react';
@@ -729,7 +782,7 @@ export default App;
 //           <div className="absolute inset-0">
 //             <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-pink-900 opacity-20" />
 //             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-10 animate-pulse" />
-            
+
 //             {/* Floating Particles */}
 //             {[...Array(20)].map((_, i) => (
 //               <div
@@ -773,7 +826,7 @@ export default App;
 
 //             {/* Progress Bar */}
 //             <div className="relative w-64 h-2 mx-auto bg-gray-800 rounded-full overflow-hidden">
-//               <div 
+//               <div
 //                 className="absolute left-0 top-0 h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transition-all duration-300 ease-out"
 //                 style={{ width: `${revealProgress}%` }}
 //               />
@@ -782,8 +835,8 @@ export default App;
 
 //             {/* Loading Text */}
 //             <p className="mt-6 text-sm text-gray-500 animate-pulse">
-//               {revealProgress < 30 ? 'Initializing...' : 
-//                revealProgress < 60 ? 'Loading experience...' : 
+//               {revealProgress < 30 ? 'Initializing...' :
+//                revealProgress < 60 ? 'Loading experience...' :
 //                revealProgress < 90 ? 'Almost ready...' : 'Welcome!'}
 //             </p>
 
@@ -1102,8 +1155,6 @@ export default App;
 
 // export default App;
 
-
-
 // import React from 'react'
 // import { useRef, useEffect } from "react";
 // import gsap from "gsap";
@@ -1121,7 +1172,6 @@ export default App;
 // }
 
 // export default App
-
 
 // import React, { useRef, useEffect } from 'react';
 // import { gsap } from 'gsap';
@@ -1173,15 +1223,7 @@ export default App;
 //   );
 // }
 
-
-
-
-
-
 // const App = () => {
-
-
-
 
 //   // Single element reference
 //   const boxRef = useRef(null);
@@ -1230,11 +1272,6 @@ export default App;
 
 // export default App
 
-
-
-
-
-
 // const App = () => {
 //    const boxRef = useRef(null);
 
@@ -1262,8 +1299,7 @@ export default App;
 
 // export default App
 
-// 
-
+//
 
 // const App = ({ color }) => {
 //   const containerRef = useRef(null);
@@ -1279,7 +1315,6 @@ export default App;
 //       .to(box3Ref.current, { duration: 1, x: 100, skewX: 45 });
 //     return () => tl.kill();
 //   }, []);
-
 
 //   return (
 //     <div className='flex flex-col h-full w-full p-40 m-20' ref={containerRef}>
