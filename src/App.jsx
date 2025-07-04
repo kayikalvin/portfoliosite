@@ -3,20 +3,12 @@ import {
   Database,
   Brain,
   BarChart3,
-  Github,
-  Linkedin,
-  Mail,
-  ExternalLink,
-  ChevronDown,
-  Terminal,
   Cpu,
-  LineChart,
-  Snail,
+ 
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import RotatingText from "./components/RotatingText";
-import ScrollVelocity from "./components/ScrollVelocity";
 import Projects from "./components/Projects";
+import { Analytics } from "@vercel/analytics/react"
 
 const App = () => {
   const heroRef = useRef(null);
