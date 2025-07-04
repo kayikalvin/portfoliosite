@@ -555,89 +555,91 @@ const App = () => {
           /> */}
 
         {/* Skills Section */}
-        <section ref={skillsRef} className="relative z-10 py-20 px-6">
+        <section
+          ref={skillsRef}
+          className="relative py-20 px-6 bg-black text-white overflow-hidden"
+        >
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  Technical Expertise
-                </span>
+                Technical Expertise
               </h2>
               <p className="text-gray-400 max-w-2xl mx-auto">
                 Mastering the intersection of data science, machine learning,
-                and modern web development
+                and modern web development.
               </p>
+              <div className="h-1 w-20 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full mx-auto mt-4 animate-pulse"></div>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {skills.map((skill, index) => (
-                <div
-                  key={index}
-                  className="skill-card hover-scale p-6 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 cursor-pointer"
-                >
-                  <div className="flex items-center mb-4">
-                    <div
-                      className={`p-3 rounded-xl bg-gradient-to-r ${skill.color} bg-opacity-20 mr-4`}
-                    >
-                      <skill.icon size={24} className={skill.iconColor} />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-white">
-                        {skill.name}
-                      </h3>
-                      <p className="text-gray-400 text-sm">
-                        {skill.level}% Proficiency
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="relative">
-                    <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+              {skills.map((skill, index) => {
+                const Icon = skill.icon;
+                return (
+                  <div
+                    key={index}
+                    className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:scale-105 transition-transform duration-300 cursor-pointer"
+                  >
+                    <div className="flex items-center mb-4">
                       <div
-                        className={`skill-bar h-2 rounded-full bg-gradient-to-r ${skill.color} w-0`}
+                        className={`p-3 rounded-xl bg-gradient-to-r ${skill.color} bg-opacity-20 mr-4`}
+                      >
+                        <Icon size={24} className={skill.iconColor} />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold">{skill.name}</h3>
+                        <p className="text-gray-400 text-sm">
+                          {skill.level}% Proficiency
+                        </p>
+                      </div>
+                    </div>
+                    <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+                      <div
+                        className={`h-2 rounded-full bg-gradient-to-r ${skill.color}`}
+                        style={{ width: `${skill.level}%` }}
                       />
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
 
         {/* Projects Section */}
         <section
+          id="projects"
           ref={projectsRef}
-          className="relative z-10 py-20 px-6 bg-gradient-to-b from-gray-900 to-black"
+          className="relative py-20 px-6 bg-gradient-to-b from-black via-gray-900 to-black text-white"
         >
+          <div className="max-w-6xl mx-auto text-center mb-12">                   </div>
           <Projects />
         </section>
 
         {/* Contact Section */}
-        <section className="relative z-10 py-20 px-6">
+        <section className="relative py-20 px-6 bg-black text-white">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
-                Let's Build Something Amazing
-              </span>
+              Let’s Build Something Amazing
             </h2>
             <p className="text-gray-400 text-lg mb-12 max-w-2xl mx-auto">
-              Ready to turn your data into powerful web experiences? Let's
+              Ready to turn your data into powerful web experiences? Let’s
               discuss your next project.
             </p>
-
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="hover-scale px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full font-semibold text-white">
-                <span className="flex items-center justify-center space-x-2">
-                  <Mail size={20} />
-                  <span>Get In Touch</span>
-                </span>
-              </button>
-              <button className="hover-scale px-8 py-4 border-2 border-gray-600 rounded-full font-semibold text-white">
-                <span className="flex items-center justify-center space-x-2">
-                  <span>View Resume</span>
-                  <Terminal size={20} />
-                </span>
-              </button>
+              <a
+                href="mailto:kayikalvin@gmail.com"
+                className="px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 font-semibold text-black hover:scale-105 transition-transform duration-300"
+              >
+                Get In Touch
+              </a>
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 border-2 border-gray-600 rounded-full font-semibold text-white hover:bg-white hover:text-black transition-all duration-300"
+              >
+                View Resume
+              </a>
             </div>
           </div>
         </section>
