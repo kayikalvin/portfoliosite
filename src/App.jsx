@@ -516,11 +516,11 @@ const App = () => {
           </div>
         </div>
   
-          <ScrollVelocity
+          {/* <ScrollVelocity
             texts={['React Bits', 'Scroll Down']} 
             velocity={100} 
             className="custom-scroll-text"
-          />
+          /> */}
 
         {/* Skills Section */}
         <section ref={skillsRef} className="relative z-10 py-20 px-6">
