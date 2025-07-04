@@ -166,15 +166,15 @@ const App = () => {
         .from(".hero-title", {
           y: -100,
           opacity: 0,
-          duration: 2.2,
+          duration: 1.2,
           ease: "power4.out",
         })
         .from(
           ".hero-subtitle",
           {
-            y: 50,
+            // y: 50,
             opacity: 0,
-            duration: 1,
+            duration: 1.4,
             stagger: 0.2,
             ease: "power3.out",
           },
@@ -507,7 +507,7 @@ const App = () => {
           </h1>
 
           {/* Tagline */}
-          <p className="text-center text-xl md:text-2xl text-gray-400 max-w-xl mb-6">
+          <p className="hero-subtitle text-center text-xl md:text-2xl text-gray-400 max-w-xl mb-6">
             I build intelligent web apps that bridge data, design, and human
             experience.
           </p>
@@ -528,7 +528,7 @@ const App = () => {
                   key={index}
                   className="flex items-center gap-2 px-5 py-2 rounded-full border border-white/10 bg-white/5 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-purple-500 hover:scale-105 transition-all duration-300 cursor-pointer"
                 >
-                  <Icon size={20} className="text-gray-300" />
+                  <Icon size={20} className="hero-badge text-gray-300" />
                   <span className="text-sm font-medium">{item.label}</span>
                 </div>
               );
@@ -594,13 +594,13 @@ const App = () => {
               <div className="h-1 w-20 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full mx-auto mt-4 animate-pulse"></div>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {skills.map((skill, index) => {
                 const Icon = skill.icon;
                 return (
                   <div
                     key={index}
-                    className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:scale-105 transition-transform duration-300 cursor-pointer"
+                    className="skill-card p-4 rounded-2xl bg-white/5 border border-white/10 hover:scale-105 transition-transform duration-300 cursor-pointer "
                   >
                     <div className="flex items-center mb-4">
                       <div
@@ -617,8 +617,8 @@ const App = () => {
                     </div>
                     <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
                       <div
-                        className={`h-2 rounded-full bg-gradient-to-r ${skill.color}`}
-                        style={{ width: `${skill.level}%` }}
+                        className={`skill-bar h-2 rounded-full bg-gradient-to-r ${skill.color}`}
+                          style={{ width: `0%` }} 
                       />
                     </div>
                   </div>
