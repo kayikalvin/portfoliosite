@@ -164,9 +164,9 @@ const App = () => {
 
       heroTL
         .from(".hero-title", {
-          y: 100,
+          y: -100,
           opacity: 0,
-          duration: 1.2,
+          duration: 2.2,
           ease: "power4.out",
         })
         .from(
@@ -407,8 +407,8 @@ const App = () => {
         >
           {/* Animated Background */}
           <div className="absolute inset-0 parallax-bg">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-pink-900 opacity-20" />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-10" />
+            <div className="absolute inset-0 bg-gradient-to-bropacity-20" />
+            <div className="absolute inset-0  to-transparent opacity-10" />
 
             {/* Floating Particles */}
             {[...Array(25)].map((_, i) => (
@@ -502,7 +502,7 @@ const App = () => {
           className="relative h-screen flex flex-col items-center justify-center pt-52 bg-black text-white overflow-hidden"
         >
           {/* Headline */}
-          <h1 className="text-center text-5xl md:text-7xl font-extrabold mb-4 tracking-tight">
+          <h1 className="hero-title text-center text-5xl md:text-7xl font-extrabold mb-4 tracking-tight">
             Hey, I’m Kalvin 👋
           </h1>
 
@@ -547,34 +547,28 @@ const App = () => {
           <div className="absolute -top-20 -left-20 w-[300px] h-[300px] bg-gradient-to-br from-cyan-500 to-purple-500 opacity-20 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-20 -right-20 w-[300px] h-[300px] bg-gradient-to-br from-pink-500 to-purple-500 opacity-20 rounded-full blur-3xl"></div>
           {/* Fun facts and achievments */}
-        <section className="relative py-20 px-6 bg-black text-white">
+        <div className="relative py-20 px-6 bg-black text-white">
           <div className="max-w-5xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              By The Numbers
-            </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto mb-12">
-              A few quick stats about my journey.
-            </p>
-            <div className="h-1 w-20 bg-gradient-to-r from-green-400 to-blue-500 rounded-full mx-auto mb-12 animate-pulse"></div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
               {[
-                { number: "10+", label: "Products Launched" },
+                { number: "45+", label: "Repositories" },
+                { number: "15+", label: "Products completed" },
                 { number: "100K+", label: "Lines of Code" },
                 { number: "50+", label: "Data Pipelines Deployed" },
                 { number: "∞", label: "Cups of Coffee" },
               ].map((stat, index) => (
                 <div
                   key={index}
-                  className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:scale-105 transition-transform duration-300"
+                  className="bg-white/5 border border-white/10 rounded-2xl p-4 hover:scale-105 transition-transform duration-300"
                 >
-                  <h3 className="text-3xl font-bold mb-2">{stat.number}</h3>
+                  <h3 className="text-3xl font-bold mb-1">{stat.number}</h3>
                   <p className="text-gray-400">{stat.label}</p>
                 </div>
               ))}
             </div>
           </div>
-        </section>
+        </div>
         </div>
 
         {/* <ScrollVelocity

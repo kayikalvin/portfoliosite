@@ -3,3 +3,12 @@
 body {
   cursor: url('https://www.flaticon.com/free-icons/pointer" title="pointer icons">Pointer icons created by Amazona Adorada - Flaticon'), auto;
 }
+html, body {
+  overflow-x: hidden;
+}
+.floating-shape-1,
+.floating-shape-2,
+.floating-shape-3,
+.parallax-bg {
+  will-change: transform;
+}
