@@ -499,7 +499,7 @@ const App = () => {
         {/* Hero Section */}
         <div
           ref={heroRef}
-          className="relative h-screen flex flex-col items-center justify-center px-6 bg-black text-white overflow-hidden"
+          className="relative h-screen flex flex-col items-center justify-center pt-52 bg-black text-white overflow-hidden"
         >
           {/* Headline */}
           <h1 className="text-center text-5xl md:text-7xl font-extrabold mb-4 tracking-tight">
@@ -546,6 +546,35 @@ const App = () => {
           {/* Subtle background shape */}
           <div className="absolute -top-20 -left-20 w-[300px] h-[300px] bg-gradient-to-br from-cyan-500 to-purple-500 opacity-20 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-20 -right-20 w-[300px] h-[300px] bg-gradient-to-br from-pink-500 to-purple-500 opacity-20 rounded-full blur-3xl"></div>
+          {/* Fun facts and achievments */}
+        <section className="relative py-20 px-6 bg-black text-white">
+          <div className="max-w-5xl mx-auto text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              By The Numbers
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto mb-12">
+              A few quick stats about my journey.
+            </p>
+            <div className="h-1 w-20 bg-gradient-to-r from-green-400 to-blue-500 rounded-full mx-auto mb-12 animate-pulse"></div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {[
+                { number: "10+", label: "Products Launched" },
+                { number: "100K+", label: "Lines of Code" },
+                { number: "50+", label: "Data Pipelines Deployed" },
+                { number: "∞", label: "Cups of Coffee" },
+              ].map((stat, index) => (
+                <div
+                  key={index}
+                  className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:scale-105 transition-transform duration-300"
+                >
+                  <h3 className="text-3xl font-bold mb-2">{stat.number}</h3>
+                  <p className="text-gray-400">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
         </div>
 
         {/* <ScrollVelocity
@@ -611,9 +640,47 @@ const App = () => {
           ref={projectsRef}
           className="relative py-20 px-6 bg-gradient-to-b from-black via-gray-900 to-black text-white"
         >
-          <div className="max-w-6xl mx-auto text-center mb-12">                   </div>
+          <div className="max-w-6xl mx-auto text-center mb-12"></div>
           <Projects />
         </section>
+
+        {/* Blog post area */}
+        <section className="relative py-20 px-6 bg-gradient-to-b from-black via-gray-900 to-black text-white">
+          <div className="max-w-6xl mx-auto text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Insights & Articles
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto mb-12">
+              Sharing knowledge about data science, design, and modern
+              engineering.
+            </p>
+            <div className="h-1 w-20 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full mx-auto mb-12 animate-pulse"></div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {[
+                {
+                  title: "Building Scalable ML Platforms with Kubernetes",
+                  link: "#",
+                },
+                {
+                  title: "Designing Data-Driven Dashboards Users Actually Love",
+                  link: "#",
+                },
+              ].map((post, index) => (
+                <a
+                  key={index}
+                  href={post.link}
+                  className="block bg-white/5 border border-white/10 rounded-2xl p-6 text-left hover:scale-105 transition-transform duration-300"
+                >
+                  <h3 className="text-lg font-semibold mb-2">{post.title}</h3>
+                  <p className="text-gray-500 text-sm">Read more →</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        
 
         {/* Contact Section */}
         <section className="relative py-20 px-6 bg-black text-white">
