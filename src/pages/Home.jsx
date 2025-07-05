@@ -335,50 +335,7 @@ const Home = () => {
     };
   }, [gsapLoaded]);
 
-  const skills = [
-    {
-      name: "Python",
-      level: 95,
-      icon: Code,
-      color: "from-blue-500 to-cyan-500",
-      iconColor: "text-blue-400",
-    },
-    {
-      name: "JavaScript/React",
-      level: 90,
-      icon: Code,
-      color: "from-yellow-500 to-orange-500",
-      iconColor: "text-yellow-400",
-    },
-    {
-      name: "Machine Learning",
-      level: 88,
-      icon: Brain,
-      color: "from-purple-500 to-pink-500",
-      iconColor: "text-purple-400",
-    },
-    {
-      name: "Data Analysis",
-      level: 92,
-      icon: BarChart3,
-      color: "from-green-500 to-emerald-500",
-      iconColor: "text-green-400",
-    },
-    {
-      name: "SQL/NoSQL",
-      level: 85,
-      icon: Database,
-      color: "from-red-500 to-rose-500",
-      iconColor: "text-red-400",
-    },
-    {
-      name: "Cloud/DevOps",
-      level: 80,
-      icon: Cpu,
-      color: "from-indigo-500 to-blue-500",
-      iconColor: "text-indigo-400",
-    },
-  ];
+
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
