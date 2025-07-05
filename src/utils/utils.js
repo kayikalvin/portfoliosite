@@ -2,7 +2,7 @@ import {Code,Database,Brain,BarChart3,Cpu,} from "lucide-react";
 
 
 
-
+// projects
 const projects = [
   {
     title: "sonar-rock-vs-mine-ui",
@@ -34,7 +34,7 @@ const projects = [
 ];
 
 
-
+// skills
 const skills = [
     {
       name: "Python",
@@ -81,6 +81,17 @@ const skills = [
   ];
 
 
+// posts
+  const posts = [
+  {
+    title: "Building Scalable ML Platforms with Kubernetes",
+    link: "#",
+  },
+  {
+    title: "Designing Data-Driven Dashboards Users Actually Love",
+    link: "#",
+  },
+];
 
 
-export { projects, skills };
+export { projects, skills ,posts};
