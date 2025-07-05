@@ -1,11 +1,6 @@
-import {
-  Code,
-  Brain,
-  BarChart3,
- 
-} from "lucide-react";
+import { Code, Brain, BarChart3 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 import Projects from "../components/Projects";
 import skills from "../utils/utils";
 
@@ -334,8 +329,6 @@ const Home = () => {
     };
   }, [gsapLoaded]);
 
-
-
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
       {/* Mouse Follower */}
@@ -495,28 +488,27 @@ const Home = () => {
           <div className="absolute -top-20 -left-20 w-[300px] h-[300px] bg-gradient-to-br from-cyan-500 to-purple-500 opacity-20 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-20 -right-20 w-[300px] h-[300px] bg-gradient-to-br from-pink-500 to-purple-500 opacity-20 rounded-full blur-3xl"></div>
           {/* Fun facts and achievments */}
-        <div className="relative py-20 px-6 bg-black text-white">
-          <div className="max-w-5xl mx-auto text-center">
-
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
-              {[
-                { number: "45+", label: "Repositories" },
-                { number: "15+", label: "Products completed" },
-                { number: "100K+", label: "Lines of Code" },
-                { number: "50+", label: "Data Pipelines Deployed" },
-                { number: "∞", label: "Cups of Coffee" },
-              ].map((stat, index) => (
-                <div
-                  key={index}
-                  className="bg-white/5 border border-white/10 rounded-2xl p-4 hover:scale-105 transition-transform duration-300"
-                >
-                  <h3 className="text-3xl font-bold mb-1">{stat.number}</h3>
-                  <p className="text-gray-400">{stat.label}</p>
-                </div>
-              ))}
+          <div className="relative py-20 px-6 bg-black text-white">
+            <div className="max-w-5xl mx-auto text-center">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+                {[
+                  { number: "45+", label: "Repositories" },
+                  { number: "15+", label: "Products completed" },
+                  { number: "100K+", label: "Lines of Code" },
+                  { number: "50+", label: "Data Pipelines Deployed" },
+                  { number: "∞", label: "Cups of Coffee" },
+                ].map((stat, index) => (
+                  <div
+                    key={index}
+                    className="bg-white/5 border border-white/10 rounded-2xl p-4 hover:scale-105 transition-transform duration-300"
+                  >
+                    <h3 className="text-3xl font-bold mb-1">{stat.number}</h3>
+                    <p className="text-gray-400">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
         </div>
 
         {/* <ScrollVelocity
@@ -566,7 +558,7 @@ const Home = () => {
                     <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
                       <div
                         className={`skill-bar h-2 rounded-full bg-gradient-to-r ${skill.color}`}
-                          style={{ width: `0%` }} 
+                        style={{ width: `0%` }}
                       />
                     </div>
                   </div>
@@ -598,7 +590,7 @@ const Home = () => {
             </p>
             <div className="h-1 w-20 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full mx-auto mb-12 animate-pulse"></div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            {/* <div className="grid md:grid-cols-2 gap-8">
               {[
                 {
                   title: "Building Scalable ML Platforms with Kubernetes",
@@ -618,11 +610,21 @@ const Home = () => {
                   <p className="text-gray-500 text-sm">Read more →</p>
                 </a>
               ))}
+            </div> */}
+            <div className="grid md:grid-cols-2 gap-8">
+              {posts.map((post, index) => (
+                <a
+                  key={index}
+                  href={post.link}
+                  className="block bg-white/5 border border-white/10 rounded-2xl p-6 text-left hover:scale-105 transition-transform duration-300"
+                >
+                  <h3 className="text-lg font-semibold mb-2">{post.title}</h3>
+                  <p className="text-gray-500 text-sm">Read more →</p>
+                </a>
+              ))}
             </div>
           </div>
         </section>
-
-        
 
         {/* Contact Section */}
         <section className="relative py-20 px-6 bg-black text-white">
