@@ -1,6 +1,8 @@
 import { ExternalLink, Github } from "lucide-react";
+import projects from "../utils/utils";
 
 
+const Projects = () => {
 
   return (
     <div className="max-w-6xl mx-auto">
