@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 function App() {
   const router = createBrowserRouter([
     {path: "/", element: <Home />},
-    {path:"/admin",element:<Dashboard/>}
+    
     
   ]);
   return (
