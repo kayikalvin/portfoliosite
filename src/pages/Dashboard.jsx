@@ -1,12 +1,11 @@
 import { Outlet } from "react-router-dom";
-import { SidebarProvider, Sidebar, SidebarTrigger } from "../Components/ui/sidebar";
-import AppSidebar from "../Components/AppSidebar";
-import { UserContext } from "../Context/UserContext"; // Adjust path as needed
-import { CircularProgress } from "@mui/material";
+import { SidebarProvider, Sidebar, SidebarTrigger } from "../components/ui/sidebar";
+// import { CircularProgress } from "@mui/material";
 import { useState } from "react";
+import AppSidebar from "../components/AppSidebar";
 
 function Dashboard() {
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [user, setUser] = useState(true);
 
   return (
@@ -18,13 +17,13 @@ function Dashboard() {
         </Sidebar>
 
         {/* Main Content */}
-        <main className={`flex-1 p-6 bg-gray-50 min-h-screen overflow-auto`}>
-          <SidebarTrigger className={"absolute"} />
+        <main className={`flex-1 p-6 bg-gray-50 min-h-screen w-screen overflow-auto`}>
+          <SidebarTrigger className={"absolute top-1"} />
           <h2 className="text-2xl font-semibold">Admin Dashboard</h2>
 
           {loading ? (
             <p className="text-gray-500">
-              <CircularProgress />
+              {/* <CircularProgress /> */}loading ...
             </p>
           ) : user ? (
             <Outlet />
