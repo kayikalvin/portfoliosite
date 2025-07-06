@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./pages/Home";
+import ProjectDocs from "./pages/Projectdocs";
 
 
 function App() {
