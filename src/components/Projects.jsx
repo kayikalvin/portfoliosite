@@ -48,44 +48,46 @@ const Projects = () => {
                 ))}
               </div>
 
-              <div className="flex space-x-4 mt-auto">
-                {project.code && (
-                  <div className="group flex flex-col items-center">
-                    <a
-                      href={project.code}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-purple-500 transition-all duration-300"
-                    >
-                      <Github
-                        size={20}
-                        className="text-gray-200 group-hover:text-black transition-colors duration-300"
-                      />
-                    </a>
-                    <span className="mt-1 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      Code
-                    </span>
-                  </div>
-                )}
+              <div className="flex justify-between mt-auto">
+                <div className="flex space-x-2  items-center">
+                  {project.code && (
+                    <div className="group flex flex-col items-center">
+                      <a
+                        href={project.code}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-purple-500 transition-all duration-300"
+                      >
+                        <Github
+                          size={20}
+                          className="text-gray-200 group-hover:text-black transition-colors duration-300"
+                        />
+                      </a>
+                      <span className="mt-4 text-xs font-bold text-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        Code
+                      </span>
+                    </div>
+                  )}
 
-                {project.url && (
-                  <div className="group flex flex-col items-center">
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-purple-500 transition-all duration-300"
-                    >
-                      <ExternalLink
-                        size={20}
-                        className="text-gray-200 group-hover:text-black transition-colors duration-300"
-                      />
-                    </a>
-                    <span className="mt-1 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      Live
-                    </span>
-                  </div>
-                )}
+                  {project.url && (
+                    <div className="group flex flex-col items-center">
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-purple-500 transition-all duration-300"
+                      >
+                        <ExternalLink
+                          size={20}
+                          className="text-gray-200 group-hover:text-black transition-colors duration-300"
+                        />
+                      </a>
+                      <span className="mt-4 text-sm font-bold text-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        Live
+                      </span>
+                    </div>
+                  )}
+                </div>
 
                 {/* NEW View Docs link */}
                 <div className="group flex flex-col items-center">
@@ -99,7 +101,7 @@ const Projects = () => {
                     />
                   </Link>
 
-                  <span className="mt-1 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="mt-4 text-xs font-bold text-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     View Docs
                   </span>
                 </div>
