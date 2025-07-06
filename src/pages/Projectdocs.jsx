@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import {projects} from "../utils/utils";
+import { Cast, CodeXml, FileCode2, Github } from "lucide-react";
 
 const ProjectDocs = () => {
   const { projectId } = useParams();
@@ -22,9 +23,15 @@ const ProjectDocs = () => {
         <p className="text-gray-300 mb-4">{project.description}</p>
 
         <div className="space-y-2">
-          <p><strong>Technologies:</strong> {project.tech.join(", ")}</p>
-          <p><strong>Code:</strong> <a href={project.code} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">View on GitHub</a></p>
-          <p><strong>Live:</strong> <a href={project.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">Visit Live</a></p>
+          <p className="flex items-center gap-2">
+            <FileCode2 className="rounded-4xl p-1 bg-gray-800" size={28}/>
+            {project.tech.join(", ")}</p>
+          <p className="flex items-center gap-2">
+            <Github className="rounded-4xl p-1 bg-gray-800" size={28}/>
+            <a href={project.code} target="_blank" rel="noopener noreferrer" >View on GitHub</a></p>
+          <p className="flex items-center gap-2">
+            <Cast className="rounded-4xl p-1 bg-gray-800" size={28}/>
+             <a href={project.url} target="_blank" rel="noopener noreferrer" >Visit Live</a></p>
         </div>
 
         <div className="mt-6 p-4 bg-white/5 border border-white/10 rounded-lg">
