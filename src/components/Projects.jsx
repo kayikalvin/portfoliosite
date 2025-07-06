@@ -1,9 +1,8 @@
-import { ExternalLink, Github } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ExternalLink, Github, BookOpen } from "lucide-react";
 import projects from "../utils/utils";
 
-
 const Projects = () => {
-
   return (
     <div className="max-w-6xl mx-auto">
       <div className="text-center mb-16">
@@ -69,6 +68,13 @@ const Projects = () => {
                     <ExternalLink size={18} className="text-gray-200 hover:text-black" />
                   </a>
                 )}
+                {/* NEW View Docs link */}
+                <Link
+                  to={`/projects/${project.title}/docs`}
+                  className="p-2 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-green-500 hover:to-teal-500 transition-all duration-300"
+                >
+                  <BookOpen size={18} className="text-gray-200 hover:text-black" />
+                </Link>
               </div>
             </div>
           </div>
