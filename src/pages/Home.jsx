@@ -2,8 +2,8 @@ import { Code, Brain, BarChart3 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import Projects from "../components/Projects";
-import {skills} from "../utils/utils";
-import {posts} from "../utils/utils"
+import { skills } from "../utils/utils";
+import { posts } from "../utils/utils";
 
 const Home = () => {
   const heroRef = useRef(null);
@@ -439,135 +439,143 @@ const Home = () => {
         </div>
 
         {/* Hero Section */}
-        <div
-          ref={heroRef}
-          className="relative h-screen flex flex-col items-center justify-center pt-52 bg-black text-white overflow-hidden"
-        >
-          {/* Headline */}
-          <h1 className="hero-title text-center text-5xl md:text-7xl font-extrabold mb-4 tracking-tight">
-            Hey, I’m Kalvin 👋
-          </h1>
-
-          {/* Tagline */}
-          <p className="hero-subtitle text-center text-xl md:text-2xl text-gray-400 max-w-xl mb-6">
-            I build intelligent web apps that bridge data, design, and human
-            experience.
-          </p>
-
-          {/* Animated gradient line */}
-          <div className="h-1 w-24 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full animate-pulse mb-8"></div>
-
-          {/* Skills badges */}
-          <div className="flex flex-wrap justify-center gap-4 mb-10">
-            {[
-              { icon: Code, label: "Full-Stack Dev" },
-              { icon: Brain, label: "ML Engineer" },
-              { icon: BarChart3, label: "Data Analyst" },
-            ].map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={index}
-                  className="flex items-center gap-2 px-5 py-2 rounded-full border border-white/10 bg-white/5 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-purple-500 hover:scale-105 transition-all duration-300 cursor-pointer"
-                >
-                  <Icon size={20} className="hero-badge text-gray-300" />
-                  <span className="text-sm font-medium">{item.label}</span>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Call to action */}
-          <a
-            href="#projects"
-            className="inline-block mt-4 px-8 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 text-black font-semibold hover:scale-105 transition-all duration-300"
+        <div>
+          <div
+            ref={heroRef}
+            className="relative h-screen flex flex-col items-center justify-center pt-52 bg-black text-white overflow-hidden"
           >
-            See My Work
-          </a>
+            {/* Headline */}
+            <h1 className="hero-title text-center text-5xl md:text-7xl font-extrabold mb-4 tracking-tight">
+              Hey, I’m Kalvin 👋
+            </h1>
 
-          {/* Subtle background shape */}
-          <div className="absolute -top-20 -left-20 w-[300px] h-[300px] bg-gradient-to-br from-cyan-500 to-purple-500 opacity-20 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-20 -right-20 w-[300px] h-[300px] bg-gradient-to-br from-pink-500 to-purple-500 opacity-20 rounded-full blur-3xl"></div>
-          {/* Fun facts and achievments */}
-          <div className="relative py-20 px-6 bg-black text-white">
-            <div className="max-w-5xl mx-auto text-center">
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
-                {[
-                  { number: "45+", label: "Repositories" },
-                  { number: "15+", label: "Products completed" },
-                  { number: "100K+", label: "Lines of Code" },
-                  { number: "50+", label: "Data Pipelines Deployed" },
-                  { number: "∞", label: "Cups of Coffee" },
-                ].map((stat, index) => (
+            {/* Tagline */}
+            <p className="hero-subtitle text-center text-xl md:text-2xl text-gray-400 max-w-xl mb-6">
+              I build intelligent web apps that bridge data, design, and human
+              experience.
+            </p>
+
+            {/* Animated gradient line */}
+            <div className="h-1 w-24 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full animate-pulse mb-8"></div>
+
+            {/* Skills badges */}
+            <div className="flex flex-wrap justify-center gap-4 mb-10">
+              {[
+                { icon: Code, label: "Full-Stack Dev" },
+                { icon: Brain, label: "ML Engineer" },
+                { icon: BarChart3, label: "Data Analyst" },
+              ].map((item, index) => {
+                const Icon = item.icon;
+                return (
                   <div
                     key={index}
-                    className="bg-white/5 border border-white/10 rounded-2xl p-4 hover:scale-105 transition-transform duration-300"
+                    className="flex items-center gap-2 px-5 py-2 rounded-full border border-white/10 bg-white/5 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-purple-500 hover:scale-105 transition-all duration-300 cursor-pointer"
                   >
-                    <h3 className="text-3xl font-bold mb-1">{stat.number}</h3>
-                    <p className="text-gray-400">{stat.label}</p>
+                    <Icon size={20} className="hero-badge text-gray-300" />
+                    <span className="text-sm font-medium">{item.label}</span>
                   </div>
-                ))}
+                );
+              })}
+            </div>
+
+            {/* Call to action */}
+            <a
+              href="#projects"
+              className="inline-block mt-4 text-white px-8 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 text-black font-semibold hover:scale-105 transition-all duration-300"
+            >
+              See My Work
+            </a>
+
+            {/* Fun facts and achievments */}
+            <div className="relative py-20 px-6 bg-black text-white">
+              <div className="max-w-5xl mx-auto text-center">
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+                  {[
+                    { number: "45+", label: "Repositories" },
+                    { number: "15+", label: "Products completed" },
+                    { number: "100K+", label: "Lines of Code" },
+                    { number: "50+", label: "Data Pipelines Deployed" },
+                    { number: "∞", label: "Cups of Coffee" },
+                  ].map((stat, index) => (
+                    <div
+                      key={index}
+                      className="bg-white/5 border border-white/10 rounded-2xl p-4 hover:scale-105 transition-transform duration-300"
+                    >
+                      <h3 className="text-3xl font-bold mb-1">{stat.number}</h3>
+                      <p className="text-gray-400">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* <ScrollVelocity
+          {/* <ScrollVelocity
             texts={['React Bits', 'Scroll Down']} 
             velocity={100} 
             className="custom-scroll-text"
           /> */}
 
-        {/* Skills Section */}
-        <section
-          ref={skillsRef}
-          className="relative py-20 px-6 bg-black text-white overflow-hidden"
-        >
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Technical Expertise
-              </h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">
-                Mastering the intersection of data science, machine learning,
-                and modern web development.
-              </p>
-              <div className="h-1 w-20 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full mx-auto mt-4 animate-pulse"></div>
-            </div>
+          {/* Skills Section */}
+          <section
+            ref={skillsRef}
+            className="relative py-20 px-6 bg-black text-white overflow-hidden"
+          >
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                  Technical Expertise
+                </h2>
+                <p className="text-gray-400 max-w-2xl mx-auto">
+                  Mastering the intersection of data science, machine learning,
+                  and modern web development.
+                </p>
+                <div className="h-1 w-20 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full mx-auto mt-4 animate-pulse"></div>
+              </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {skills.map((skill, index) => {
-                const Icon = skill.icon;
-                return (
-                  <div
-                    key={index}
-                    className="skill-card p-4 rounded-2xl bg-white/5 border border-white/10 hover:scale-105 transition-transform duration-300 cursor-pointer "
-                  >
-                    <div className="flex items-center mb-4">
-                      <div
-                        className={`p-3 rounded-xl bg-gradient-to-r ${skill.color} bg-opacity-20 mr-4`}
-                      >
-                        <Icon size={24} className={skill.iconColor} />
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {skills.map((skill, index) => {
+                  const Icon = skill.icon;
+                  return (
+                    <div
+                      key={index}
+                      className="skill-card p-4 rounded-2xl bg-white/5 border border-white/10 hover:scale-105 transition-transform duration-300 cursor-pointer "
+                    >
+                      <div className="flex items-center mb-4">
+                        <div
+                          className={`p-3 rounded-xl bg-gradient-to-r ${skill.color} bg-opacity-20 mr-4`}
+                        >
+                          <Icon size={24} className={skill.iconColor} />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-semibold">
+                            {skill.name}
+                          </h3>
+                          <p className="text-gray-400 text-sm">
+                            {skill.level}% Proficiency
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="text-xl font-semibold">{skill.name}</h3>
-                        <p className="text-gray-400 text-sm">
-                          {skill.level}% Proficiency
-                        </p>
+                      <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+                        <div
+                          className={`skill-bar h-2 rounded-full bg-gradient-to-r ${skill.color}`}
+                          style={{ width: `0%` }}
+                        />
                       </div>
                     </div>
-                    <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
-                      <div
-                        className={`skill-bar h-2 rounded-full bg-gradient-to-r ${skill.color}`}
-                        style={{ width: `0%` }}
-                      />
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+          {/* Subtle background shape */}
+          <div className="absolute -top-30 -left-30 w-[400px] h-[400px] bg-gradient-to-br from-cyan-500 to-purple-500 opacity-20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-50 -right-50 w-[600px] h-[600px] bg-gradient-to-br from-pink-500 to-purple-500 opacity-20 rounded-full blur-3xl"></div>
+          {/* <div
+            className="absolute -top-10 left-1/3 w-64 h-64 bg-gradient-to-b from-cyan-400 to-blue-500 opacity-20 rounded-full blur-3xl"
+            style={{ clipPath: "ellipse(50% 50% at 50% 0%)" }}
+          ></div> */}
+        </div>
 
         {/* Projects Section */}
         <section
@@ -657,27 +665,33 @@ const Home = () => {
         </section>
 
         {/* Footer */}
-        <footer className="relative z-10 py-8 px-6 border-t border-gray-800">
+        <footer
+          className="relative z-10 py-8 px-6  bg-blue-200 text-white"
+          style={{
+            clipPath:
+              "polygon(0 10%, 20% 0, 45% 20%, 75% 10%, 100% 10%, 100% 100%, 0 100%)",
+          }}
+        >
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-4 justify-between items-center">
-            <p className="text-gray-400 mb-4 md:mb-0">
+            <p className="text-black font-bold mb-4 md:mb-0">
               © 2025 Kayi Kalvin. All rights reserved
             </p>
             <div className="flex space-x-6">
               <a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors duration-300"
+                className="text-black font-bold hover:text-gray-400 transition-colors duration-300"
               >
                 Privacy
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors duration-300"
+                className="text-black font-bold hover:text-gray-400 transition-colors duration-300"
               >
                 Terms
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors duration-300"
+                className="text-black font-bold hover:text-gray-400 transition-colors duration-300"
               >
                 Contact
               </a>
