@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ExternalLink, Github, BookOpen } from "lucide-react";
-import projects from "../utils/utils";
+import {projects} from "../utils/utils";
 
 const Projects = () => {
   return (

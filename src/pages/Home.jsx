@@ -2,8 +2,8 @@ import { Code, Brain, BarChart3 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import Projects from "../components/Projects";
-import skills from "../utils/utils";
-import posts from "../utils/utils"
+import {skills} from "../utils/utils";
+import {posts} from "../utils/utils"
 
 const Home = () => {
   const heroRef = useRef(null);
