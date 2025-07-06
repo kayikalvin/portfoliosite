@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 function App() {
   const router = createBrowserRouter([
     {path: "/", element: <Home />},
+    { path: "/projects/:projectId/docs", element: <ProjectDocs /> },
     
     
   ]);
