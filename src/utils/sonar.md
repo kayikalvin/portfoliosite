@@ -1,17 +1,3 @@
-import { Code, Database, Brain, BarChart3, Cpu } from "lucide-react";
-
-
-// projects
-export const projects = [
-  {
-    title: "sonar-rock-vs-mine-ui",
-    description:
-      "🎯 Advanced machine learning-powered web application that analyzes sonar signatures to classify underwater objects as mines or rocks. Features real-time classification, confidence scoring, and comprehensive data validation with a modern React interface.",
-    tech: ["React", "Machine Learning", "Tailwind CSS", "Lucide Icons", "JavaScript"],
-    gradient: "from-blue-600 via-purple-600 to-pink-600",
-    code: "https://github.com/kayikalvin/sonar-rock-vs-mine-ui",
-    url: "https://sonar-rock-vs-mine-ui.vercel.app/",
-    markdown: `
 # 🎯 Sonar Mine vs Rock Classification System
 
 ## 🌊 Overview
@@ -58,28 +44,15 @@ The Sonar Mine vs Rock Classification System is a machine learning-powered web a
 - React 18+ ⚛️
 
 ### 📦 Dependencies
-~~~bash
+```bash
 npm install react lucide-react
-~~~
+```
 
 ### 🚀 Setup Steps
 1. 📥 Clone the repository
-~~~bash
-git clone https://github.com/kayikalvin/sonar-rock-vs-mine-ui.git
-cd sonar-rock-vs-mine-ui
-~~~
-
-2. 📦 Install dependencies
-~~~bash
-npm install
-~~~
-
-3. 🚀 Start the development server
-~~~bash
-npm start
-~~~
-
-4. 🌐 Open \`http://localhost:3000\` in your browser
+2. 📦 Install dependencies: `npm install`
+3. 🚀 Start the development server: `npm start`
+4. 🌐 Open `http://localhost:3000` in your browser
 
 ## 📖 Usage Guide
 
@@ -120,25 +93,25 @@ npm start
 The system currently uses mock prediction logic for demonstration purposes. To integrate with a real machine learning API:
 
 ### 🌐 Expected API Endpoint
-~~~
+```
 POST /predict
 Content-Type: application/json
 
 {
   "features": [0.02, 0.0371, 0.0428, ...]
 }
-~~~
+```
 
 ### 📤 Expected Response
-~~~json
+```json
 {
   "prediction": "M" | "R",
   "confidence": 0.85
 }
-~~~
+```
 
 ### 🔧 Integration Steps
-1. 🔄 Replace the mock prediction logic in \`handleSubmit\`
+1. 🔄 Replace the mock prediction logic in `handleSubmit`
 2. ❌ Add proper error handling for network requests
 3. 🌐 Configure API endpoint URL
 4. 🔐 Add authentication if required
@@ -197,15 +170,15 @@ Content-Type: application/json
 ## 🚀 Deployment
 
 ### 🏗️ Build Process
-~~~bash
+```bash
 npm run build
-~~~
+```
 
 ### 🌍 Environment Variables
-~~~env
+```env
 REACT_APP_API_URL=https://your-api-endpoint.com
 REACT_APP_VERSION=1.0.0
-~~~
+```
 
 ### ✅ Production Checklist
 - [ ] ⚡ Optimize bundle size
@@ -251,7 +224,7 @@ REACT_APP_VERSION=1.0.0
 1. 🍴 Fork the repository
 2. 🌿 Create a feature branch
 3. ✏️ Make your changes
-4. 🧪 Run tests: \`npm test\`
+4. 🧪 Run tests: `npm test`
 5. 📤 Submit a pull request
 
 ### 📝 Code Style
@@ -260,144 +233,27 @@ REACT_APP_VERSION=1.0.0
 - 🧪 Write comprehensive tests
 - 📖 Document all functions
 
-## 🎯 Key Technologies
-
-### 🎨 Frontend Stack
-- **⚛️ React 18+**: Modern component-based architecture
-- **🎨 Tailwind CSS**: Utility-first styling framework
-- **🎭 Lucide Icons**: Beautiful, customizable icon library
-- **📱 Responsive Design**: Mobile-first approach
-
-### 🤖 Machine Learning Integration
-- **📊 Feature Processing**: 60-dimensional sonar signature analysis
-- **🧠 Classification Algorithm**: Binary classification (Mine/Rock)
-- **📈 Confidence Scoring**: Probability-based predictions
-- **✅ Data Validation**: Comprehensive input validation
-
-## 🏆 Project Highlights
-
-### 🎯 Achievement Metrics
-- **📊 Data Processing**: Handles 60-feature sonar signatures
-- **⚡ Performance**: Real-time classification with <1s response
-- **🎨 UI/UX**: Modern, accessible interface design
-- **✅ Validation**: Comprehensive error handling and user feedback
-
-### 🌟 Innovation Points
-- **🔬 Scientific Application**: Real-world maritime safety use case
-- **🎨 User Experience**: Intuitive interface for complex data
-- **📊 Data Visualization**: Clear, actionable results presentation
-- **🛡️ Robust Architecture**: Production-ready error handling
-
-## 📋 Live Demo Features
-
-### 🎮 Interactive Elements
-- **🧪 Test Data**: Three pre-loaded sample cases
-- **📋 Copy Functionality**: One-click data copying
-- **🔄 Real-time Validation**: Live feature count display
-- **📊 Visual Results**: Color-coded classification badges
-
-### 🎯 Demo Scenarios
-1. **🪨 Rock Classification**: Test with geological samples
-2. **⚠️ Mine Detection**: Identify metallic underwater objects
-3. **📊 Edge Cases**: Test validation with invalid inputs
-
 ## 📄 License
+
 This project is licensed under the MIT License. See the LICENSE file for details. 📜
 
 ## 🆘 Support
+
 For technical support or questions:
-- 🐛 Create an issue on [GitHub](https://github.com/kayikalvin/sonar-rock-vs-mine-ui)
+- 🐛 Create an issue on GitHub 
 - 📧 Contact the development team
-- 🌐 Visit the [Live Demo](https://sonar-rock-vs-mine-ui.vercel.app/)
+- ❓ Check the FAQ section
 
 ## 📋 Changelog
 
 ### 🎉 Version 1.0.0
+
 - 🎊 Initial release with basic classification functionality
 - 🎨 Modern React UI with Tailwind CSS
 - 📊 Sample data integration
 - ✅ Input validation and error handling
 - 📱 Mobile-responsive design
 
-## 🙏 Acknowledgements
-- 🌊 Thanks to the marine science community for sonar data insights
-- 🤖 Machine learning research community for classification algorithms
-- 🎨 Open-source community for React and UI libraries
-- 🔬 Contributors who helped improve the project
-
-## 🎯 Screenshots & Demo
-
-### 🖼️ Interface Preview
-![🎨 Main Dashboard](https://sonar-rock-vs-mine-ui.vercel.app/dashboard.png)
-![📊 Classification Results](https://sonar-rock-vs-mine-ui.vercel.app/results.png)
-
-### 🎮 Try It Live
-Experience the full functionality at: [🌐 Live Demo](https://sonar-rock-vs-mine-ui.vercel.app/)
-
 ---
 
-*📅 Last updated: July 2025* | *🚀 Built with passion for maritime safety* | *🌊 Powered by machine learning*
-`,
-  },
-];
- 
-
-// skills
-export const skills = [
-  {
-    name: "Python",
-    level: 95,
-    icon: Code,
-    color: "from-blue-500 to-cyan-500",
-    iconColor: "text-blue-400",
-  },
-  {
-    name: "JavaScript/React",
-    level: 90,
-    icon: Code,
-    color: "from-yellow-500 to-orange-500",
-    iconColor: "text-yellow-400",
-  },
-  {
-    name: "Machine Learning",
-    level: 88,
-    icon: Brain,
-    color: "from-purple-500 to-pink-500",
-    iconColor: "text-purple-400",
-  },
-  {
-    name: "Data Analysis",
-    level: 92,
-    icon: BarChart3,
-    color: "from-green-500 to-emerald-500",
-    iconColor: "text-green-400",
-  },
-  {
-    name: "SQL/NoSQL",
-    level: 85,
-    icon: Database,
-    color: "from-red-500 to-rose-500",
-    iconColor: "text-red-400",
-  },
-  {
-    name: "Cloud/DevOps",
-    level: 80,
-    icon: Cpu,
-    color: "from-indigo-500 to-blue-500",
-    iconColor: "text-indigo-400",
-  },
-];
-
-// posts
-export const posts = [
-  {
-    title: "Building Scalable ML Platforms with Kubernetes",
-    link: "#",
-  },
-  {
-    title: "Designing Data-Driven Dashboards Users Actually Love",
-    link: "#",
-  },
-];
-
- 
+*📅 Last updated: July 2025*
