@@ -94,4 +94,4 @@ const skills = [
 ];
 
 
-export { projects, skills ,posts};
+export default { projects, skills ,posts};
