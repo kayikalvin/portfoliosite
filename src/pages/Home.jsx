@@ -442,10 +442,10 @@ const Home = () => {
         <div>
           <div
             ref={heroRef}
-            className="relative h-screen flex flex-col items-center justify-center pt-52 bg-black text-white overflow-hidden"
+            className="relative h-screen flex flex-col items-center justify-center pt-52 px-4 md:px-0 bg-black text-white overflow-hidden"
           >
             {/* Headline */}
-            <h1 className="hero-title text-center text-5xl md:text-7xl font-extrabold mb-4 tracking-tight">
+            <h1 className="hero-title text-center text-6xl md:text-7xl font-extrabold mb-4 tracking-tight">
               Hey, I’m Kalvin 👋
             </h1>
 
@@ -499,9 +499,9 @@ const Home = () => {
                   ].map((stat, index) => (
                     <div
                       key={index}
-                      className="bg-white/5 border border-white/10 rounded-2xl p-4 hover:scale-105 transition-transform duration-300"
+                      className="bg-white/5 border border-white/10 rounded-2xl p-2 md:p-4 hover:scale-105 transition-transform duration-300"
                     >
-                      <h3 className="text-3xl font-bold mb-1">{stat.number}</h3>
+                      <h3 className="text-xl md:text-3xl font-bold mb-1">{stat.number}</h3>
                       <p className="text-gray-400">{stat.label}</p>
                     </div>
                   ))}
@@ -666,32 +666,32 @@ const Home = () => {
 
         {/* Footer */}
         <footer
-          className="relative z-10 py-8 px-6  bg-blue-200 text-white"
+          className="relative z-10 py-8 px-6  bg-blue-200/40 text-white"
           style={{
             clipPath:
               "polygon(0 10%, 20% 0, 45% 20%, 75% 10%, 100% 10%, 100% 100%, 0 100%)",
           }}
         >
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-4 justify-between items-center">
-            <p className="text-black font-bold mb-4 md:mb-0">
+            <p className="text-white font-bold mb-4 md:mb-0">
               © 2025 Kayi Kalvin. All rights reserved
             </p>
             <div className="flex space-x-6">
               <a
                 href="#"
-                className="text-black font-bold hover:text-gray-400 transition-colors duration-300"
+                className="text-white font-bold hover:text-gray-400 transition-colors duration-300"
               >
                 Privacy
               </a>
               <a
                 href="#"
-                className="text-black font-bold hover:text-gray-400 transition-colors duration-300"
+                className="text-white font-bold hover:text-gray-400 transition-colors duration-300"
               >
                 Terms
               </a>
               <a
                 href="#"
-                className="text-black font-bold hover:text-gray-400 transition-colors duration-300"
+                className="text-white font-bold hover:text-gray-400 transition-colors duration-300"
               >
                 Contact
               </a>
