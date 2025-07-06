@@ -3,7 +3,7 @@ import {Code,Database,Brain,BarChart3,Cpu,} from "lucide-react";
 
 
 // projects
-const projects = [
+export const projects = [
   {
     title: "sonar-rock-vs-mine-ui",
     description:
@@ -35,7 +35,7 @@ const projects = [
 
 
 // skills
-const skills = [
+export const skills = [
     {
       name: "Python",
       level: 95,
@@ -82,7 +82,7 @@ const skills = [
 
 
 // posts
-  const posts = [
+  export const posts = [
   {
     title: "Building Scalable ML Platforms with Kubernetes",
     link: "#",
@@ -94,4 +94,4 @@ const skills = [
 ];
 
 
-export default { projects, skills ,posts};
+
