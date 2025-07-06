@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ExternalLink, Github, BookOpen } from "lucide-react";
-import {projects} from "../utils/utils";
+import { projects } from "../utils/utils";
 
 const Projects = () => {
   return (
@@ -12,7 +12,8 @@ const Projects = () => {
           </span>
         </h2>
         <p className="text-gray-400 max-w-2xl mx-auto">
-          Real-world applications showcasing the power of data-driven web engineering.
+          Real-world applications showcasing the power of data-driven web
+          engineering.
         </p>
         <div className="h-1 w-20 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full mx-auto mt-4 animate-pulse"></div>
       </div>
@@ -47,34 +48,61 @@ const Projects = () => {
                 ))}
               </div>
 
-              <div className="flex space-x-2 mt-auto">
+              <div className="flex space-x-4 mt-auto">
                 {project.code && (
-                  <a
-                    href={project.code}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-purple-500 transition-all duration-300"
-                  >
-                    <Github size={18} className="text-gray-200 hover:text-black" />
-                  </a>
+                  <div className="group flex flex-col items-center">
+                    <a
+                      href={project.code}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-purple-500 transition-all duration-300"
+                    >
+                      <Github
+                        size={20}
+                        className="text-gray-200 group-hover:text-black transition-colors duration-300"
+                      />
+                    </a>
+                    <span className="mt-1 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      Code
+                    </span>
+                  </div>
                 )}
+
                 {project.url && (
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-purple-500 transition-all duration-300"
-                  >
-                    <ExternalLink size={18} className="text-gray-200 hover:text-black" />
-                  </a>
+                  <div className="group flex flex-col items-center">
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-purple-500 transition-all duration-300"
+                    >
+                      <ExternalLink
+                        size={20}
+                        className="text-gray-200 group-hover:text-black transition-colors duration-300"
+                      />
+                    </a>
+                    <span className="mt-1 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      Live
+                    </span>
+                  </div>
                 )}
+
                 {/* NEW View Docs link */}
-                <Link
-                  to={`/projects/${project.title}/docs`}
-                  className="p-2 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-green-500 hover:to-teal-500 transition-all duration-300"
-                >
-                  <BookOpen size={18} className="text-gray-200 hover:text-black" />
-                </Link>
+                <div className="group flex flex-col items-center">
+                  <Link
+                    to={`/projects/${project.title}/docs`}
+                    className="p-2 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-green-500 hover:to-teal-500 transition-all duration-300"
+                  >
+                    <BookOpen
+                      size={20}
+                      className="text-gray-200 group-hover:text-black transition-colors duration-300"
+                    />
+                  </Link>
+
+                  <span className="mt-1 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    View Docs
+                  </span>
+                </div>
               </div>
             </div>
           </div>
