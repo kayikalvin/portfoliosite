@@ -12,6 +12,7 @@ export const projects = [
     gradient: "from-blue-600 via-purple-600 to-pink-600",
     code: "https://github.com/kayikalvin/sonar-rock-vs-mine-ui",
     url: "https://sonar-rock-vs-mine-ui.vercel.app/",
+    markdown:``
   },
   {
     title: "ML Model Platform",
@@ -21,6 +22,7 @@ export const projects = [
     gradient: "from-green-600 via-teal-600 to-blue-600",
     code: "https://github.com/your-repo/ml-platform",
     url: "https://ml-platform-live.com",
+    markdown:``
   },
   {
     title: "Data Pipeline Orchestrator",
@@ -30,6 +32,7 @@ export const projects = [
     gradient: "from-orange-600 via-red-600 to-pink-600",
     code: "https://github.com/your-repo/data-pipeline",
     url: "https://pipeline-dashboard.com",
+    markdown:``
   },
 ];
 
