@@ -4,7 +4,7 @@ import { Code, Database, Brain, BarChart3, Cpu } from "lucide-react";
 // projects
 export const projects = [
   {
-    title: "sonar-rock-vs-mine-ui",
+    title: "Sonar-Rock-vs-Mine-UI",
     description:
       "🎯 Advanced machine learning-powered web application that analyzes sonar signatures to classify underwater objects as mines or rocks. Features real-time classification, confidence scoring, and comprehensive data validation with a modern React interface.",
     tech: ["React", "Machine Learning", "Tailwind CSS", "Lucide Icons", "JavaScript"],
@@ -14,330 +14,192 @@ export const projects = [
     markdown: `
 # 🎯 Sonar Mine vs Rock Classification System
 
-## 🌊 Overview
+## Project Description
 
-The Sonar Mine vs Rock Classification System is a machine learning-powered web application that analyzes sonar signatures to classify underwater objects as either mines or rocks. This system uses advanced signal processing techniques to identify potentially dangerous underwater mines, making it valuable for maritime safety and naval operations.
+A machine learning-powered web application that analyzes sonar signatures to classify underwater objects as mines or rocks. The system processes 60-dimensional sonar feature data to provide real-time classification with confidence scoring, making it valuable for maritime safety and naval operations.
 
-## ✨ Features
+## Key Features
 
 ### 🚀 Core Functionality
-- **⚡ Real-time Classification**: Instant analysis of sonar signature data
-- **📊 Confidence Scoring**: Provides probability estimates for predictions
-- **✅ Input Validation**: Comprehensive data validation with user-friendly error messages
-- **🧪 Sample Data**: Pre-loaded test cases for demonstration and validation
-
-### 🎨 User Interface
-- **🌈 Modern Design**: Clean, professional interface with gradient backgrounds
-- **📱 Responsive Layout**: Works seamlessly on desktop, tablet, and mobile devices
-- **🔄 Visual Feedback**: Loading states, animations, and clear result indicators
-- **♿ Accessibility**: Proper labeling and keyboard navigation support
-
-### 📋 Data Management
-- **📋 Clipboard Integration**: One-click copying of sample data
-- **🔢 Feature Count Display**: Real-time validation of input data
-- **❌ Error Handling**: Detailed error messages with specific guidance
-
-## 🔧 Technical Specifications
-
-### 📥 Input Requirements
-- **🔢 Feature Count**: Exactly 60 numerical features
-- **📊 Data Format**: Comma-separated values (CSV format)
-- **📏 Value Range**: Features should be normalized between 0 and 1
-- **🔢 Data Type**: Floating-point numbers
-
-### 📤 Output
-- **🏷️ Classification**: Binary classification (Mine/Rock)
-- **📈 Confidence Score**: Percentage confidence (70-100%)
-- **🎨 Visual Indicators**: Color-coded badges and emoji representations
-
-## 🛠️ Installation
-
-### 📋 Prerequisites
-- Node.js (version 14 or higher) 📦
-- npm or yarn package manager 📦
-- React 18+ ⚛️
-
-### 📦 Dependencies
-~~~bash
-npm install react lucide-react
-~~~
-
-### 🚀 Setup Steps
-1. 📥 Clone the repository
-~~~bash
-git clone https://github.com/kayikalvin/sonar-rock-vs-mine-ui.git
-cd sonar-rock-vs-mine-ui
-~~~
-
-2. 📦 Install dependencies
-~~~bash
-npm install
-~~~
-
-3. 🚀 Start the development server
-~~~bash
-npm start
-~~~
-
-4. 🌐 Open \`http://localhost:3000\` in your browser
-
-## 📖 Usage Guide
-
-### 🎯 Basic Operation
-
-1. **⌨️ Input Data**: Enter 60 comma-separated sonar features in the text area
-2. **✅ Validate**: The system automatically validates feature count and format
-3. **🔍 Classify**: Click "Classify Object" to process the data
-4. **📊 Review Results**: View the classification and confidence score
-
-### 🧪 Using Sample Data
-
-1. **👀 Browse Samples**: Review the three provided test cases
-2. **📋 Copy Features**: Click "Copy Features" to copy sample data to clipboard
-3. **📝 Paste Data**: Paste the copied data into the input field
-4. **🧪 Test Classification**: Run the classification to see expected results
-
-### 📊 Sample Data Overview
-
-#### 🪨 Sample 1: Rock
-- **📊 Features**: 60 normalized values starting with 0.02, 0.0371, 0.0428...
-- **📝 Description**: Low-density object with smooth surface characteristics
-- **🎯 Expected Result**: Rock classification
-
-#### ⚠️ Sample 2: Mine
-- **📊 Features**: 60 normalized values starting with 0.0179, 0.0136, 0.0408...
-- **📝 Description**: High-density metallic object with irregular surface
-- **🎯 Expected Result**: Mine classification
-
-#### ⚠️ Sample 3: Mine
-- **📊 Features**: 60 normalized values starting with 0.0453, 0.0523, 0.0843...
-- **📝 Description**: Dense metallic cylinder with textured surface
-- **🎯 Expected Result**: Mine classification
-
-## 🔌 API Integration
-
-### 🎭 Current Implementation
-The system currently uses mock prediction logic for demonstration purposes. To integrate with a real machine learning API:
-
-### 🌐 Expected API Endpoint
-~~~
-POST /predict
-Content-Type: application/json
-
-{
-  "features": [0.02, 0.0371, 0.0428, ...]
-}
-~~~
-
-### 📤 Expected Response
-~~~json
-{
-  "prediction": "M" | "R",
-  "confidence": 0.85
-}
-~~~
-
-### 🔧 Integration Steps
-1. 🔄 Replace the mock prediction logic in \`handleSubmit\`
-2. ❌ Add proper error handling for network requests
-3. 🌐 Configure API endpoint URL
-4. 🔐 Add authentication if required
-
-## ⚠️ Error Handling
-
-### ❌ Input Validation Errors
-- **📭 Empty Input**: "Please enter sonar data before predicting."
-- **🔢 Invalid Feature Count**: "Expected 60 features, got X"
-- **🚫 Invalid Numbers**: "All features must be valid numbers"
-- **📏 Out of Range**: "Features should be normalized between 0 and 1"
-
-### 🌐 Network Errors
-- ⏰ Connection timeouts
-- 🚨 Server errors
-- 📤 Invalid responses
-
-## 🚀 Performance Considerations
-
-### ⚡ Optimization Features
-- **🔄 Efficient Rendering**: React hooks for optimal re-rendering
-- **🧠 Memory Management**: Proper cleanup of event listeners
-- **📦 Bundle Size**: Tree-shaking for unused icon imports
-
-### 💡 Recommendations
-- 🏭 Use production builds for deployment
-- 🗄️ Implement caching for API responses
-- ⏳ Add loading states for better user experience
-
-## 🔐 Security Considerations
-
-### 🛡️ Data Protection
-- 🚫 No sensitive data storage in browser
-- 🧹 Input sanitization for all user inputs
-- 🔒 Secure API communication (HTTPS)
-
-### ✅ Validation
-- 🖥️ Server-side validation for all inputs
-- 🚦 Rate limiting for API endpoints
-- 📏 Input length restrictions
-
-## 🌐 Browser Compatibility
-
-### ✅ Supported Browsers
-- Chrome 70+ 🟢
-- Firefox 65+ 🟠
-- Safari 12+ 🔵
-- Edge 79+ 🟣
-
-### 🔧 Required Features
-- ES6 support 📝
-- Clipboard API 📋
-- CSS Grid and Flexbox 🎨
-- Modern JavaScript features ⚡
-
-## 🚀 Deployment
-
-### 🏗️ Build Process
-~~~bash
-npm run build
-~~~
-
-### 🌍 Environment Variables
-~~~env
-REACT_APP_API_URL=https://your-api-endpoint.com
-REACT_APP_VERSION=1.0.0
-~~~
-
-### ✅ Production Checklist
-- [ ] ⚡ Optimize bundle size
-- [ ] 🔌 Configure proper API endpoints
-- [ ] 📊 Set up error monitoring
-- [ ] 🔒 Enable HTTPS
-- [ ] 🗄️ Configure caching headers
-
-## 🔧 Troubleshooting
-
-### ❓ Common Issues
-
-#### 🔢 Features Not Counting Correctly
-- **⚠️ Issue**: Feature count shows incorrect number
-- **✅ Solution**: Check for extra spaces or empty values between commas
-
-#### 🚫 Prediction Not Working
-- **⚠️ Issue**: No response after clicking classify
-- **✅ Solution**: Verify all 60 features are valid numbers between 0-1
-
-#### 📋 Copy Function Not Working
-- **⚠️ Issue**: Copy to clipboard fails
-- **✅ Solution**: Ensure browser supports Clipboard API and site is served over HTTPS
-
-## 🔮 Future Enhancements
-
-### 🎯 Planned Features
-- **📊 Batch Processing**: Upload and process multiple sonar signatures
-- **📈 Data Visualization**: Charts showing feature patterns
-- **💾 Export Functionality**: Save results to CSV or PDF
-- **👤 User Authentication**: Personal dashboards and history
-- **🔬 Advanced Analytics**: Detailed feature analysis and insights
-
-### 🛠️ Technical Improvements
-- **⚡ Real-time Processing**: WebSocket connections for live data
-- **📱 Offline Support**: Service worker for offline functionality
-- **📊 Performance Monitoring**: Analytics and performance tracking
-- **🧪 A/B Testing**: Feature flag system for testing improvements
-
-## 🤝 Contributing
-
-### 💻 Development Setup
-1. 🍴 Fork the repository
-2. 🌿 Create a feature branch
-3. ✏️ Make your changes
-4. 🧪 Run tests: \`npm test\`
-5. 📤 Submit a pull request
-
-### 📝 Code Style
-- 📏 Use ESLint configuration
-- ⚛️ Follow React best practices
-- 🧪 Write comprehensive tests
-- 📖 Document all functions
-
-## 🎯 Key Technologies
-
-### 🎨 Frontend Stack
-- **⚛️ React 18+**: Modern component-based architecture
-- **🎨 Tailwind CSS**: Utility-first styling framework
-- **🎭 Lucide Icons**: Beautiful, customizable icon library
-- **📱 Responsive Design**: Mobile-first approach
-
-### 🤖 Machine Learning Integration
-- **📊 Feature Processing**: 60-dimensional sonar signature analysis
-- **🧠 Classification Algorithm**: Binary classification (Mine/Rock)
-- **📈 Confidence Scoring**: Probability-based predictions
-- **✅ Data Validation**: Comprehensive input validation
-
-## 🏆 Project Highlights
-
-### 🎯 Achievement Metrics
-- **📊 Data Processing**: Handles 60-feature sonar signatures
-- **⚡ Performance**: Real-time classification with <1s response
-- **🎨 UI/UX**: Modern, accessible interface design
-- **✅ Validation**: Comprehensive error handling and user feedback
-
-### 🌟 Innovation Points
-- **🔬 Scientific Application**: Real-world maritime safety use case
-- **🎨 User Experience**: Intuitive interface for complex data
-- **📊 Data Visualization**: Clear, actionable results presentation
-- **🛡️ Robust Architecture**: Production-ready error handling
-
-## 📋 Live Demo Features
-
-### 🎮 Interactive Elements
-- **🧪 Test Data**: Three pre-loaded sample cases
-- **📋 Copy Functionality**: One-click data copying
-- **🔄 Real-time Validation**: Live feature count display
-- **📊 Visual Results**: Color-coded classification badges
-
-### 🎯 Demo Scenarios
-1. **🪨 Rock Classification**: Test with geological samples
-2. **⚠️ Mine Detection**: Identify metallic underwater objects
-3. **📊 Edge Cases**: Test validation with invalid inputs
-
-## 📄 License
-This project is licensed under the MIT License. See the LICENSE file for details. 📜
-
-## 🆘 Support
-For technical support or questions:
-- 🐛 Create an issue on [GitHub](https://github.com/kayikalvin/sonar-rock-vs-mine-ui)
-- 📧 Contact the development team
-- 🌐 Visit the [Live Demo](https://sonar-rock-vs-mine-ui.vercel.app/)
-
-## 📋 Changelog
-
-### 🎉 Version 1.0.0
-- 🎊 Initial release with basic classification functionality
-- 🎨 Modern React UI with Tailwind CSS
-- 📊 Sample data integration
-- ✅ Input validation and error handling
-- 📱 Mobile-responsive design
-
-## 🙏 Acknowledgements
-- 🌊 Thanks to the marine science community for sonar data insights
-- 🤖 Machine learning research community for classification algorithms
-- 🎨 Open-source community for React and UI libraries
-- 🔬 Contributors who helped improve the project
-
-## 🎯 Screenshots & Demo
-
-### 🖼️ Interface Preview
-![🎨 Main Dashboard](https://sonar-rock-vs-mine-ui.vercel.app/dashboard.png)
-![📊 Classification Results](https://sonar-rock-vs-mine-ui.vercel.app/results.png)
-
-### 🎮 Try It Live
-Experience the full functionality at: [🌐 Live Demo](https://sonar-rock-vs-mine-ui.vercel.app/)
-
----
-
-*📅 Last updated: July 2025* | *🚀 Built with passion for maritime safety* | *🌊 Powered by machine learning*
+- **⚡ Real-time classification** of sonar signatures into Mine/Rock categories
+- **📊 Confidence scoring** with probability estimates (70-100%)
+- **✅ Comprehensive input validation** with user-friendly error messages
+- **🧪 Pre-loaded sample data** for demonstration and testing
+
+### 🎨 User Experience
+- **🌈 Modern, responsive React interface** with gradient styling
+- **📋 One-click clipboard integration** for sample data
+- **🔢 Real-time feature count validation**
+- **🔄 Visual feedback** with loading states and color-coded results
+
+### 📊 Technical Capabilities
+- **🔢 Processes exactly 60 normalized numerical features** (0-1 range)
+- **📊 Handles CSV-formatted sonar data** input
+- **❌ Robust error handling** for invalid inputs
+- **📱 Mobile-responsive design** with accessibility support
+
+## Technologies Used
+
+### Frontend Stack
+- **⚛️ React 18+** with modern hooks architecture
+- **🎨 Tailwind CSS** for utility-first styling
+- **🎭 Lucide React** for customizable icons
+- **📱 Responsive Design** with mobile-first approach
+
+### Integration Ready
+- **🤖 Mock prediction logic** (ready for ML API integration)
+- **🌐 RESTful API endpoint** structure
+- **📊 JSON data processing**
+- **🚀 Production deployment** configuration
+
+## Use Cases
+
+- **🛡️ Maritime Safety**: Detect potentially dangerous underwater mines
+- **⚓ Naval Operations**: Assist in underwater object identification
+- **🔬 Research & Development**: Test and validate sonar classification algorithms
+- **🎓 Educational Tool**: Demonstrate machine learning classification concepts
+
+## Project Impact
+
+The application combines advanced signal processing concepts with an intuitive user interface, making complex sonar data analysis accessible to both technical and non-technical users. It demonstrates practical machine learning implementation in a real-world maritime safety context.
+
+## Demo & Testing
+
+The system includes three pre-loaded test cases:
+- **🪨 Rock samples**: Low-density objects with smooth surface characteristics
+- **⚠️ Mine samples**: High-density metallic objects with irregular surfaces
+- **🧪 Validation testing**: Edge cases for input validation
+
+## Future Enhancements
+
+- **📊 Batch processing** for multiple sonar signatures
+- **📈 Data visualization** with feature pattern charts
+- **💾 Export functionality** for results
+- **🔬 Advanced analytics** and insights
+- **⚡ Real-time processing** capabilities
 `,
+  },
+  {
+    title: "Kenyan Real Estate Website",
+    description:
+      "🏠 Full-stack real estate platform connecting clients, landlords, and administrators through property listings, real-time messaging, and payment processing. Features role-based dashboards, Google Maps integration, M-Pesa payments, and comprehensive property management with secure JWT authentication.",
+    tech: ["React", "Machine Learning", "Tailwind CSS", "Lucide Icons", "JavaScript"],
+    gradient: "from-blue-600 via-purple-600 to-pink-600",
+    code: "https://github.com/kayikalvin/real-estate",
+    url: "https://real-estate-psi-weld.vercel.app/",
+    markdown: `
+    # 🏠 Real Estate Web Application
+
+## Project Description
+
+A full-stack real estate platform designed to connect **🏘️ clients**, **🏠 landlords**, and **🛠️ administrators** through a comprehensive property management system. The platform streamlines the real estate process by providing property browsing, listing management, real-time communication, and integrated payment processing.
+
+## Key Features
+
+### 🚀 Core Functionality
+- **🔍 Property Management**: Complete CRUD operations for property listings
+- **💬 Real-time Communication**: Socket.IO-powered chat between clients and landlords
+- **🗺️ Location Integration**: Google Maps API for property location visualization
+- **💳 Payment Processing**: M-Pesa API integration for landlord subscription payments
+- **🔐 Role-based Access**: Three distinct user roles with specific permissions
+
+### 🎨 User Experience
+- **🌐 Public Website**: Browse properties with advanced search and filtering
+- **📱 Responsive Design**: Mobile-friendly interface across all devices
+- **🎛️ Role-based Dashboards**: Secure dashboards for landlords and administrators
+- **📸 Media Management**: Image and video uploads for property listings
+- **⭐ Review System**: Client reviews and ratings for properties
+
+### 📊 Technical Capabilities
+- **🔒 JWT Authentication**: Secure token-based authentication system
+- **🏗️ RESTful API**: Well-structured API endpoints for all operations
+- **📱 Real-time Features**: Live messaging and notifications
+- **☁️ Cloud Integration**: Media hosting and database management
+- **📈 Analytics Ready**: Foundation for dashboard analytics and reporting
+
+## Technologies Used
+
+### Frontend Stack
+- **⚛️ React** with React Router DOM for navigation
+- **🎨 Tailwind CSS** for modern, responsive styling
+- **🧩 Material-UI (MUI)** for data grids and UI components
+- **🗺️ Google Maps API** for location services
+- **💬 Socket.IO Client** for real-time messaging
+
+### Backend Stack
+- **🚀 Node.js & Express.js** server framework
+- **🗄️ MongoDB** with Mongoose ODM for data management
+- **🔐 JWT & bcrypt** for authentication and password security
+- **💬 Socket.IO** for real-time chat server
+- **💳 M-Pesa API** for payment processing (Kenya)
+- **☁️ Cloudinary** for media file hosting
+
+### Deployment & Infrastructure
+- **🌐 Vercel** for frontend hosting
+- **🖥️ Render** for backend deployment
+- **☁️ MongoDB Atlas** for cloud database
+- **🔒 Secure Architecture** with protected routes and middleware
+
+## User Roles & Permissions
+
+### 👥 Clients
+- **🌐 Public Access**: Browse and search property listings
+- **📱 Property Details**: View detailed property information with media
+- **💬 Direct Communication**: Message landlords in real-time
+- **⭐ Reviews**: Leave ratings and reviews for properties
+- **🔐 Authentication Required**: Login needed for detailed property access
+
+### 🏠 Landlords
+- **🎛️ Dashboard Access**: Secure landlord management portal
+- **📝 Property Management**: Create, update, and delete listings
+- **📸 Media Uploads**: Add images and videos to properties
+- **💬 Client Communication**: Respond to inquiries in real-time
+- **💳 Payment Integration**: Monthly payments via M-Pesa
+- **📊 Listing Analytics**: Track property status and performance
+
+### 🛠️ Administrators
+- **👑 Full Control**: Complete system administration capabilities
+- **👥 User Management**: Manage all clients and landlords
+- **🏠 Property Oversight**: Full CRUD operations on all listings
+- **💰 Payment Monitoring**: Track all transactions and payments
+- **📊 Analytics Dashboard**: System-wide analytics and reporting
+- **🔍 Content Moderation**: Review and moderate user content
+
+## Use Cases
+
+- **🏘️ Property Discovery**: Help clients find suitable rental properties
+- **💼 Property Management**: Assist landlords in managing their listings
+- **📈 Business Operations**: Streamline real estate business processes
+- **🌍 Market Expansion**: Scale real estate operations across regions
+- **📊 Data Analytics**: Gather insights on property market trends
+
+## Project Impact
+
+The application addresses key challenges in the real estate industry by providing a centralized platform that eliminates communication barriers, streamlines property management, and facilitates secure transactions. It demonstrates modern web development practices with real-world business applications.
+
+## Real-time Features
+
+### 💬 Messaging System
+- **🔌 Socket.IO Integration**: Instant messaging between users
+- **📱 Live Notifications**: Real-time message alerts
+- **💾 Message Persistence**: Chat history stored in database
+- **🔄 Connection Management**: Automatic reconnection and status tracking
+
+### 💳 Payment Workflow
+- **📱 M-Pesa Integration**: Mobile money payments for Kenya
+- **🔔 STK Push**: Direct payment prompts to user phones
+- **✅ Payment Verification**: Automatic status updates
+- **📊 Transaction Tracking**: Complete payment history
+
+## Future Enhancements
+
+- **🧠 AI-powered Property Matching**: Intelligent recommendation system
+- **📊 Advanced Analytics**: Dashboard insights for all user roles
+- **📱 Progressive Web App**: Offline functionality and app-like experience
+- **📧 Notification System**: Email and SMS alerts
+- **🧾 Document Generation**: Automated invoice and contract creation
+- **🌍 Multi-region Support**: Expand beyond Kenya market
+    `
   },
 ];
  
