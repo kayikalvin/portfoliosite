@@ -18,6 +18,32 @@ const Home = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [showReveal, setShowReveal] = useState(true);
   const [gsapLoaded, setGsapLoaded] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.3,
+      }
+    );
+
+    if (skillsRef.current) {
+      observer.observe(skillsRef.current);
+    }
+
+    return () => {
+      if (skillsRef.current) {
+        observer.unobserve(skillsRef.current);
+      }
+    };
+  }, []);
+
+
 
   // Initialize GSAP
   useEffect(() => {
@@ -481,7 +507,7 @@ const Home = () => {
             {/* Call to action */}
             <a
               href="#projects"
-              className="inline-block mt-4 text-white px-8 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 text-black font-semibold hover:scale-105 transition-all duration-300"
+              className="inline-block mt-4 text-white px-8 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500  font-semibold hover:scale-105 transition-all duration-300"
             >
               See My Work
             </a>
@@ -501,7 +527,9 @@ const Home = () => {
                       key={index}
                       className="bg-white/5 border border-white/10 rounded-2xl p-2 md:p-4 hover:scale-105 transition-transform duration-300"
                     >
-                      <h3 className="text-xl md:text-3xl font-bold mb-1">{stat.number}</h3>
+                      <h3 className="text-xl md:text-3xl font-bold mb-1">
+                        {stat.number}
+                      </h3>
                       <p className="text-gray-400">{stat.label}</p>
                     </div>
                   ))}
@@ -519,55 +547,86 @@ const Home = () => {
           {/* Skills Section */}
           <section
             ref={skillsRef}
-            className="relative py-20 px-6 bg-black text-white overflow-hidden"
+            className="relative py-16 sm:py-20 px-4 sm:px-6 bg-black text-white overflow-hidden"
           >
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            {/* Background decorative elements */}
+            <div className="absolute inset-0 bg-gradient-to-b from-gray-900/20 to-transparent"></div>
+            <div className="absolute top-1/4 right-1/4 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+
+            <div className="max-w-6xl mx-auto relative z-10">
+              <div className="text-center mb-12 sm:mb-16">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                   Technical Expertise
                 </h2>
-                <p className="text-gray-400 max-w-2xl mx-auto">
+                <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
                   Mastering the intersection of data science, machine learning,
                   and modern web development.
                 </p>
-                <div className="h-1 w-20 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full mx-auto mt-4 animate-pulse"></div>
+                <div className="h-1 w-16 sm:w-20 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full mx-auto mt-4 animate-pulse"></div>
               </div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 sm:gap-8">
                 {skills.map((skill, index) => {
                   const Icon = skill.icon;
                   return (
                     <div
                       key={index}
-                      className="skill-card p-4 rounded-2xl bg-white/5 border border-white/10 hover:scale-105 transition-transform duration-300 cursor-pointer "
+                      className="group p-4 sm:p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-300 cursor-pointer backdrop-blur-sm"
+                      style={{
+                        animationDelay: `${index * 0.1}s`,
+                      }}
                     >
-                      <div className="flex items-center mb-4">
+                      <div className="flex items-center mb-4 sm:mb-6">
                         <div
-                          className={`p-3 rounded-xl bg-gradient-to-r ${skill.color} bg-opacity-20 mr-4`}
+                          className={`p-2 sm:p-3 rounded-xl bg-gradient-to-r ${skill.color} bg-opacity-20 mr-3 sm:mr-4 group-hover:scale-110 transition-transform duration-300`}
                         >
-                          <Icon size={24} className={skill.iconColor} />
+                          <Icon
+                            size={20}
+                            className={`sm:w-6 sm:h-6 ${skill.iconColor}`}
+                          />
                         </div>
-                        <div>
-                          <h3 className="text-xl font-semibold">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-lg sm:text-xl font-semibold mb-1 truncate">
                             {skill.name}
                           </h3>
-                          <p className="text-gray-400 text-sm">
+                          <p className="text-gray-400 text-xs sm:text-sm">
                             {skill.level}% Proficiency
                           </p>
                         </div>
                       </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+
+                      {/* Progress bar */}
+                      <div className="w-full bg-gray-700/50 rounded-full h-2 overflow-hidden mb-2">
                         <div
-                          className={`skill-bar h-2 rounded-full bg-gradient-to-r ${skill.color}`}
-                          style={{ width: `0%` }}
+                          className={`skill-bar h-2 rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000 ease-out`}
+                          style={{
+                            width: isVisible ? `${skill.level}%` : "0%",
+                            transitionDelay: `${index * 0.1}s`,
+                          }}
                         />
+                      </div>
+
+                      {/* Percentage indicator */}
+                      <div className="text-right">
+                        <span
+                          className={`text-xs font-medium ${skill.iconColor} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                        >
+                          {skill.level}%
+                        </span>
                       </div>
                     </div>
                   );
                 })}
               </div>
+
+              {/* Bottom decorative line */}
+              <div className="mt-16 sm:mt-20 text-center">
+                <div className="inline-block h-px w-32 sm:w-48 bg-gradient-to-r from-transparent via-gray-500 to-transparent"></div>
+              </div>
             </div>
           </section>
+
           {/* Subtle background shape */}
           <div className="absolute -top-30 -left-30 w-[400px] h-[400px] bg-gradient-to-br from-cyan-500 to-purple-500 opacity-20 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-50 -right-50 w-[600px] h-[600px] bg-gradient-to-br from-pink-500 to-purple-500 opacity-20 rounded-full blur-3xl"></div>
