@@ -405,7 +405,7 @@ const Home = () => {
                   ref={logoRef}
                   className="relative text-6xl md:text-8xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
                 >
-                  Kalvin Kayi
+                  Kalvin Kayi.
                 </h1>
               </div>
             </div>
