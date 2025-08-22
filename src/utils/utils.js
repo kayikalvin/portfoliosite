@@ -361,7 +361,7 @@ This chatbot streamlines customer support by providing quick and accurate respon
     "Vercel"
   ],
   "gradient": "from-green-600 via-emerald-500 to-lime-400",
-  "code": "https://github.com/<your-github-username>/gym-sable-one",
+  "code": "https://github.com/kayikalvin/gym",
   "url": "https://gym-sable-one.vercel.app/",
   "markdown": `
 # 💪 Gym Sable One - Fitness Landing Page
