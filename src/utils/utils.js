@@ -347,7 +347,76 @@ This chatbot streamlines customer support by providing quick and accurate respon
 - **🌐 Multi-Language Support**
 - **🤖 Advanced Context Awareness** for follow-up questions
 `,
+},
+{
+  "title": "Gym Sable One - Fitness Landing Page",
+  "description":
+    "💪 A sleek and modern fitness website showcasing gym programs, membership plans, and services with a responsive React-based interface and smooth animations.",
+  "tech": [
+    "React",
+    "Tailwind CSS",
+    "Framer Motion",
+    "Lucide Icons",
+    "Vite",
+    "Vercel"
+  ],
+  "gradient": "from-green-600 via-emerald-500 to-lime-400",
+  "code": "https://github.com/<your-github-username>/gym-sable-one",
+  "url": "https://gym-sable-one.vercel.app/",
+  "markdown": `
+# 💪 Gym Sable One - Fitness Landing Page
+
+## Project Description
+
+A modern and responsive web application designed to showcase gym facilities, fitness programs, and membership plans. The platform emphasizes a sleek design and smooth user experience to attract fitness enthusiasts and potential members.
+
+## Key Features
+
+### 🚀 Core Functionality
+- **⚡ Hero Section** with strong visual appeal and call-to-action buttons
+- **🏋️ Program Highlights** showcasing various training options
+- **💳 Membership Plans** with pricing and package details
+- **📱 Fully mobile-responsive design** for seamless browsing across devices
+
+### 🎨 User Experience
+- **🌈 Clean, modern UI** with gradient styling
+- **🎭 Framer Motion animations** for smooth transitions and interactivity
+- **🔗 Intuitive navigation** for quick access to information
+
+### 📊 Technical Capabilities
+- **⚛️ React components** for modular and scalable design
+- **🎨 Tailwind CSS** for responsive, utility-first styling
+- **📦 Lucide Icons** for modern iconography
+- **🚀 Deployed via Vercel** for high performance and reliability
+
+## Technologies Used
+
+- **⚛️ React 18+**
+- **🎨 Tailwind CSS**
+- **🎭 Framer Motion**
+- **📦 Lucide React Icons**
+- **⚡ Vite**
+- **☁️ Vercel Deployment**
+
+## Use Cases
+
+- **🏢 Gym & Fitness Centers**: Showcase services and membership plans
+- **📱 Online Presence**: Attract potential clients with a modern, fast-loading website
+- **🎯 Marketing Tool**: Engage fitness enthusiasts through visually appealing design
+
+## Project Impact
+
+This web application enhances the digital presence of fitness businesses, improves user engagement, and provides a clear overview of gym services and programs.
+
+## Future Enhancements
+
+- **📅 Class Scheduling Integration**
+- **🧑‍🏫 Trainer Profile Pages**
+- **💳 Online Membership Sign-Up & Payments**
+- **📊 Fitness Progress Tracking Dashboard**
+`,
 }
+
 
 ];
  
