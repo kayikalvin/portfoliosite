@@ -4,6 +4,83 @@ import { Code, Database, Brain, BarChart3, Cpu } from "lucide-react";
 // projects
 export const projects = [
   {
+    title: "Dantra Limited - FMCG Distributor Website",
+    description:
+      "🌍 Professional web platform for Dantra Limited, a leading FMCG distributor in Kenya. Showcases services, product categories, and brand partnerships with a sleek, mobile-first React interface.",
+    tech: [
+    "React",
+    "Tailwind CSS",
+    "Framer Motion",
+    "Lucide Icons",
+    "shadcn/ui",
+    "JavaScript",
+    "Vite",
+    "Vercel"
+  ],
+  gradient: "from-red-600 via-rose-600 to-orange-500",
+  code: "https://github.com/kayikalvin/dantra-limited",
+  url: "https://dantra-limited.vercel.app/",
+  markdown: `
+# 🌍 Dantra Limited - FMCG Distributor Website
+
+## Project Description
+
+A professional, mobile-responsive website for **Dantra Limited**, an FMCG distribution company based in Kenya. The platform highlights their services, showcases product categories, and provides seamless contact methods for manufacturers, wholesalers, and retailers.
+
+## Key Features
+
+### 🚀 Core Functionality
+- **⚡ Hero Section** with animated headline, tagline, and call-to-action buttons
+- **🛍️ Product Category Display** for FMCG sectors (Beverages, Snacks, Personal Care, etc.)
+- **📋 Services Showcase** highlighting FMCG-specific distribution capabilities
+- **🤝 Partnership Inquiry** with WhatsApp integration for direct messaging
+- **📞 Click-to-Call** for quick communication
+- **🖼️ Brand Partners Section** for visual representation of collaboration potential
+
+### 🎨 User Experience
+- **🌈 Sleek, professional UI** with red-based gradient palette
+- **🎭 Framer Motion animations** for smooth transitions
+- **📱 Fully mobile-responsive design** optimized for Kenya's mobile-first market
+- **🔗 Interactive buttons** for WhatsApp, email, and phone calls
+
+### 📊 Technical Capabilities
+- **⚛️ React components** with reusable, scalable architecture
+- **🎨 Tailwind CSS utility-first styling** with modern gradients and shadows
+- **📦 Lucide Icons & shadcn/ui** for clean UI elements
+- **🚀 Deployed via Vercel** for high performance and reliability
+
+## Technologies Used
+
+- **⚛️ React 18+**
+- **🎨 Tailwind CSS**
+- **🎭 Framer Motion**
+- **📦 Lucide React Icons**
+- **🧩 shadcn/ui**
+- **⚡ Vite**
+- **☁️ Vercel Deployment**
+
+## Use Cases
+
+- **🏢 Company Showcase**: Highlights Dantra Limited’s distribution expertise.
+- **📞 Business Partnerships**: Easy contact options for manufacturers, wholesalers, and retailers.
+- **🌐 Online Presence**: Modern platform that builds credibility and brand authority.
+
+## Project Impact
+
+The site enhances Dantra Limited's professional image, streamlines partnership inquiries, and provides a visually engaging platform for business connections in Kenya's fast-growing FMCG market.
+
+## Future Enhancements
+
+- **📈 Product Catalog Integration** with dynamic inventory
+- **🗺️ Interactive Distribution Map**
+- **📊 Market Insights Dashboard**
+- **🌐 Multi-Language Support** for broader reach
+`,
+}
+
+
+  ,
+  {
     title: "Sonar-Rock-vs-Mine-UI",
     description:
       "🎯 Advanced machine learning-powered web application that analyzes sonar signatures to classify underwater objects as mines or rocks. Features real-time classification, confidence scoring, and comprehensive data validation with a modern React interface.",
