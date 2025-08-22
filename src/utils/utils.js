@@ -278,6 +278,77 @@ The application addresses key challenges in the real estate industry by providin
 - **🌍 Multi-region Support**: Expand beyond Kenya market
     `
   },
+  {
+  title: "DigiMagicTech FAQ Bot",
+  description:
+    "🤖 AI-powered FAQ chatbot that delivers instant answers to user queries with a sleek React-based interface, designed for seamless interaction and fast performance.",
+  tech: [
+    "React",
+    "Tailwind CSS",
+    "OpenAI API",
+    "Framer Motion",
+    "Lucide Icons",
+    "Vite",
+    "Vercel"
+  ],
+  gradient: "from-purple-600 via-blue-600 to-cyan-500",
+  code: "https://github.com/<your-github-username>/digimagictech-faq-bot",
+  url: "https://digimagictech-faq-bot.vercel.app/",
+  markdown: `
+# 🤖 DigiMagicTech FAQ Bot
+
+## Project Description
+
+An intelligent FAQ chatbot designed for **DigiMagicTech** to provide real-time answers to frequently asked questions. Built with a modern React interface, it ensures fast response times, clean UI, and a smooth user experience.
+
+## Key Features
+
+### 🚀 Core Functionality
+- **⚡ AI-Powered Responses** using OpenAI API (or custom NLP logic)
+- **📋 Predefined and Dynamic Answers** for user queries
+- **🔄 Real-Time Feedback** with typing indicators and smooth animations
+- **📱 Fully mobile-responsive design** for seamless interaction across devices
+
+### 🎨 User Experience
+- **🌈 Minimalist UI** with gradient styling and clean typography
+- **🎭 Framer Motion animations** for engaging interactions
+- **🔗 Quick response interface** with conversational design
+
+### 📊 Technical Capabilities
+- **⚛️ React components** for modular structure
+- **🎨 Tailwind CSS** for rapid styling and responsive layout
+- **🤖 OpenAI API** integration for AI-driven responses
+- **🚀 Deployed via Vercel** for global scalability and performance
+
+## Technologies Used
+
+- **⚛️ React 18+**
+- **🎨 Tailwind CSS**
+- **🤖 OpenAI API**
+- **🎭 Framer Motion**
+- **📦 Lucide React Icons**
+- **⚡ Vite**
+- **☁️ Vercel Deployment**
+
+## Use Cases
+
+- **💬 Customer Support**: Answer user queries instantly
+- **📚 Knowledge Base Access**: Provide structured information quickly
+- **🖥️ Demo AI Capabilities**: Showcase chatbot interaction for business
+
+## Project Impact
+
+This chatbot streamlines customer support by providing quick and accurate responses while showcasing DigiMagicTech's technical capabilities in AI-powered web applications.
+
+## Future Enhancements
+
+- **🎙️ Voice-Based Interaction**
+- **📊 Query Analytics Dashboard**
+- **🌐 Multi-Language Support**
+- **🤖 Advanced Context Awareness** for follow-up questions
+`,
+}
+
 ];
  
 
