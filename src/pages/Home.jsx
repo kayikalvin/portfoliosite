@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Projects from "../components/Projects";
 import { skills } from "../utils/utils";
 import { posts } from "../utils/utils";
+import Floatingnavbar from "../components/Floatingnavbar";
 
 const Home = () => {
   const heroRef = useRef(null);
@@ -465,7 +466,8 @@ const Home = () => {
         </div>
 
         {/* Hero Section */}
-        <div>
+        <div id="home">
+          <Floatingnavbar />
           <div
             ref={heroRef}
             className="relative h-screen flex flex-col items-center justify-center pt-52 px-4 md:px-0 bg-black text-white overflow-hidden"
@@ -546,6 +548,7 @@ const Home = () => {
 
           {/* Skills Section */}
           <section
+            id="skills"
             ref={skillsRef}
             className="relative py-16 sm:py-20 px-4 sm:px-6 bg-black text-white overflow-hidden"
           >
@@ -647,7 +650,7 @@ const Home = () => {
         </section>
 
         {/* Blog post area */}
-        <section className="relative py-20 px-6 bg-gradient-to-b from-black via-gray-900 to-black text-white">
+        <section id="blog" className="relative py-20 px-6 bg-gradient-to-b from-black via-gray-900 to-black text-white">
           <div className="max-w-6xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Insights & Articles
