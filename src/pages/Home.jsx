@@ -517,7 +517,7 @@ const Home = () => {
             {/* Fun facts and achievments */}
             <div className="relative py-20 px-6 bg-black text-white">
               <div className="max-w-5xl mx-auto text-center">
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
                   {[
                     { number: "45+", label: "Repositories" },
                     { number: "15+", label: "Products completed" },
