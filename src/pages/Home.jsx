@@ -470,7 +470,7 @@ const Home = () => {
           <Floatingnavbar />
           <div
             ref={heroRef}
-            className="relative h-screen flex flex-col items-center justify-center pt-52 px-4 md:px-0 bg-black text-white overflow-hidden"
+            className="relative h-full flex flex-col items-center justify-center pt-38 md:pt-52 px-4 md:px-0 bg-black text-white overflow-hidden"
           >
             {/* Headline */}
             <h1 className="hero-title text-center text-6xl md:text-7xl font-extrabold mb-4 tracking-tight">
