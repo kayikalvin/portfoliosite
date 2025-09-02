@@ -17,7 +17,7 @@ export const projects = [
     "Vite",
     "Vercel"
   ],
-  gradient: "from-red-600 via-rose-600 to-orange-500",
+  gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
   code: "https://github.com/kayikalvin/dantra-limited",
   url: "https://dantra-limited.vercel.app/",
   markdown: `
@@ -85,7 +85,7 @@ The site enhances Dantra Limited's professional image, streamlines partnership i
     description:
       "🎯 Advanced machine learning-powered web application that analyzes sonar signatures to classify underwater objects as mines or rocks. Features real-time classification, confidence scoring, and comprehensive data validation with a modern React interface.",
     tech: ["React", "Machine Learning", "Tailwind CSS", "Lucide Icons", "JavaScript"],
-    gradient: "from-blue-600 via-purple-600 to-pink-600",
+    gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/sonar-rock-vs-mine-ui",
     url: "https://sonar-rock-vs-mine-ui.vercel.app/",
     markdown: `
@@ -161,7 +161,7 @@ The system includes three pre-loaded test cases:
     description:
       "🏠 Full-stack real estate platform connecting clients, landlords, and administrators through property listings, real-time messaging, and payment processing. Features role-based dashboards, Google Maps integration, M-Pesa payments, and comprehensive property management with secure JWT authentication.",
     tech: ["React", "Machine Learning", "Tailwind CSS", "Lucide Icons", "JavaScript"],
-    gradient: "from-blue-600 via-purple-600 to-pink-600",
+    gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/real-estate",
     url: "https://real-estate-psi-weld.vercel.app/",
     markdown: `
@@ -291,7 +291,7 @@ The application addresses key challenges in the real estate industry by providin
     "Vite",
     "Vercel"
   ],
-  gradient: "from-purple-600 via-blue-600 to-cyan-500",
+  gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
   code: "https://github.com/<your-github-username>/digimagictech-faq-bot",
   url: "https://digimagictech-faq-bot.vercel.app/",
   markdown: `
@@ -360,7 +360,7 @@ This chatbot streamlines customer support by providing quick and accurate respon
     "Vite",
     "Vercel"
   ],
-  "gradient": "from-green-600 via-emerald-500 to-lime-400",
+  "gradient": "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
   "code": "https://github.com/kayikalvin/gym",
   "url": "https://gym-sable-one.vercel.app/",
   "markdown": `
