@@ -5,6 +5,7 @@ import Projects from "../components/Projects";
 import { skills } from "../utils/utils";
 import { posts } from "../utils/utils";
 import Floatingnavbar from "../components/Floatingnavbar";
+import EnhancedSkillsSection from "../components/EnhancedSkillsSection";
 
 const Home = () => {
   const heroRef = useRef(null);
@@ -545,128 +546,56 @@ const Home = () => {
           /> */}
 
           {/* About Me Section */}
-          <section className="relative max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 items-center gap-12 text-white">
+          <section className="relative max-w-6xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 items-center gap-12 text-white">
             {/* Text Section */}
             <div className="flex flex-col space-y-6">
-              <h2 className="text-4xl font-bold bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 bg-clip-text text-transparent">
                 About Me
               </h2>
 
-              <p className="text-base text-gray-300 leading-relaxed">
-                Hi, I’m{" "}
-                <span className="font-semibold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-                  Kalvin
-                </span>
-                — driven by curiosity and a problem-solving mindset. I
-                specialize in transforming complex data into meaningful insights
-                and building intelligent applications that make an impact. My
-                experience spans AI-powered solutions like fact-checking APIs,
-                predictive healthcare models, and real-time platforms for
-                industries such as finance and real estate.
+              <p className="text-lg text-gray-200 leading-relaxed">
+                I'm a <span className="font-semibold text-white">Full-Stack Developer and Machine Learning Engineer</span> with a proven track record of delivering scalable, production-ready applications that solve complex business challenges.
               </p>
 
               <p className="text-base text-gray-300 leading-relaxed">
-                Working at the intersection of machine learning and full-stack
-                development, I thrive on creating scalable, user-friendly
-                systems—from NLP and deep learning to cloud deployment and
-                modern web frameworks. My goal is not only to solve today’s
-                challenges but to anticipate tomorrow’s.
+                My expertise spans the entire development lifecycle—from designing AI-powered solutions like fact-checking APIs and predictive healthcare models, to building real-time platforms for finance and real estate sectors. I specialize in:
+              </p>
+
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex items-start">
+                  <span className="text-cyan-400 mr-3 mt-1">▹</span>
+                  <span><strong className="text-white">Machine Learning & NLP:</strong> Deep learning models, natural language processing, and predictive analytics</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-cyan-400 mr-3 mt-1">▹</span>
+                  <span><strong className="text-white">Full-Stack Development:</strong> React, Node.js, Python, with cloud deployment expertise (AWS, Azure)</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-cyan-400 mr-3 mt-1">▹</span>
+                  <span><strong className="text-white">Data Engineering:</strong> ETL pipelines, data warehousing, and real-time analytics platforms</span>
+                </li>
+              </ul>
+
+              <p className="text-base text-gray-300 leading-relaxed">
+                I'm passionate about creating solutions that not only meet technical requirements but drive measurable business impact. Let's build something exceptional together.
               </p>
             </div>
 
             {/* Image Section */}
             <div className="flex justify-center">
-              <img
-                src="/1735390396166-removebg.png"
-                alt="Kalvin"
-                className="rounded-2xl shadow-lg w-72 h-72 object-cover border-4 border-white/60 backdrop-blur-lg"
-              />
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-2xl blur-xl opacity-50"></div>
+                <img
+                  src="/1735390396166-removebg.png"
+                  alt="Kalvin Kayi - Full-Stack Developer & ML Engineer"
+                  className="relative rounded-2xl shadow-2xl w-72 h-72 object-cover border-4 border-white/40 backdrop-blur-lg"
+                />
+              </div>
             </div>
           </section>
 
           {/* Skills Section */}
-          <section
-            id="skills"
-            ref={skillsRef}
-            className="relative py-16 sm:py-20 px-4 sm:px-6 bg-black text-white overflow-hidden"
-          >
-            {/* Background decorative elements */}
-            <div className="absolute inset-0 bg-gradient-to-b from-gray-900/20 to-transparent"></div>
-            <div className="absolute top-1/4 right-1/4 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
-
-            <div className="max-w-6xl mx-auto relative z-10">
-              <div className="text-center mb-12 sm:mb-16">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                  Technical Expertise
-                </h2>
-                <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
-                  Mastering the intersection of data science, machine learning,
-                  and modern web development.
-                </p>
-                <div className="h-1 w-16 sm:w-20 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full mx-auto mt-4 animate-pulse"></div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 sm:gap-8">
-                {skills.map((skill, index) => {
-                  const Icon = skill.icon;
-                  return (
-                    <div
-                      key={index}
-                      className="group p-4 sm:p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-300 cursor-pointer backdrop-blur-sm"
-                      style={{
-                        animationDelay: `${index * 0.1}s`,
-                      }}
-                    >
-                      <div className="flex items-center mb-4 sm:mb-6">
-                        <div
-                          className={`p-2 sm:p-3 rounded-xl bg-gradient-to-r ${skill.color} bg-opacity-20 mr-3 sm:mr-4 group-hover:scale-110 transition-transform duration-300`}
-                        >
-                          <Icon
-                            size={20}
-                            className={`sm:w-6 sm:h-6 ${skill.iconColor}`}
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h3 className="text-lg sm:text-xl font-semibold mb-1 truncate">
-                            {skill.name}
-                          </h3>
-                          <p className="text-gray-400 text-xs sm:text-sm">
-                            {skill.level}% Proficiency
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Progress bar */}
-                      <div className="w-full bg-gray-700/50 rounded-full h-2 overflow-hidden mb-2">
-                        <div
-                          className={`skill-bar h-2 rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000 ease-out`}
-                          style={{
-                            width: isVisible ? `${skill.level}%` : "0%",
-                            transitionDelay: `${index * 0.1}s`,
-                          }}
-                        />
-                      </div>
-
-                      {/* Percentage indicator */}
-                      <div className="text-right">
-                        <span
-                          className={`text-xs font-medium ${skill.iconColor} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-                        >
-                          {skill.level}%
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Bottom decorative line */}
-              <div className="mt-16 sm:mt-20 text-center">
-                <div className="inline-block h-px w-32 sm:w-48 bg-gradient-to-r from-transparent via-gray-500 to-transparent"></div>
-              </div>
-            </div>
-          </section>
+          <EnhancedSkillsSection />
 
           {/* Subtle background shape */}
           <div className="absolute -top-30 -left-30 w-[400px] h-[400px] bg-gradient-to-br from-cyan-500 to-purple-500 opacity-20 rounded-full blur-3xl"></div>
