@@ -1,0 +1,12 @@
+{
+  "adminKey": "admin",
+  "adminHash": "9a7a032840187ff5ded2f68daec77a927af8b9ec101ec4ba905334b9744e4d0afe2547424bfcdd8b20521661cd7c8b2d3410fc04df3a7360a9d03938e9b6edfb",
+  "adminSalt": "bb7cb239530760f389b866f57a0a0500",
+  "jwtSecret": "changeme-secret",
+  "pbkdf2": {
+    "iterations": 310000,
+    "keylen": 64,
+    "digest": "sha512"
+  },
+  "port": 4000
+}

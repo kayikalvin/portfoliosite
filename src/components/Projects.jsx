@@ -1,8 +1,30 @@
 import { Link } from "react-router-dom";
 import { ExternalLink, Github, BookOpen } from "lucide-react";
-import { projects } from "../utils/utils";
+import { projects as staticProjects } from "../utils/utils";
+import { useEffect, useState } from "react";
 
 const Projects = () => {
+  const [projects, setProjects] = useState(staticProjects || []);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    let mounted = true;
+    setLoading(true);
+    fetch("http://localhost:4000/api/projects")
+      .then((r) => {
+        if (!r.ok) throw new Error('network');
+        return r.json();
+      })
+      .then((data) => {
+        if (mounted && Array.isArray(data) && data.length) setProjects(data);
+      })
+      .catch(() => {
+        // keep staticProjects as fallback
+      })
+      .finally(() => mounted && setLoading(false));
+    return () => (mounted = false);
+  }, []);
+
   return (
     <div className="max-w-6xl mx-auto">
       <div className="text-center mb-16">
@@ -19,7 +41,7 @@ const Projects = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project, index) => (
+        {(projects || []).map((project, index) => (
           <div
             key={index}
             className="relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 hover:scale-[1.02] transition-transform duration-300"
@@ -92,7 +114,7 @@ const Projects = () => {
                 {/* NEW View Docs link */}
                 <div className="group flex flex-col items-center">
                   <Link
-                    to={`/projects/${project.title}/docs`}
+                    to={`/projects/${encodeURIComponent(project.title)}/docs`}
                     className="p-2 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-green-500 hover:to-teal-500 transition-all duration-300"
                   >
                     <BookOpen

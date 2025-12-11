@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
-import { projects } from "../utils/utils";
+import { projects as staticProjects } from "../utils/utils";
+import { useEffect, useState } from "react";
 import { Cast, FileCode2, Github } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -8,10 +9,33 @@ import "highlight.js/styles/github-dark.css"; // Dark theme for code highlightin
 
 const ProjectDocs = () => {
   const { projectId } = useParams();
+  const decodedId = projectId ? decodeURIComponent(projectId) : '';
 
-  const project = projects.find((proj) => proj.title === projectId);
+  const [project, setProject] = useState(() =>
+    staticProjects.find((p) => p.title === decodedId)
+  );
+  const [loading, setLoading] = useState(false);
 
-  if (!project) {
+  useEffect(() => {
+    if (!projectId) return;
+    let mounted = true;
+    setLoading(true);
+    fetch(`http://localhost:4000/api/projects/${encodeURIComponent(decodedId)}`)
+      .then((r) => {
+        if (!r.ok) throw new Error('notfound');
+        return r.json();
+      })
+      .then((data) => {
+        if (mounted) setProject(data);
+      })
+      .catch(() => {
+        // fallback to staticProjects (already set)
+      })
+      .finally(() => mounted && setLoading(false));
+    return () => (mounted = false);
+  }, [projectId]);
+
+  if (!project && !loading) {
     return (
       <div className="p-6 text-center">
         <h2 className="text-2xl font-bold">Project not found 🚨</h2>
