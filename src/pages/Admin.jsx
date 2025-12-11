@@ -15,7 +15,7 @@ import Projects from './Projects';
 import Settings from './Settings';
 import ProjectPopup from '../components/ProjectPopup';
 
-const API = "http://localhost:4000";
+const API = "";
 
 function Admin() {
   const [password, setPassword] = useState('');
