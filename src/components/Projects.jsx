@@ -449,7 +449,7 @@ const Projects = () => {
       )}
 
       {/* View more link */}
-      {projects.length > 0 && (
+      {/* {projects.length > 0 && (
         <div className="text-center mt-12 pt-8 border-t border-white/10">
           <Link
             to="/projects"
@@ -459,7 +459,7 @@ const Projects = () => {
             <ExternalLink size={16} className="text-gray-400 group-hover:text-cyan-400" />
           </Link>
         </div>
-      )}
+      )} */}
 
       {/* Add custom animation */}
       <style jsx>{`
