@@ -10,7 +10,7 @@ export default function Projects({ projects, onEdit, onDelete, onAdd }) {
           onClick={onAdd}
           className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow"
         >
-          <FiPlus /> Add Project
+          <FiPlus /> Add Project.
         </button>
       </div>
       {projects && projects.length > 0 ? (
