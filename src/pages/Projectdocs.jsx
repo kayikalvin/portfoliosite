@@ -313,15 +313,15 @@ const ProjectDocs = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar */}
           <div className="lg:col-span-1 space-y-6">
             {/* Project Card */}
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h1 className="text-2xl font-bold text-white mb-2">{project.title}</h1>
-                  <p className="text-gray-400 text-sm">{project.description}</p>
+              <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between mb-4 space-y-4 sm:space-y-0">
+                <div className="w-full">
+                  <h1 className="text-2xl font-bold text-white mb-2 text-center sm:text-left">{project.title}</h1>
+                  <p className="text-gray-400 text-sm text-center sm:text-left">{project.description}</p>
                 </div>
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-cyan-500/20 to-purple-500/20 flex items-center justify-center">
                   <Code className="text-cyan-400" size={24} />
@@ -330,15 +330,15 @@ const ProjectDocs = () => {
 
               {/* Project Stats */}
               <div className="space-y-4 mt-6">
-                <div className="flex items-center justify-between text-sm">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between text-sm gap-2 sm:gap-0">
                   <div className="flex items-center gap-2 text-gray-400">
                     <Calendar size={16} />
                     <span>Created</span>
                   </div>
                   <span className="text-white">{project.createdAt || '2024'}</span>
                 </div>
-                
-                <div className="flex items-center justify-between text-sm">
+
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between text-sm gap-2 sm:gap-0">
                   <div className="flex items-center gap-2 text-gray-400">
                     <Clock size={16} />
                     <span>Status</span>
@@ -382,7 +382,7 @@ const ProjectDocs = () => {
               {/* Tech Stack */}
               <div className="mt-6">
                 <h3 className="text-sm font-semibold text-gray-400 mb-3">TECH STACK</h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
                   {project.tech.map((tech, index) => (
                     <span
                       key={index}
@@ -404,7 +404,7 @@ const ProjectDocs = () => {
                     href={project.code}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-all group"
+                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-all group w-full"
                   >
                     <Github size={20} className="text-gray-400 group-hover:text-white" />
                     <div>
@@ -418,7 +418,7 @@ const ProjectDocs = () => {
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-all group"
+                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-all group w-full"
                   >
                     <ExternalLink size={20} className="text-gray-400 group-hover:text-white" />
                     <div>
@@ -434,7 +434,7 @@ const ProjectDocs = () => {
           {/* Main Content */}
           <div className="lg:col-span-3">
             {/* Tabs */}
-            <div className="flex space-x-1 mb-8 p-1 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div className="flex space-x-1 mb-8 p-1 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm overflow-x-auto">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 const isActive = activeTab === tab.id;
@@ -443,7 +443,7 @@ const ProjectDocs = () => {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg transition-all ${
+                    className={`flex-1 min-w-[120px] sm:min-w-0 flex items-center justify-center gap-2 px-4 py-3 rounded-lg transition-all ${
                       isActive
                         ? 'bg-gradient-to-r from-cyan-500 to-purple-500 text-white'
                         : 'text-gray-400 hover:text-white hover:bg-white/5'
@@ -457,7 +457,7 @@ const ProjectDocs = () => {
             </div>
 
             {/* Tab Content */}
-            <div ref={contentRef} className="overflow-y-auto max-h-[calc(100vh-200px)]">
+            <div ref={contentRef} className="overflow-y-auto max-h-[60vh] sm:max-h-[calc(100vh-200px)]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeTab}
@@ -465,7 +465,7 @@ const ProjectDocs = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm"
+                  className="bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-8 backdrop-blur-sm"
                 >
                   {activeTab === 'documentation' && (
                     <div className="markdown-content">
