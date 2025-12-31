@@ -1233,7 +1233,7 @@ const Home = () => {
                 <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                   Kalvin
                 </span>{" "}
-                👋
+                
               </h1>
 
               <p className="hero-subtitle text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed">
