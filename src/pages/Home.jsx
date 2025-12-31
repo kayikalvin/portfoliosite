@@ -1211,7 +1211,7 @@ const Home = () => {
         </div>
 
         {/* Hero Section */}
-        <section id="home" className="relative">
+        <section id="home" className="relative h-[80vh]">
           <Floatingnavbar activeSection={activeSection} />
           <div
             ref={heroRef}
@@ -1298,18 +1298,18 @@ const Home = () => {
               </div>
 
               {/* Social Links */}
-              <div className="flex justify-center gap-4 mt-6">
+              <div className="flex justify-center gap-6 mt-6">
                 <a
                   href="https://github.com/kayikalvin"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors duration-300"
+                  className="text-gray-400 hover:text-white transition-transform duration-300 transform hover:scale-110"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    className="w-6 h-6"
+                    className="w-8 h-8"
                   >
                     <path
                       fillRule="evenodd"
@@ -1319,25 +1319,40 @@ const Home = () => {
                   </svg>
                 </a>
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/kayikalvin"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors duration-300"
+                  className="text-gray-400 hover:text-white transition-transform duration-300 transform hover:scale-110"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    className="w-6 h-6"
+                    className="w-8 h-8"
                   >
                     <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24h11.495v-9.294H9.691v-3.622h3.129V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.763v2.31h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.324-.593 1.324-1.324V1.325C24 .593 23.407 0 22.675 0z" />
                   </svg>
+                </a>
+                <a
+                  href="https://linkedin.com/in/kayikalvin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition-transform duration-300 transform hover:scale-110"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="w-8 h-8"
+                  >
+                    <path d="M20.447 20.452H16.89v-5.396c0-1.287-.025-2.945-1.797-2.945-1.798 0-2.073 1.403-2.073 2.854v5.487H9.366V9h3.396v1.561h.048c.472-.896 1.625-1.797 3.348-1.797 3.579 0 4.238 2.358 4.238 5.428v6.26zM5.337 7.433a1.957 1.957 0 1 1 0-3.914 1.957 1.957 0 0 1 0 3.914zM6.893 20.452H3.78V9h3.113v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.226.792 24 1.771 24h20.451c.979 0 1.774-.774 1.774-1.729V1.729C24 .774 23.204 0 22.225 0z" />
+                </svg>
                 </a>
               </div>
             </div>
 
             {/* Stats Section */}
-            <div className="relative mt-32 w-full max-w-6xl px-6">
+            {/* <div className="relative mt-32 w-full max-w-6xl px-6">
               <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
                 {[
                   { number: "45+", label: "Repositories" },
@@ -1350,7 +1365,7 @@ const Home = () => {
                     key={index}
                     className="hover-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm hover:bg-white/10 transition-all duration-300"
                   >
-                    {/* <div className="text-3xl mb-2">{stat.icon}</div> */}
+                    <div className="text-3xl mb-2">{stat.icon}</div>
                     <h3 className="text-2xl md:text-3xl font-bold mb-1 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                       {stat.number}
                     </h3>
@@ -1358,7 +1373,7 @@ const Home = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
         </section>
 
@@ -1620,7 +1635,7 @@ const Home = () => {
                   <h3 className="text-xl font-semibold mb-4 text-white group-hover:text-cyan-300 transition-colors">
                     {post.title}
                   </h3>
-                  <p className="text-gray-400 mb-6">
+                  <p className="text-gray-500 mb-6">
                     {post.description || "Read more about this topic"}
                   </p>
                   <div className="flex items-center text-cyan-400 group-hover:text-cyan-300 transition-colors">
