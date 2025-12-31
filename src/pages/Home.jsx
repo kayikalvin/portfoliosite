@@ -1416,12 +1416,12 @@ const Home = () => {
                   <div className="space-y-3">
                     {[
                       {
-                        icon: "🧠",
+                        
                         title: "Machine Learning",
                         items: ["Deep Learning", "NLP", "Predictive Analytics"],
                       },
                       {
-                        icon: "⚡",
+                        
                         title: "Full-Stack Dev",
                         items: [
                           "React/Next.js",
@@ -1430,7 +1430,7 @@ const Home = () => {
                         ],
                       },
                       {
-                        icon: "📊",
+                        
                         title: "Data Engineering",
                         items: [
                           "ETL Pipelines",
@@ -1443,7 +1443,7 @@ const Home = () => {
                         key={index}
                         className="flex items-start gap-3 p-3 rounded-lg bg-white/5 border border-white/10"
                       >
-                        <div className="text-xl mt-1">{item.icon}</div>
+                        {/* <div className="text-xl mt-1">{item.icon}</div> */}
                         <div>
                           <h4 className="font-medium text-white mb-1">
                             {item.title}
