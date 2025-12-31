@@ -1302,17 +1302,17 @@ const Home = () => {
             <div className="relative mt-32 w-full max-w-6xl px-6">
               <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
                 {[
-                  { number: "45+", label: "Repositories", icon: "🚀" },
-                  { number: "15+", label: "Projects Completed", icon: "✨" },
-                  { number: "100K+", label: "Lines of Code", icon: "💻" },
-                  { number: "50+", label: "Data Pipelines", icon: "📊" },
-                  { number: "∞", label: "Cups of Coffee", icon: "☕" },
+                  { number: "45+", label: "Repositories" },
+                  { number: "15+", label: "Projects Completed" },
+                  { number: "100K+", label: "Lines of Code" },
+                  { number: "50+", label: "Data Pipelines" },
+                  { number: "∞", label: "Cups of Coffee" },
                 ].map((stat, index) => (
                   <div
                     key={index}
                     className="hover-card bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm hover:bg-white/10 transition-all duration-300"
                   >
-                    <div className="text-3xl mb-2">{stat.icon}</div>
+                    {/* <div className="text-3xl mb-2">{stat.icon}</div> */}
                     <h3 className="text-2xl md:text-3xl font-bold mb-1 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                       {stat.number}
                     </h3>
