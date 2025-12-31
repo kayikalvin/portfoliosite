@@ -1,6 +1,8 @@
 {
   "rewrites": [
     { "source": "/admin", "destination": "/" },
-    { "source": "/admin/:match*", "destination": "/" }
+    { "source": "/admin/:match*", "destination": "/" },
+    // SPA fallback: serve index.html for all other routes so client-side routing works on direct visits
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
