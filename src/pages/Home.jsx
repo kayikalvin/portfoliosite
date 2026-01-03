@@ -1724,9 +1724,9 @@ const Home = () => {
               <p>
                 © {new Date().getFullYear()} Kalvin Kayi. All rights reserved.
               </p>
-              <p className="mt-2">
+              {/* <p className="mt-2">
                 Built with React, TypeScript, and Tailwind CSS
-              </p>
+              </p> */}
             </div>
           </div>
         </footer>
