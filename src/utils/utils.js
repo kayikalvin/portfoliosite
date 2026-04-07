@@ -21,7 +21,7 @@ export const projects = [
     code: "https://github.com/kayikalvin/dantra-limited",
     url: "https://dantra-limited.vercel.app/",
     markdown: `
-# 🌍 Dantra Limited - FMCG Distributor Website
+#  Dantra Limited - FMCG Distributor Website
 
 ## Project Description
 
@@ -180,7 +180,7 @@ The system includes three pre-loaded test cases:
 
 ## Project Description
 
-A full-stack real estate platform designed to connect 🏘️ clients, 🏠 landlords, and 🛠️ administrators through a comprehensive property management system. The platform streamlines the real estate process by providing property browsing, listing management, real-time communication, and integrated payment processing.
+A full-stack real estate platform designed to connect  clients,  landlords, and  administrators through a comprehensive property management system. The platform streamlines the real estate process by providing property browsing, listing management, real-time communication, and integrated payment processing.
 
 ## Key Features
 
@@ -308,7 +308,7 @@ The application addresses key challenges in the real estate industry by providin
     code: "https://github.com/kayikalvin/xgenelabs", // Placeholder – update with actual repo
     url: "https://www.xgenelabs.co.ke/",
     markdown: `
-# 🔬 Xgene Labs - Molecular Diagnostics Website
+#  Xgene Labs - Molecular Diagnostics Website
 
 ## Project Description
 
@@ -365,7 +365,7 @@ The website establishes Xgene Labs as a trusted molecular diagnostics provider i
   {
     title: "Siprosa Foundation - Educational Non-Profit Website",
     description:
-      "📚 Website for Siprosa Foundation, a non-profit transforming education in Kenya through 'Futures Green Schools' – focusing on early childhood education, environmental stewardship, and holistic child development.",
+      " Website for Siprosa Foundation, a non-profit transforming education in Kenya through 'Futures Green Schools' – focusing on early childhood education, environmental stewardship, and holistic child development.",
     tech: [
       "React",
       "Tailwind CSS",
@@ -381,7 +381,7 @@ The website establishes Xgene Labs as a trusted molecular diagnostics provider i
     code: "https://github.com/kayikalvin/siprosa-foundation", // Placeholder – update with actual repo
     url: "https://siprosa.org/",
     markdown: `
-# 📚 Siprosa Foundation - Educational Non-Profit Website
+#  Siprosa Foundation - Educational Non-Profit Website
 
 ## Project Description
 
@@ -436,7 +436,7 @@ The website amplifies Siprosa Foundation’s reach, helping them secure resource
   {
     title: "Somanasi - Tech Training & Solutions Company",
     description:
-      "💻 Corporate website for Somanasi, a Kenyan tech training and solutions provider offering courses in AI, software development, data analytics, and cybersecurity, plus custom AI agents and chatbots.",
+      " Corporate website for Somanasi, a Kenyan tech training and solutions provider offering courses in AI, software development, data analytics, and cybersecurity, plus custom AI agents and chatbots.",
     tech: [
       "React",
       "Tailwind CSS",
@@ -452,7 +452,7 @@ The website amplifies Siprosa Foundation’s reach, helping them secure resource
     code: "https://github.com/kayikalvin/somanasi", // Placeholder – update with actual repo
     url: "https://somanasi.org/",
     markdown: `
-# 💻 Somanasi - Tech Training & Solutions Company
+#  Somanasi - Tech Training & Solutions Company
 
 ## Project Description
 
@@ -523,7 +523,7 @@ The website positions Somanasi as a leader in practical tech education in Kenya,
     code: "https://github.com/kayikalvin/digimagictech", // Placeholder – update with actual repo
     url: "https://digimagictech.org/",
     markdown: `
-# 🎓 DigiMagicTech - Computer Programming Educator
+#  DigiMagicTech - Computer Programming Educator
 
 ## Project Description
 
@@ -579,7 +579,7 @@ The website increases enrollment in DigiMagicTech’s programs, helps secure par
   {
     title: "Gym Sable One - Fitness Landing Page",
     description:
-      "💪 A sleek and modern fitness website showcasing gym programs, membership plans, and services with a responsive React-based interface and smooth animations.",
+      " A sleek and modern fitness website showcasing gym programs, membership plans, and services with a responsive React-based interface and smooth animations.",
     tech: [
       "React",
       "Tailwind CSS",
@@ -593,7 +593,7 @@ The website increases enrollment in DigiMagicTech’s programs, helps secure par
     code: "https://github.com/kayikalvin/gym",
     url: "https://gym-sable-one.vercel.app/",
     markdown: `
-# 💪 Gym Sable One - Fitness Landing Page
+#  Gym Sable One - Fitness Landing Page
 
 ## Project Description
 
