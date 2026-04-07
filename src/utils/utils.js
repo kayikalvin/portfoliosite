@@ -6,19 +6,28 @@ export const projects = [
     title: "Kenyan Real Estate Website",
     description:
       "Full-stack real estate platform connecting clients, landlords, and administrators through property listings, real-time messaging, and payment processing. Features role-based dashboards, Google Maps integration, M-Pesa payments, and comprehensive property management with secure JWT authentication.",
-    tech: [
-      "React",
-      "Machine Learning",
-      "Tailwind CSS",
-      "Lucide Icons",
-      "JavaScript",
-    ],
-    gradient:
-      "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
+    tech: ["React", "Machine Learning", "Tailwind CSS", "Lucide Icons", "JavaScript"],
+    gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/real-estate",
     url: "https://real-estate-psi-weld.vercel.app/",
+    features: [
+      "Property Management – Complete CRUD operations for listings",
+      "Real-time chat between clients and landlords (Socket.IO)",
+      "Google Maps integration for property location",
+      "M-Pesa payment processing for landlord subscriptions",
+      "Role-based dashboards (Client, Landlord, Admin)",
+      "Media uploads (images/videos) via Cloudinary",
+      "Review and rating system for properties",
+    ],
+    challenges: [
+      "Implementing real-time messaging with Socket.IO while maintaining message persistence in MongoDB",
+      "Integrating M-Pesa API for secure mobile payments in Kenya",
+      "Building a responsive, role-based UI that works across devices",
+      "Securing JWT authentication and route protection",
+      "Managing file uploads and cloud storage efficiently",
+    ],
     markdown: `
-# Real Estate Web Application
+    # Real Estate Web Application
 
 ## Project Description
 
@@ -129,28 +138,30 @@ The application addresses key challenges in the real estate industry by providin
 - Notification System: Email and SMS alerts
 - Document Generation: Automated invoice and contract creation
 - Multi-region Support: Expand beyond Kenya market
-`,
+    `, // paste your full markdown
   },
   {
     title: "Xgene Labs - Molecular Diagnostics Website",
     description:
       "🔬 Professional website for Xgene Labs, a clinical-grade molecular diagnostics company in Kenya. Showcases genetic testing services, diagnostic kits, medical equipment, and transparent prepaid testing programs with M-Pesa integration.",
-    tech: [
-      "React",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Lucide Icons",
-      "shadcn/ui",
-      "JavaScript",
-      "Vite",
-      "Vercel",
-    ],
-    gradient:
-      "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
+    tech: ["React", "Tailwind CSS", "Framer Motion", "Lucide Icons", "shadcn/ui", "JavaScript", "Vite", "Vercel"],
+    gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/xgenelabs",
     url: "https://www.xgenelabs.co.ke/",
+    features: [
+      "Service showcase – genetic testing, diagnostic kits, medical equipment",
+      "Prepaid testing program with M-Pesa tokens for healthcare facilities",
+      "Clear pricing and target audience segmentation (patients, clinics, hospitals)",
+      "Mobile-responsive, trust‑focused UI",
+      "Smooth animations with Framer Motion",
+    ],
+    challenges: [
+      "Presenting complex medical information in an accessible way",
+      "Integrating M-Pesa token system into a non‑ecommerce context",
+      "Building trust through design for a healthcare brand",
+    ],
     markdown: `
-# 🔬 Xgene Labs - Molecular Diagnostics Website
+    # 🔬 Xgene Labs - Molecular Diagnostics Website
 
 ## Project Description
 
@@ -202,28 +213,30 @@ The website establishes Xgene Labs as a trusted molecular diagnostics provider i
 - Test result portal with secure login.
 - Inventory management for equipment and kits.
 - Integration with hospital EMR systems.
-`,
+    `,
   },
   {
     title: "Siprosa Foundation - Educational Non-Profit Website",
     description:
       "📚 Website for Siprosa Foundation, a non-profit transforming education in Kenya through 'Futures Green Schools' – focusing on early childhood education, environmental stewardship, and holistic child development.",
-    tech: [
-      "React",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Lucide Icons",
-      "shadcn/ui",
-      "JavaScript",
-      "Vite",
-      "Vercel",
-    ],
-    gradient:
-      "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
+    tech: ["React", "Tailwind CSS", "Framer Motion", "Lucide Icons", "shadcn/ui", "JavaScript", "Vite", "Vercel"],
+    gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/siprosa-foundation",
     url: "https://siprosa.org/",
+    features: [
+      "Mission & values communication",
+      "Futures Green Schools model showcase",
+      "Founder story (Dr. Mary Otieno)",
+      "Call‑to‑action for donations, partnerships, volunteering",
+      "Fully responsive and emotionally engaging design",
+    ],
+    challenges: [
+      "Translating complex non‑profit impact metrics into simple, inspiring content",
+      "Creating a warm, storytelling‑driven UI without losing professionalism",
+      "Ensuring accessibility for users with varying internet speeds",
+    ],
     markdown: `
-# 📚 Siprosa Foundation - Educational Non-Profit Website
+    # 📚 Siprosa Foundation - Educational Non-Profit Website
 
 ## Project Description
 
@@ -273,28 +286,30 @@ The website amplifies Siprosa Foundation’s reach, helping them secure resource
 - Volunteer sign-up form.
 - Blog for success stories and updates.
 - Interactive map of school locations.
-`,
+    `,
   },
   {
     title: "Somanasi - Tech Training & Solutions Company",
     description:
       "💻 Corporate website for Somanasi, a Kenyan tech training and solutions provider offering courses in AI, software development, data analytics, and cybersecurity, plus custom AI agents and chatbots.",
-    tech: [
-      "React",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Lucide Icons",
-      "shadcn/ui",
-      "JavaScript",
-      "Vite",
-      "Vercel",
-    ],
-    gradient:
-      "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
+    tech: ["React", "Tailwind CSS", "Framer Motion", "Lucide Icons", "shadcn/ui", "JavaScript", "Vite", "Vercel"],
+    gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/somanasi",
     url: "https://somanasi.org/",
+    features: [
+      "Course listings – digital literacy, cybersecurity, web dev, AI agent dev",
+      "Business services – full‑stack apps, AI agents, chatbots",
+      "Learning model – expert‑led, self‑paced, job‑ready skills",
+      "Clear target audience (individuals, businesses, organisations)",
+      "Tech‑forward, modern UI",
+    ],
+    challenges: [
+      "Organising diverse course and service offerings into a coherent UX",
+      "Balancing educational content with business service promotion",
+      "Creating a scalable component structure for future course expansion",
+    ],
     markdown: `
-# 💻 Somanasi - Tech Training & Solutions Company
+    # 💻 Somanasi - Tech Training & Solutions Company
 
 ## Project Description
 
@@ -344,28 +359,31 @@ The website positions Somanasi as a leader in practical tech education in Kenya,
 - Student dashboard for progress tracking.
 - Case studies of custom AI solutions.
 - Blog with tech tutorials and industry insights.
-`,
+    
+    `,
   },
   {
     title: "DigiMagicTech - Computer Programming Educator",
     description:
       "🎓 Educational website for DigiMagicTech, teaching computer programming and digital skills to primary and secondary school students and teachers in Kenya. Structured courses with age-appropriate content.",
-    tech: [
-      "React",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Lucide Icons",
-      "shadcn/ui",
-      "JavaScript",
-      "Vite",
-      "Vercel",
-    ],
-    gradient:
-      "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
+    tech: ["React", "Tailwind CSS", "Framer Motion", "Lucide Icons", "shadcn/ui", "JavaScript", "Vite", "Vercel"],
+    gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/digimagictech",
     url: "https://digimagictech.org/",
+    features: [
+      "Age‑based courses (Primary – KES 15k, Secondary – KES 19.5k, Teachers – digital literacy)",
+      "Expert team (professors of education, software engineering academics)",
+      "Partners – Liberating Education (Germany), Matakiri Tumaini Trust, Ministry of Education",
+      "Bright, engaging design for young learners",
+      "Clear pricing and audience targeting",
+    ],
+    challenges: [
+      "Designing an age‑appropriate UI that appeals to both children and parents",
+      "Presenting complex partnership information simply",
+      "Ensuring fast load times for schools with limited bandwidth",
+    ],
     markdown: `
-# 🎓 DigiMagicTech - Computer Programming Educator
+    # 🎓 DigiMagicTech - Computer Programming Educator
 
 ## Project Description
 
@@ -416,26 +434,31 @@ The website increases enrollment in DigiMagicTech’s programs, helps secure par
 - Student project gallery.
 - Teacher resource library.
 - Live class scheduling and reminders.
-`,
+    
+    `,
   },
   {
     title: "Gym Sable One - Fitness Landing Page",
     description:
       "💪 A sleek and modern fitness website showcasing gym programs, membership plans, and services with a responsive React-based interface and smooth animations.",
-    tech: [
-      "React",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Lucide Icons",
-      "Vite",
-      "Vercel",
-    ],
-    gradient:
-      "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
+    tech: ["React", "Tailwind CSS", "Framer Motion", "Lucide Icons", "Vite", "Vercel"],
+    gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/gym",
     url: "https://gym-sable-one.vercel.app/",
+    features: [
+      "Hero section with strong call‑to‑action",
+      "Program highlights (training options)",
+      "Membership plans with pricing",
+      "Fully responsive design",
+      "Smooth Framer Motion animations",
+    ],
+    challenges: [
+      "Creating an energetic, motivating design without overwhelming the user",
+      "Balancing informational density with visual appeal",
+      "Optimising images for fast loading on mobile devices",
+    ],
     markdown: `
-# 💪 Gym Sable One - Fitness Landing Page
+    # 💪 Gym Sable One - Fitness Landing Page
 
 ## Project Description
 
@@ -485,26 +508,32 @@ This web application enhances the digital presence of fitness businesses, improv
 - Trainer Profile Pages
 - Online Membership Sign-Up & Payments
 - Fitness Progress Tracking Dashboard
-`,
+    
+    
+    `,
   },
   {
     title: "The Eleventh Hour - Coffee Shop Demo Site (UK)",
     description:
       "☕ Demo website for a UK-based coffee shop. Showcases menu items, shop ambiance, location, and contact details with a warm, inviting design – built as a modern frontend prototype.",
-    tech: [
-      "React",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Lucide Icons",
-      "Vite",
-      "Vercel",
-    ],
-    gradient:
-      "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
+    tech: ["React", "Tailwind CSS", "Framer Motion", "Lucide Icons", "Vite", "Vercel"],
+    gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/eleventh-hour",
     url: "https://the-eleventh-hour.vercel.app/",
+    features: [
+      "Hero section with menu call‑to‑action",
+      "Categorised menu display (coffee, tea, food) with prices",
+      "Photo gallery showcasing shop ambiance and products",
+      "Location with Google Maps and opening hours",
+      "Contact form for inquiries",
+    ],
+    challenges: [
+      "Designing an inviting, warm aesthetic for a coffee shop brand",
+      "Organising menu items in a clean, scannable layout",
+      "Ensuring the gallery loads quickly while maintaining image quality",
+    ],
     markdown: `
-# ☕ The Eleventh Hour - Coffee Shop Demo Site (UK)
+    # ☕ The Eleventh Hour - Coffee Shop Demo Site (UK)
 
 ## Project Description
 
@@ -556,27 +585,32 @@ Provides an appealing digital storefront for a coffee shop, helping increase foo
 - Loyalty program sign-up.
 - Blog for events or new brews.
 - Reservation system for seating.
-`,
+    
+    
+    `,
   },
   {
     title: "Matakiri Client Portal - Community Organisation Website",
     description:
       "🌍 Client-facing website for Matakiri, a community organisation. Showcases mission, community projects, impact stories, and ways to get involved (donate, volunteer, partner). Fully responsive and accessible.",
-    tech: [
-      "React",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Lucide Icons",
-      "React Router DOM",
-      "Vite",
-      "Vercel",
-    ],
-    gradient:
-      "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
+    tech: ["React", "Tailwind CSS", "Framer Motion", "Lucide Icons", "React Router DOM", "Vite", "Vercel"],
+    gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/matakiri-client",
     url: "https://matakiri-website-revamp-client.vercel.app/",
+    features: [
+      "Mission & values communication",
+      "Projects/initiatives timeline or cards",
+      "Impact stories from beneficiaries",
+      "Get involved sections (donate, volunteer, partner)",
+      "Contact form with validation",
+    ],
+    challenges: [
+      "Presenting community work in an inspiring, action‑oriented way",
+      "Making it easy for visitors to donate or volunteer",
+      "Building a trust‑worthy design for a non‑profit audience",
+    ],
     markdown: `
-# 🌍 Matakiri Client Portal - Community Organisation Website
+    # 🌍 Matakiri Client Portal - Community Organisation Website
 
 ## Project Description
 
@@ -629,28 +663,33 @@ Increases visibility of the organisation's work, streamlines volunteer/donor sig
 - Integration with a CMS (e.g., Sanity or Contentful).
 - Donation payment gateway (M-Pesa, card).
 - Volunteer management system.
-`,
+    
+    
+    `,
   },
   {
     title: "Matakiri Admin Dashboard - Content Management System",
     description:
       "🛠️ Secure admin dashboard for Matakiri community organisation. Manage website content (projects, success stories, team bios) and view contact form submissions. Empowers non-technical staff to update the site.",
-    tech: [
-      "React",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Lucide Icons",
-      "Chart.js / Recharts",
-      "React Router DOM",
-      "Vite",
-      "Vercel",
-    ],
-    gradient:
-      "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
+    tech: ["React", "Tailwind CSS", "Framer Motion", "Lucide Icons", "Chart.js / Recharts", "React Router DOM", "Vite", "Vercel"],
+    gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/matakiri-admin",
     url: "https://matakiri-website-revamp-admin-dashb-orpin.vercel.app/",
+    features: [
+      "Authentication (JWT or session‑based)",
+      "Manage projects, success stories, team members (CRUD)",
+      "View contact form submissions with timestamps",
+      "Analytics dashboard with charts (page views, submissions)",
+      "Mobile‑responsive admin interface",
+    ],
+    challenges: [
+      "Building a secure, role‑based dashboard for non‑technical staff",
+      "Creating intuitive CRUD forms with validation and confirmation modals",
+      "Preparing a mock API that can be swapped with a real backend",
+      "Designing analytics widgets that are simple yet insightful",
+    ],
     markdown: `
-# 🛠️ Matakiri Admin Dashboard - Content Management System
+    # 🛠️ Matakiri Admin Dashboard - Content Management System
 
 ## Project Description
 
@@ -709,28 +748,31 @@ Reduces turnaround time for website updates from days to minutes, empowers staff
 - Image upload with Cloudinary.
 - Email notifications for new form submissions.
 - Export submissions to CSV/Excel.
-`,
+    `,
   },
   {
     title: "Dantra Limited - FMCG Distributor Website",
     description:
       "🌍 Professional web platform for Dantra Limited, a leading FMCG distributor in Kenya. Showcases services, product categories, and brand partnerships with a sleek, mobile-first React interface.",
-    tech: [
-      "React",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Lucide Icons",
-      "shadcn/ui",
-      "JavaScript",
-      "Vite",
-      "Vercel",
-    ],
-    gradient:
-      "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
+    tech: ["React", "Tailwind CSS", "Framer Motion", "Lucide Icons", "shadcn/ui", "JavaScript", "Vite", "Vercel"],
+    gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/dantra-limited",
     url: "https://dantra-limited.vercel.app/",
+    features: [
+      "Hero section with animated headline and CTA buttons",
+      "Product category display (Beverages, Snacks, Personal Care, etc.)",
+      "Services showcase for FMCG distribution capabilities",
+      "Partnership inquiry via WhatsApp integration",
+      "Click‑to‑call for quick communication",
+      "Brand partners section",
+    ],
+    challenges: [
+      "Creating a professional red‑based gradient palette that aligns with FMCG branding",
+      "Integrating WhatsApp and click‑to‑call without backend complexity",
+      "Ensuring mobile‑first responsiveness for Kenya’s market",
+    ],
     markdown: `
-# 🌍 Dantra Limited - FMCG Distributor Website
+    # 🌍 Dantra Limited - FMCG Distributor Website
 
 ## Project Description
 
@@ -784,25 +826,33 @@ The site enhances Dantra Limited's professional image, streamlines partnership i
 - Interactive Distribution Map
 - Market Insights Dashboard
 - Multi-Language Support for broader reach
-`,
+    
+    `,
   },
   {
     title: "Sonar-Rock-vs-Mine-UI",
     description:
       "Advanced machine learning-powered web application that analyzes sonar signatures to classify underwater objects as mines or rocks. Features real-time classification, confidence scoring, and comprehensive data validation with a modern React interface.",
-    tech: [
-      "React",
-      "Machine Learning",
-      "Tailwind CSS",
-      "Lucide Icons",
-      "JavaScript",
-    ],
-    gradient:
-      "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
+    tech: ["React", "Machine Learning", "Tailwind CSS", "Lucide Icons", "JavaScript"],
+    gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/sonar-rock-vs-mine-ui",
     url: "https://sonar-rock-vs-mine-ui.vercel.app/",
+    features: [
+      "Real‑time classification (Mine vs Rock)",
+      "Confidence scoring (70‑100%)",
+      "Comprehensive input validation with user‑friendly errors",
+      "Pre‑loaded sample data for testing",
+      "One‑click clipboard integration for sample data",
+      "Color‑coded results with visual feedback",
+    ],
+    challenges: [
+      "Processing exactly 60 normalized sonar features (0‑1 range)",
+      "Implementing robust CSV parsing and validation",
+      "Designing a clean UI for technical sonar data",
+      "Creating a mock ML prediction system ready for real API integration",
+    ],
     markdown: `
-# Sonar Mine vs Rock Classification System
+    # Sonar Mine vs Rock Classification System
 
 ## Project Description
 
@@ -867,104 +917,28 @@ The system includes three pre-loaded test cases:
 - Export functionality for results
 - Advanced analytics and insights
 - Real-time processing capabilities
-`,
+    
+    
+    
+    `,
   },
 ];
 
 // skills
 export const skills = [
-  {
-    name: "Python",
-    level: 95,
-    icon: Code,
-    color: "from-blue-500 to-cyan-500",
-    iconColor: "text-blue-400",
-  },
-  {
-    name: "JavaScript/React",
-    level: 90,
-    icon: Code,
-    color: "from-yellow-500 to-orange-500",
-    iconColor: "text-yellow-400",
-  },
-  {
-    name: "Machine Learning",
-    level: 88,
-    icon: Brain,
-    color: "from-purple-500 to-pink-500",
-    iconColor: "text-purple-400",
-  },
-  {
-    name: "Data Analysis",
-    level: 92,
-    icon: BarChart3,
-    color: "from-green-500 to-emerald-500",
-    iconColor: "text-green-400",
-  },
-  {
-    name: "SQL/NoSQL",
-    level: 85,
-    icon: Database,
-    color: "from-red-500 to-rose-500",
-    iconColor: "text-red-400",
-  },
-  {
-    name: "Cloud/DevOps",
-    level: 80,
-    icon: Cpu,
-    color: "from-indigo-500 to-blue-500",
-    iconColor: "text-indigo-400",
-  },
+  { name: "Python", level: 95, icon: Code, color: "from-blue-500 to-cyan-500", iconColor: "text-blue-400" },
+  { name: "JavaScript/React", level: 90, icon: Code, color: "from-yellow-500 to-orange-500", iconColor: "text-yellow-400" },
+  { name: "Machine Learning", level: 88, icon: Brain, color: "from-purple-500 to-pink-500", iconColor: "text-purple-400" },
+  { name: "Data Analysis", level: 92, icon: BarChart3, color: "from-green-500 to-emerald-500", iconColor: "text-green-400" },
+  { name: "SQL/NoSQL", level: 85, icon: Database, color: "from-red-500 to-rose-500", iconColor: "text-red-400" },
+  { name: "Cloud/DevOps", level: 80, icon: Cpu, color: "from-indigo-500 to-blue-500", iconColor: "text-indigo-400" },
 ];
 
 // posts
 export const posts = [
-  {
-    title: "Building Scalable ML Platforms with Kubernetes",
-    link: "#",
-  },
-  {
-    title: "Designing Data-Driven Dashboards Users Actually Love",
-    link: "#",
-  },
+  { title: "Building Scalable ML Platforms with Kubernetes", link: "#" },
+  { title: "Designing Data-Driven Dashboards Users Actually Love", link: "#" },
 ];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
