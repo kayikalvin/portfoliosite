@@ -29,115 +29,115 @@ export const projects = [
     markdown: `
     # Real Estate Web Application
 
-## Project Description
+  ## Project Description
 
-A full-stack real estate platform designed to connect 🏘️ clients, 🏠 landlords, and 🛠️ administrators through a comprehensive property management system. The platform streamlines the real estate process by providing property browsing, listing management, real-time communication, and integrated payment processing.
+  A full-stack real estate platform designed to connect 🏘️ clients, 🏠 landlords, and 🛠️ administrators through a comprehensive property management system. The platform streamlines the real estate process by providing property browsing, listing management, real-time communication, and integrated payment processing.
 
-## Key Features
+  ## Key Features
 
-### Core Functionality
-- Property Management: Complete CRUD operations for property listings
-- Real-time Communication: Socket.IO-powered chat between clients and landlords
-- Location Integration: Google Maps API for property location visualization
-- Payment Processing: M-Pesa API integration for landlord subscription payments
-- Role-based Access: Three distinct user roles with specific permissions
+  ### Core Functionality
+  - Property Management: Complete CRUD operations for property listings
+  - Real-time Communication: Socket.IO-powered chat between clients and landlords
+  - Location Integration: Google Maps API for property location visualization
+  - Payment Processing: M-Pesa API integration for landlord subscription payments
+  - Role-based Access: Three distinct user roles with specific permissions
 
-### User Experience
-- Public Website: Browse properties with advanced search and filtering
-- Responsive Design: Mobile-friendly interface across all devices
-- Role-based Dashboards: Secure dashboards for landlords and administrators
-- Media Management: Image and video uploads for property listings
-- Review System: Client reviews and ratings for properties
+  ### User Experience
+  - Public Website: Browse properties with advanced search and filtering
+  - Responsive Design: Mobile-friendly interface across all devices
+  - Role-based Dashboards: Secure dashboards for landlords and administrators
+  - Media Management: Image and video uploads for property listings
+  - Review System: Client reviews and ratings for properties
 
-### Technical Capabilities
-- JWT Authentication: Secure token-based authentication system
-- RESTful API: Well-structured API endpoints for all operations
-- Real-time Features: Live messaging and notifications
-- Cloud Integration: Media hosting and database management
-- Analytics Ready: Foundation for dashboard analytics and reporting
+  ### Technical Capabilities
+  - JWT Authentication: Secure token-based authentication system
+  - RESTful API: Well-structured API endpoints for all operations
+  - Real-time Features: Live messaging and notifications
+  - Cloud Integration: Media hosting and database management
+  - Analytics Ready: Foundation for dashboard analytics and reporting
 
-## Technologies Used
+  ## Technologies Used
 
-### Frontend Stack
-- React with React Router DOM for navigation
-- Tailwind CSS for modern, responsive styling
-- Material-UI (MUI) for data grids and UI components
-- Google Maps API for location services
-- Socket.IO Client for real-time messaging
+  ### Frontend Stack
+  - React with React Router DOM for navigation
+  - Tailwind CSS for modern, responsive styling
+  - Material-UI (MUI) for data grids and UI components
+  - Google Maps API for location services
+  - Socket.IO Client for real-time messaging
 
-### Backend Stack
-- Node.js & Express.js server framework
-- MongoDB with Mongoose ODM for data management
-- JWT & bcrypt for authentication and password security
-- Socket.IO for real-time chat server
-- M-Pesa API for payment processing (Kenya)
-- Cloudinary for media file hosting
+  ### Backend Stack
+  - Node.js & Express.js server framework
+  - MongoDB with Mongoose ODM for data management
+  - JWT & bcrypt for authentication and password security
+  - Socket.IO for real-time chat server
+  - M-Pesa API for payment processing (Kenya)
+  - Cloudinary for media file hosting
 
-### Deployment & Infrastructure
-- Vercel for frontend hosting
-- Render for backend deployment
-- MongoDB Atlas for cloud database
-- Secure Architecture with protected routes and middleware
+  ### Deployment & Infrastructure
+  - Vercel for frontend hosting
+  - Render for backend deployment
+  - MongoDB Atlas for cloud database
+  - Secure Architecture with protected routes and middleware
 
-## User Roles & Permissions
+  ## User Roles & Permissions
 
-### Clients
-- Public Access: Browse and search property listings
-- Property Details: View detailed property information with media
-- Direct Communication: Message landlords in real-time
-- Reviews: Leave ratings and reviews for properties
-- Authentication Required: Login needed for detailed property access
+  ### Clients
+  - Public Access: Browse and search property listings
+  - Property Details: View detailed property information with media
+  - Direct Communication: Message landlords in real-time
+  - Reviews: Leave ratings and reviews for properties
+  - Authentication Required: Login needed for detailed property access
 
-### Landlords
-- Dashboard Access: Secure landlord management portal
-- Property Management: Create, update, and delete listings
-- Media Uploads: Add images and videos to properties
-- Client Communication: Respond to inquiries in real-time
-- Payment Integration: Monthly payments via M-Pesa
-- Listing Analytics: Track property status and performance
+  ### Landlords
+  - Dashboard Access: Secure landlord management portal
+  - Property Management: Create, update, and delete listings
+  - Media Uploads: Add images and videos to properties
+  - Client Communication: Respond to inquiries in real-time
+  - Payment Integration: Monthly payments via M-Pesa
+  - Listing Analytics: Track property status and performance
 
-### Administrators
-- Full Control: Complete system administration capabilities
-- User Management: Manage all clients and landlords
-- Property Oversight: Full CRUD operations on all listings
-- Payment Monitoring: Track all transactions and payments
-- Analytics Dashboard: System-wide analytics and reporting
-- Content Moderation: Review and moderate user content
+  ### Administrators
+  - Full Control: Complete system administration capabilities
+  - User Management: Manage all clients and landlords
+  - Property Oversight: Full CRUD operations on all listings
+  - Payment Monitoring: Track all transactions and payments
+  - Analytics Dashboard: System-wide analytics and reporting
+  - Content Moderation: Review and moderate user content
 
-## Use Cases
+  ## Use Cases
 
-- Property Discovery: Help clients find suitable rental properties
-- Property Management: Assist landlords in managing their listings
-- Business Operations: Streamline real estate business processes
-- Market Expansion: Scale real estate operations across regions
-- Data Analytics: Gather insights on property market trends
+  - Property Discovery: Help clients find suitable rental properties
+  - Property Management: Assist landlords in managing their listings
+  - Business Operations: Streamline real estate business processes
+  - Market Expansion: Scale real estate operations across regions
+  - Data Analytics: Gather insights on property market trends
 
-## Project Impact
+  ## Project Impact
 
-The application addresses key challenges in the real estate industry by providing a centralized platform that eliminates communication barriers, streamlines property management, and facilitates secure transactions. It demonstrates modern web development practices with real-world business applications.
+  The application addresses key challenges in the real estate industry by providing a centralized platform that eliminates communication barriers, streamlines property management, and facilitates secure transactions. It demonstrates modern web development practices with real-world business applications.
 
-## Real-time Features
+  ## Real-time Features
 
-### Messaging System
-- Socket.IO Integration: Instant messaging between users
-- Live Notifications: Real-time message alerts
-- Message Persistence: Chat history stored in database
-- Connection Management: Automatic reconnection and status tracking
+  ### Messaging System
+  - Socket.IO Integration: Instant messaging between users
+  - Live Notifications: Real-time message alerts
+  - Message Persistence: Chat history stored in database
+  - Connection Management: Automatic reconnection and status tracking
 
-### Payment Workflow
-- M-Pesa Integration: Mobile money payments for Kenya
-- STK Push: Direct payment prompts to user phones
-- Payment Verification: Automatic status updates
-- Transaction Tracking: Complete payment history
+  ### Payment Workflow
+  - M-Pesa Integration: Mobile money payments for Kenya
+  - STK Push: Direct payment prompts to user phones
+  - Payment Verification: Automatic status updates
+  - Transaction Tracking: Complete payment history
 
-## Future Enhancements
+  ## Future Enhancements
 
-- AI-powered Property Matching: Intelligent recommendation system
-- Advanced Analytics: Dashboard insights for all user roles
-- Progressive Web App: Offline functionality and app-like experience
-- Notification System: Email and SMS alerts
-- Document Generation: Automated invoice and contract creation
-- Multi-region Support: Expand beyond Kenya market
+  - AI-powered Property Matching: Intelligent recommendation system
+  - Advanced Analytics: Dashboard insights for all user roles
+  - Progressive Web App: Offline functionality and app-like experience
+  - Notification System: Email and SMS alerts
+  - Document Generation: Automated invoice and contract creation
+  - Multi-region Support: Expand beyond Kenya market
     `, // paste your full markdown
   },
   {
