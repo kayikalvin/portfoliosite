@@ -27,117 +27,118 @@ export const projects = [
       "Managing file uploads and cloud storage efficiently",
     ],
     markdown: `
-    # Real Estate Web Application
 
-    ## Project Description
+  # Real Estate Web Application
 
-    A full-stack real estate platform designed to connect 🏘️ clients, 🏠 landlords, and 🛠️ administrators through a comprehensive property management system. The platform streamlines the real estate process by providing property browsing, listing management, real-time communication, and integrated payment processing.
+  ## Project Description
 
-    ## Key Features
+  A full-stack real estate platform designed to connect 🏘️ clients, 🏠 landlords, and 🛠️ administrators through a comprehensive property management system. The platform streamlines the real estate process by providing property browsing, listing management, real-time communication, and integrated payment processing.
 
-    ### Core Functionality
-    - Property Management: Complete CRUD operations for property listings
-    - Real-time Communication: Socket.IO-powered chat between clients and landlords
-    - Location Integration: Google Maps API for property location visualization
-    - Payment Processing: M-Pesa API integration for landlord subscription payments
-    - Role-based Access: Three distinct user roles with specific permissions
+  ## Key Features
 
-    ### User Experience
-    - Public Website: Browse properties with advanced search and filtering
-    - Responsive Design: Mobile-friendly interface across all devices
-    - Role-based Dashboards: Secure dashboards for landlords and administrators
-    - Media Management: Image and video uploads for property listings
-    - Review System: Client reviews and ratings for properties
+  ### Core Functionality
+  - Property Management: Complete CRUD operations for property listings
+  - Real-time Communication: Socket.IO-powered chat between clients and landlords
+  - Location Integration: Google Maps API for property location visualization
+  - Payment Processing: M-Pesa API integration for landlord subscription payments
+  - Role-based Access: Three distinct user roles with specific permissions
 
-    ### Technical Capabilities
-    - JWT Authentication: Secure token-based authentication system
-    - RESTful API: Well-structured API endpoints for all operations
-    - Real-time Features: Live messaging and notifications
-    - Cloud Integration: Media hosting and database management
-    - Analytics Ready: Foundation for dashboard analytics and reporting
+  ### User Experience
+  - Public Website: Browse properties with advanced search and filtering
+  - Responsive Design: Mobile-friendly interface across all devices
+  - Role-based Dashboards: Secure dashboards for landlords and administrators
+  - Media Management: Image and video uploads for property listings
+  - Review System: Client reviews and ratings for properties
 
-    ## Technologies Used
+  ### Technical Capabilities
+  - JWT Authentication: Secure token-based authentication system
+  - RESTful API: Well-structured API endpoints for all operations
+  - Real-time Features: Live messaging and notifications
+  - Cloud Integration: Media hosting and database management
+  - Analytics Ready: Foundation for dashboard analytics and reporting
 
-    ### Frontend Stack
-    - React with React Router DOM for navigation
-    - Tailwind CSS for modern, responsive styling
-    - Material-UI (MUI) for data grids and UI components
-    - Google Maps API for location services
-    - Socket.IO Client for real-time messaging
+  ## Technologies Used
 
-    ### Backend Stack
-    - Node.js & Express.js server framework
-    - MongoDB with Mongoose ODM for data management
-    - JWT & bcrypt for authentication and password security
-    - Socket.IO for real-time chat server
-    - M-Pesa API for payment processing (Kenya)
-    - Cloudinary for media file hosting
+  ### Frontend Stack
+  - React with React Router DOM for navigation
+  - Tailwind CSS for modern, responsive styling
+  - Material-UI (MUI) for data grids and UI components
+  - Google Maps API for location services
+  - Socket.IO Client for real-time messaging
 
-    ### Deployment & Infrastructure
-    - Vercel for frontend hosting
-    - Render for backend deployment
-    - MongoDB Atlas for cloud database
-    - Secure Architecture with protected routes and middleware
+  ### Backend Stack
+  - Node.js & Express.js server framework
+  - MongoDB with Mongoose ODM for data management
+  - JWT & bcrypt for authentication and password security
+  - Socket.IO for real-time chat server
+  - M-Pesa API for payment processing (Kenya)
+  - Cloudinary for media file hosting
 
-    ## User Roles & Permissions
+  ### Deployment & Infrastructure
+  - Vercel for frontend hosting
+  - Render for backend deployment
+  - MongoDB Atlas for cloud database
+  - Secure Architecture with protected routes and middleware
 
-    ### Clients
-    - Public Access: Browse and search property listings
-    - Property Details: View detailed property information with media
-    - Direct Communication: Message landlords in real-time
-    - Reviews: Leave ratings and reviews for properties
-    - Authentication Required: Login needed for detailed property access
+  ## User Roles & Permissions
 
-    ### Landlords
-    - Dashboard Access: Secure landlord management portal
-    - Property Management: Create, update, and delete listings
-    - Media Uploads: Add images and videos to properties
-    - Client Communication: Respond to inquiries in real-time
-    - Payment Integration: Monthly payments via M-Pesa
-    - Listing Analytics: Track property status and performance
+  ### Clients
+  - Public Access: Browse and search property listings
+  - Property Details: View detailed property information with media
+  - Direct Communication: Message landlords in real-time
+  - Reviews: Leave ratings and reviews for properties
+  - Authentication Required: Login needed for detailed property access
 
-    ### Administrators
-    - Full Control: Complete system administration capabilities
-    - User Management: Manage all clients and landlords
-    - Property Oversight: Full CRUD operations on all listings
-    - Payment Monitoring: Track all transactions and payments
-    - Analytics Dashboard: System-wide analytics and reporting
-    - Content Moderation: Review and moderate user content
+  ### Landlords
+  - Dashboard Access: Secure landlord management portal
+  - Property Management: Create, update, and delete listings
+  - Media Uploads: Add images and videos to properties
+  - Client Communication: Respond to inquiries in real-time
+  - Payment Integration: Monthly payments via M-Pesa
+  - Listing Analytics: Track property status and performance
 
-    ## Use Cases
+  ### Administrators
+  - Full Control: Complete system administration capabilities
+  - User Management: Manage all clients and landlords
+  - Property Oversight: Full CRUD operations on all listings
+  - Payment Monitoring: Track all transactions and payments
+  - Analytics Dashboard: System-wide analytics and reporting
+  - Content Moderation: Review and moderate user content
 
-    - Property Discovery: Help clients find suitable rental properties
-    - Property Management: Assist landlords in managing their listings
-    - Business Operations: Streamline real estate business processes
-    - Market Expansion: Scale real estate operations across regions
-    - Data Analytics: Gather insights on property market trends
+  ## Use Cases
 
-    ## Project Impact
+  - Property Discovery: Help clients find suitable rental properties
+  - Property Management: Assist landlords in managing their listings
+  - Business Operations: Streamline real estate business processes
+  - Market Expansion: Scale real estate operations across regions
+  - Data Analytics: Gather insights on property market trends
 
-    The application addresses key challenges in the real estate industry by providing a centralized platform that eliminates communication barriers, streamlines property management, and facilitates secure transactions. It demonstrates modern web development practices with real-world business applications.
+  ## Project Impact
 
-    ## Real-time Features
+  The application addresses key challenges in the real estate industry by providing a centralized platform that eliminates communication barriers, streamlines property management, and facilitates secure transactions. It demonstrates modern web development practices with real-world business applications.
 
-    ### Messaging System
-    - Socket.IO Integration: Instant messaging between users
-    - Live Notifications: Real-time message alerts
-    - Message Persistence: Chat history stored in database
-    - Connection Management: Automatic reconnection and status tracking
+  ## Real-time Features
 
-    ### Payment Workflow
-    - M-Pesa Integration: Mobile money payments for Kenya
-    - STK Push: Direct payment prompts to user phones
-    - Payment Verification: Automatic status updates
-    - Transaction Tracking: Complete payment history
+  ### Messaging System
+  - Socket.IO Integration: Instant messaging between users
+  - Live Notifications: Real-time message alerts
+  - Message Persistence: Chat history stored in database
+  - Connection Management: Automatic reconnection and status tracking
 
-    ## Future Enhancements
+  ### Payment Workflow
+  - M-Pesa Integration: Mobile money payments for Kenya
+  - STK Push: Direct payment prompts to user phones
+  - Payment Verification: Automatic status updates
+  - Transaction Tracking: Complete payment history
 
-    - AI-powered Property Matching: Intelligent recommendation system
-    - Advanced Analytics: Dashboard insights for all user roles
-    - Progressive Web App: Offline functionality and app-like experience
-    - Notification System: Email and SMS alerts
-    - Document Generation: Automated invoice and contract creation
-    - Multi-region Support: Expand beyond Kenya market
+  ## Future Enhancements
+
+  - AI-powered Property Matching: Intelligent recommendation system
+  - Advanced Analytics: Dashboard insights for all user roles
+  - Progressive Web App: Offline functionality and app-like experience
+  - Notification System: Email and SMS alerts
+  - Document Generation: Automated invoice and contract creation
+  - Multi-region Support: Expand beyond Kenya market
     `, // paste your full markdown
   },
   {
@@ -161,7 +162,7 @@ export const projects = [
       "Building trust through design for a healthcare brand",
     ],
     markdown: `
-    # 🔬 Xgene Labs - Molecular Diagnostics Website
+# 🔬 Xgene Labs - Molecular Diagnostics Website
 
 ## Project Description
 
@@ -236,7 +237,7 @@ The website establishes Xgene Labs as a trusted molecular diagnostics provider i
       "Ensuring accessibility for users with varying internet speeds",
     ],
     markdown: `
-    # 📚 Siprosa Foundation - Educational Non-Profit Website
+# 📚 Siprosa Foundation - Educational Non-Profit Website
 
 ## Project Description
 
@@ -309,7 +310,7 @@ The website amplifies Siprosa Foundation’s reach, helping them secure resource
       "Creating a scalable component structure for future course expansion",
     ],
     markdown: `
-    # 💻 Somanasi - Tech Training & Solutions Company
+# 💻 Somanasi - Tech Training & Solutions Company
 
 ## Project Description
 
@@ -383,7 +384,7 @@ The website positions Somanasi as a leader in practical tech education in Kenya,
       "Ensuring fast load times for schools with limited bandwidth",
     ],
     markdown: `
-    # 🎓 DigiMagicTech - Computer Programming Educator
+# 🎓 DigiMagicTech - Computer Programming Educator
 
 ## Project Description
 
@@ -458,7 +459,7 @@ The website increases enrollment in DigiMagicTech’s programs, helps secure par
       "Optimising images for fast loading on mobile devices",
     ],
     markdown: `
-    # 💪 Gym Sable One - Fitness Landing Page
+# 💪 Gym Sable One - Fitness Landing Page
 
 ## Project Description
 
@@ -533,7 +534,7 @@ This web application enhances the digital presence of fitness businesses, improv
       "Ensuring the gallery loads quickly while maintaining image quality",
     ],
     markdown: `
-    # ☕ The Eleventh Hour - Coffee Shop Demo Site (UK)
+# ☕ The Eleventh Hour - Coffee Shop Demo Site (UK)
 
 ## Project Description
 
@@ -610,7 +611,7 @@ Provides an appealing digital storefront for a coffee shop, helping increase foo
       "Building a trust‑worthy design for a non‑profit audience",
     ],
     markdown: `
-    # 🌍 Matakiri Client Portal - Community Organisation Website
+# 🌍 Matakiri Client Portal - Community Organisation Website
 
 ## Project Description
 
@@ -689,7 +690,7 @@ Increases visibility of the organisation's work, streamlines volunteer/donor sig
       "Designing analytics widgets that are simple yet insightful",
     ],
     markdown: `
-    # 🛠️ Matakiri Admin Dashboard - Content Management System
+# 🛠️ Matakiri Admin Dashboard - Content Management System
 
 ## Project Description
 
@@ -772,7 +773,7 @@ Reduces turnaround time for website updates from days to minutes, empowers staff
       "Ensuring mobile‑first responsiveness for Kenya’s market",
     ],
     markdown: `
-    # 🌍 Dantra Limited - FMCG Distributor Website
+# 🌍 Dantra Limited - FMCG Distributor Website
 
 ## Project Description
 
@@ -852,7 +853,7 @@ The site enhances Dantra Limited's professional image, streamlines partnership i
       "Creating a mock ML prediction system ready for real API integration",
     ],
     markdown: `
-    # Sonar Mine vs Rock Classification System
+# Sonar Mine vs Rock Classification System
 
 ## Project Description
 
