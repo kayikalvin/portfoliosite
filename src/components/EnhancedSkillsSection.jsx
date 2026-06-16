@@ -1,159 +1,295 @@
 /**
- * KALVIN KAYI — SKILLS SECTION
- * Design system: "Machine Precision / Human Warmth"
+ * KALVIN KAYI — SKILLS SECTION (Redesigned)
  *
- * Palette, type, and interaction patterns mirror Home.jsx exactly.
- * No Tailwind gradients, no cyan/purple. Pure inline styles on the design system.
+ * Design: Three editorial domain columns replacing the progress-bar grid.
+ * Each domain is a full-height column with a large serif title, a short
+ * positioning line, and a list of tool tags that light up on hover showing
+ * a brief context note. Signature element: an ambient SVG radial diagram
+ * that slowly rotates behind the columns, mapping the three domains as
+ * orbital arcs — visible but never competing with the type.
+ *
+ * No percentages. No bars. No pips. Tools are facts, not grades.
  */
 
-import { useState, useEffect, useRef, useCallback } from "react";
-import {
-  Brain,
-  Database,
-  Code,
-  BarChart3,
-  Cpu,
-  Globe,
-  Layers,
-  Terminal,
-  TrendingUp,
-} from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
 /* ─────────────────────────────────────────────
    SKILL DATA
+   context = what it's actually used for in real projects
 ───────────────────────────────────────────── */
-const CATEGORIES = [
-  { id: "all",  label: "All"         },
-  { id: "ml",   label: "ML / AI"     },
-  { id: "data", label: "Data"        },
-  { id: "dev",  label: "Full-Stack"  },
-];
-
-const SKILLS = [
-  { name: "Python",        pct: 95, icon: Terminal, category: "ml",   desc: "Advanced programming & data manipulation" },
-  { name: "Machine Learning", pct: 92, icon: Brain,    category: "ml",   desc: "Deep learning, NLP & computer vision" },
-  { name: "TensorFlow / PyTorch", pct: 88, icon: Cpu,  category: "ml",   desc: "Neural networks & model deployment" },
-  { name: "MLOps",         pct: 83, icon: Layers,   category: "ml",   desc: "Model deployment & monitoring" },
-  { name: "Data Analysis", pct: 93, icon: BarChart3, category: "data", desc: "Statistical analysis & visualisation" },
-  { name: "SQL & NoSQL",   pct: 90, icon: Database,  category: "data", desc: "Database design & optimisation" },
-  { name: "Big Data",      pct: 86, icon: TrendingUp, category: "data", desc: "Spark, Hadoop & distributed systems" },
-  { name: "React / Next.js", pct: 87, icon: Code,   category: "dev",  desc: "Modern web applications" },
-  { name: "APIs & Cloud",  pct: 85, icon: Globe,    category: "dev",  desc: "AWS, GCP & microservices" },
+const DOMAINS = [
+  {
+    id: "ml",
+    index: "01",
+    title: "Machine\nLearning",
+    arc: "Building models that learn from messy, real-world data.",
+    color: "#c8f241",
+    tools: [
+      { name: "Python",            context: "Primary language — data pipelines, APIs, scripts" },
+      { name: "TensorFlow",        context: "Deep learning model architecture & training" },
+      { name: "PyTorch",           context: "Research prototyping & custom neural nets" },
+      { name: "Scikit-learn",      context: "Classical ML, feature engineering, ensembles" },
+      { name: "Hugging Face",      context: "Fine-tuning & deploying transformer models" },
+      { name: "NLP",               context: "Text classification, NER, semantic search" },
+      { name: "MLOps",             context: "Model versioning, monitoring & CI/CD for ML" },
+      { name: "Computer Vision",   context: "Object detection, segmentation, OCR" },
+    ],
+  },
+  {
+    id: "data",
+    index: "02",
+    title: "Data\nEngineering",
+    arc: "Turning raw, fragmented data into reliable infrastructure.",
+    color: "#f0ede6",
+    tools: [
+      { name: "PostgreSQL",        context: "Primary relational DB — complex queries, tuning" },
+      { name: "MongoDB",           context: "Document store for flexible, nested data" },
+      { name: "Apache Spark",      context: "Distributed processing for large-scale datasets" },
+      { name: "dbt",               context: "SQL-based transformation & data modelling" },
+      { name: "Airflow",           context: "Orchestrating multi-step ETL pipelines" },
+      { name: "Redis",             context: "Caching layer & real-time pub/sub" },
+      { name: "Power BI",          context: "Executive dashboards & self-service analytics" },
+      { name: "BigQuery",          context: "Cloud data warehouse & analytical workloads" },
+    ],
+  },
+  {
+    id: "dev",
+    index: "03",
+    title: "Full-Stack\nDevelopment",
+    arc: "Shipping products from schema to UI that people actually use.",
+    color: "#c8f241",
+    tools: [
+      { name: "React / Next.js",   context: "Production web apps — SSR, routing, state" },
+      { name: "TypeScript",        context: "Type-safe codebases across front and back" },
+      { name: "Node.js",           context: "REST & GraphQL APIs, background workers" },
+      { name: "FastAPI",           context: "High-performance Python APIs for ML services" },
+      { name: "Docker",            context: "Containerising services for consistent deploys" },
+      { name: "AWS / GCP",         context: "Cloud infra — EC2, Lambda, Cloud Run, S3" },
+      { name: "GraphQL",           context: "Flexible API layer for complex data graphs" },
+      { name: "CI/CD",             context: "GitHub Actions pipelines, automated testing" },
+    ],
+  },
 ];
 
 /* ─────────────────────────────────────────────
-   SKILL CARD
+   AMBIENT RADIAL DIAGRAM (SVG)
+   Three orbital arcs, one per domain. Rotates slowly.
+   Purely decorative — aria-hidden.
 ───────────────────────────────────────────── */
-function SkillCard({ skill, index, visible }) {
+function RadialDiagram({ visible }) {
+  const rotRef = useRef(null);
+  const angleRef = useRef(0);
+  const rafRef = useRef(null);
+
+  useEffect(() => {
+    if (!visible) return;
+    const tick = () => {
+      angleRef.current += 0.018;
+      if (rotRef.current) {
+        rotRef.current.setAttribute(
+          "transform",
+          `rotate(${angleRef.current}, 400, 400)`
+        );
+      }
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [visible]);
+
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 800 800"
+      style={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: "min(90vw, 820px)",
+        height: "min(90vw, 820px)",
+        opacity: visible ? 0.07 : 0,
+        transition: "opacity 2s ease 0.5s",
+        pointerEvents: "none",
+        zIndex: 0,
+      }}
+    >
+      <g ref={rotRef}>
+        {/* Outer arc — ML */}
+        <circle cx="400" cy="400" r="340" fill="none" stroke="#c8f241" strokeWidth="0.8" strokeDasharray="12 8" />
+        {/* Mid arc — Data */}
+        <circle cx="400" cy="400" r="240" fill="none" stroke="#f0ede6" strokeWidth="0.5" strokeDasharray="6 12" />
+        {/* Inner arc — Dev */}
+        <circle cx="400" cy="400" r="140" fill="none" stroke="#c8f241" strokeWidth="0.4" strokeDasharray="4 14" />
+
+        {/* Orbital nodes — one per domain */}
+        <circle cx="400" cy="60"  r="5" fill="#c8f241" opacity="0.6" />
+        <circle cx="660" cy="540" r="4" fill="#f0ede6" opacity="0.5" />
+        <circle cx="160" cy="540" r="3" fill="#c8f241" opacity="0.4" />
+
+        {/* Cross-hairs */}
+        <line x1="400" y1="50"  x2="400" y2="750" stroke="#f0ede6" strokeWidth="0.3" opacity="0.3" />
+        <line x1="50"  y1="400" x2="750" y2="400" stroke="#f0ede6" strokeWidth="0.3" opacity="0.3" />
+
+        {/* Diagonal spokes */}
+        <line x1="165" y1="165" x2="635" y2="635" stroke="#f0ede6" strokeWidth="0.2" opacity="0.2" />
+        <line x1="635" y1="165" x2="165" y2="635" stroke="#f0ede6" strokeWidth="0.2" opacity="0.2" />
+
+        {/* Centre dot */}
+        <circle cx="400" cy="400" r="3" fill="#c8f241" opacity="0.5" />
+        <circle cx="400" cy="400" r="10" fill="none" stroke="#c8f241" strokeWidth="0.5" opacity="0.3" />
+      </g>
+    </svg>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   TOOL TAG
+───────────────────────────────────────────── */
+function ToolTag({ tool, domainColor, visible, delay }) {
   const [hovered, setHovered] = useState(false);
-  const Icon = skill.icon;
 
   return (
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        border: `1px solid ${hovered ? "#c8f241" : "#1a1a1a"}`,
-        borderRadius: 16,
-        background: hovered ? "#0f0f0f" : "#0d0d0d",
-        padding: "32px 28px",
-        transition: "border-color 0.25s ease, background 0.25s ease, opacity 0.6s ease, transform 0.6s ease",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: 12,
+        padding: "13px 0",
+        borderBottom: "1px solid #111",
+        cursor: "default",
         opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(28px)",
-        transitionDelay: `${index * 0.08}s`,
-        position: "relative",
-        overflow: "hidden",
+        transform: visible ? "none" : "translateX(-12px)",
+        transition: `opacity 0.55s ease ${delay}s, transform 0.55s ease ${delay}s`,
       }}
     >
-      {/* Chartreuse corner glow on hover */}
-      <div style={{
-        position: "absolute",
-        top: -40,
-        right: -40,
-        width: 120,
-        height: 120,
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(200,242,65,0.12), transparent 70%)",
+      <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
+        {/* Dot indicator */}
+        <div style={{
+          width: 5,
+          height: 5,
+          borderRadius: "50%",
+          background: hovered ? domainColor : "#2a2a2a",
+          flexShrink: 0,
+          transition: "background 0.2s ease",
+        }} />
+        <span style={{
+          fontFamily: "'DM Sans', sans-serif",
+          fontSize: "clamp(0.88rem, 1vw, 1rem)",
+          fontWeight: hovered ? 500 : 400,
+          color: hovered ? "#f0ede6" : "#787878",
+          transition: "color 0.2s ease, font-weight 0.2s ease",
+          whiteSpace: "nowrap",
+        }}>
+          {tool.name}
+        </span>
+      </div>
+
+      {/* Context — slides in on hover */}
+      <span style={{
+        fontFamily: "'DM Mono', monospace",
+        fontSize: 10,
+        color: "#3a3a3a",
+        letterSpacing: "0.04em",
+        textAlign: "right",
+        maxWidth: hovered ? 180 : 0,
+        overflow: "hidden",
         opacity: hovered ? 1 : 0,
-        transition: "opacity 0.3s ease",
-        pointerEvents: "none",
+        transition: "max-width 0.3s ease, opacity 0.25s ease",
+        whiteSpace: "nowrap",
+        flexShrink: 0,
+      }}>
+        {tool.context}
+      </span>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   DOMAIN COLUMN
+───────────────────────────────────────────── */
+function DomainColumn({ domain, visible, colIndex }) {
+  const titleLines = domain.title.split("\n");
+  const baseDelay  = colIndex * 0.12;
+
+  return (
+    <div style={{
+      flex: 1,
+      minWidth: 0,
+      padding: "0 3vw",
+      borderRight: colIndex < 2 ? "1px solid #111" : "none",
+      position: "relative",
+      zIndex: 1,
+    }}>
+      {/* Domain index */}
+      <p style={{
+        fontFamily: "'DM Mono', monospace",
+        fontSize: 10,
+        letterSpacing: "0.2em",
+        color: "#2d2d2d",
+        textTransform: "uppercase",
+        marginBottom: 28,
+        opacity: visible ? 1 : 0,
+        transition: `opacity 0.6s ease ${baseDelay}s`,
+      }}>
+        {domain.index}
+      </p>
+
+      {/* Domain title */}
+      <h3 style={{
+        fontFamily: "'DM Serif Display', serif",
+        fontSize: "clamp(1.9rem, 2.8vw, 3rem)",
+        fontWeight: 400,
+        lineHeight: 1.05,
+        color: "#f0ede6",
+        margin: "0 0 20px",
+        whiteSpace: "pre-line",
+        opacity: visible ? 1 : 0,
+        transform: visible ? "none" : "translateY(18px)",
+        transition: `opacity 0.7s ease ${baseDelay + 0.08}s, transform 0.7s ease ${baseDelay + 0.08}s`,
+      }}>
+        {titleLines[0]}
+        <br />
+        <em style={{ fontStyle: "italic", color: domain.color }}>
+          {titleLines[1]}
+        </em>
+      </h3>
+
+      {/* Arc / positioning line */}
+      <p style={{
+        fontFamily: "'DM Sans', sans-serif",
+        fontSize: "clamp(0.78rem, 0.9vw, 0.88rem)",
+        lineHeight: 1.7,
+        color: "#3d3d3d",
+        marginBottom: 36,
+        maxWidth: 260,
+        opacity: visible ? 1 : 0,
+        transition: `opacity 0.7s ease ${baseDelay + 0.16}s`,
+      }}>
+        {domain.arc}
+      </p>
+
+      {/* Divider */}
+      <div style={{
+        width: visible ? "100%" : "0%",
+        height: 1,
+        background: `linear-gradient(to right, ${domain.color}, transparent)`,
+        marginBottom: 8,
+        transition: `width 0.9s cubic-bezier(.23,1,.32,1) ${baseDelay + 0.22}s`,
       }} />
 
-      {/* Icon + name row */}
-      <div style={{ display: "flex", alignItems: "flex-start", gap: 16, marginBottom: 28 }}>
-        <div style={{
-          width: 44,
-          height: 44,
-          borderRadius: 12,
-          border: `1px solid ${hovered ? "#c8f241" : "#1f1f1f"}`,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexShrink: 0,
-          transition: "border-color 0.25s ease",
-          background: "rgba(255,255,255,0.02)",
-        }}>
-          <Icon size={18} color={hovered ? "#c8f241" : "#6b6b6b"} style={{ transition: "color 0.25s ease" }} />
-        </div>
-
-        <div>
-          <div style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: 15,
-            fontWeight: 500,
-            color: hovered ? "#f0ede6" : "#d0d0d0",
-            marginBottom: 4,
-            transition: "color 0.2s ease",
-          }}>
-            {skill.name}
-          </div>
-          <div style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: 12,
-            color: "#6b6b6b",
-            lineHeight: 1.5,
-            maxWidth: 220,
-          }}>
-            {hovered ? skill.desc : `Proficiency`}
-          </div>
-        </div>
-
-        {/* Percentage — top-right */}
-        <div style={{
-          marginLeft: "auto",
-          fontFamily: "'DM Mono', monospace",
-          fontSize: 13,
-          color: hovered ? "#c8f241" : "#3a3a3a",
-          transition: "color 0.25s ease",
-          flexShrink: 0,
-        }}>
-          {skill.pct}
-        </div>
-      </div>
-
-      {/* Progress track */}
-      <div style={{ height: 2, background: "#1a1a1a", borderRadius: 2, overflow: "hidden" }}>
-        <div style={{
-          height: "100%",
-          width: visible ? `${skill.pct}%` : "0%",
-          background: "#c8f241",
-          borderRadius: 2,
-          transition: `width 1.3s cubic-bezier(.23,1,.32,1) ${index * 0.08 + 0.3}s`,
-        }} />
-      </div>
-
-      {/* Five-pip level indicator */}
-      <div style={{ display: "flex", gap: 4, marginTop: 16 }}>
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={i}
-            style={{
-              height: 3,
-              flex: 1,
-              borderRadius: 2,
-              background: i < Math.ceil(skill.pct / 20) ? (hovered ? "#c8f241" : "#2e2e2e") : "#1a1a1a",
-              transition: `background 0.3s ease ${i * 0.06}s`,
-            }}
+      {/* Tool list */}
+      <div>
+        {domain.tools.map((tool, i) => (
+          <ToolTag
+            key={tool.name}
+            tool={tool}
+            domainColor={domain.color}
+            visible={visible}
+            delay={baseDelay + 0.28 + i * 0.055}
           />
         ))}
       </div>
@@ -166,400 +302,175 @@ function SkillCard({ skill, index, visible }) {
 ───────────────────────────────────────────── */
 const EnhancedSkillsSection = () => {
   const [visible, setVisible] = useState(false);
-  const [activeCategory, setActiveCategory] = useState("all");
   const sectionRef = useRef(null);
 
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([e]) => e.isIntersecting && setVisible(true),
-      { threshold: 0.1 }
+      { threshold: 0.08 }
     );
     if (sectionRef.current) obs.observe(sectionRef.current);
     return () => obs.disconnect();
   }, []);
 
-  const filtered = activeCategory === "all"
-    ? SKILLS
-    : SKILLS.filter((s) => s.category === activeCategory);
-
   return (
     <section
       id="skills"
       ref={sectionRef}
-      style={{ padding: "12vh 5vw", position: "relative", zIndex: 2 }}
+      style={{
+        padding: "14vh 5vw",
+        position: "relative",
+        zIndex: 2,
+        overflow: "hidden",
+      }}
     >
-      {/* ── Section header ── */}
-      <div style={{ marginBottom: 64 }}>
-        <p style={{
-          fontFamily: "'DM Mono', monospace",
-          fontSize: 11,
-          letterSpacing: "0.15em",
-          color: "#c8f241",
-          textTransform: "uppercase",
-          marginBottom: 16,
-          opacity: visible ? 1 : 0,
-          transition: "opacity 0.6s ease",
-        }}>
-          Expertise
-        </p>
+      {/* Ambient background diagram */}
+      <RadialDiagram visible={visible} />
 
-        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: 32 }}>
+      {/* ── Section header ── */}
+      <div style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-end",
+        flexWrap: "wrap",
+        gap: 24,
+        marginBottom: "8vh",
+        position: "relative",
+        zIndex: 1,
+      }}>
+        <div>
+          <p style={{
+            fontFamily: "'DM Mono', monospace",
+            fontSize: 10,
+            letterSpacing: "0.2em",
+            color: "#c8f241",
+            textTransform: "uppercase",
+            marginBottom: 20,
+            opacity: visible ? 1 : 0,
+            transition: "opacity 0.6s ease",
+          }}>
+            Expertise
+          </p>
           <h2 style={{
             fontFamily: "'DM Serif Display', serif",
-            fontSize: "clamp(2.5rem, 4vw, 4rem)",
+            fontSize: "clamp(2.6rem, 4.5vw, 5rem)",
             fontWeight: 400,
-            lineHeight: 1.05,
+            lineHeight: 1.02,
             color: "#f0ede6",
             margin: 0,
             opacity: visible ? 1 : 0,
-            transform: visible ? "none" : "translateY(20px)",
-            transition: "opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s",
+            transform: visible ? "none" : "translateY(22px)",
+            transition: "opacity 0.7s ease 0.08s, transform 0.7s ease 0.08s",
           }}>
-            Technical
+            Tools I reach
             <br />
-            <span style={{ fontStyle: "italic", color: "#c8f241" }}>Arsenal</span>
+            <em style={{ fontStyle: "italic", color: "#c8f241" }}>for, and why.</em>
           </h2>
+        </div>
 
-          {/* ── Category filter pills ── */}
-          <div style={{
-            display: "flex",
-            gap: 8,
-            flexWrap: "wrap",
-            opacity: visible ? 1 : 0,
-            transition: "opacity 0.7s ease 0.2s",
+        {/* Tool count */}
+        <div style={{
+          opacity: visible ? 1 : 0,
+          transition: "opacity 0.7s ease 0.3s",
+          textAlign: "right",
+        }}>
+          <p style={{
+            fontFamily: "'DM Serif Display', serif",
+            fontSize: "3.5rem",
+            fontWeight: 400,
+            color: "#1a1a1a",
+            lineHeight: 1,
+            margin: 0,
           }}>
-            {CATEGORIES.map(({ id, label }) => {
-              const active = activeCategory === id;
-              return (
-                <button
-                  key={id}
-                  onClick={() => setActiveCategory(id)}
-                  style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: 11,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    padding: "9px 18px",
-                    borderRadius: 40,
-                    border: `1px solid ${active ? "#c8f241" : "#1f1f1f"}`,
-                    background: active ? "rgba(200,242,65,0.08)" : "transparent",
-                    color: active ? "#c8f241" : "#6b6b6b",
-                    cursor: "none",
-                    transition: "color 0.2s, border-color 0.2s, background 0.2s",
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!active) {
-                      e.currentTarget.style.color = "#f0ede6";
-                      e.currentTarget.style.borderColor = "#f0ede6";
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!active) {
-                      e.currentTarget.style.color = "#6b6b6b";
-                      e.currentTarget.style.borderColor = "#1f1f1f";
-                    }
-                  }}
-                >
-                  {label}
-                </button>
-              );
-            })}
-          </div>
+            {DOMAINS.reduce((n, d) => n + d.tools.length, 0)}
+          </p>
+          <p style={{
+            fontFamily: "'DM Mono', monospace",
+            fontSize: 9,
+            color: "#2a2a2a",
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+            marginTop: 4,
+          }}>
+            Tools across 3 domains
+          </p>
         </div>
       </div>
 
-      {/* ── Skills grid ── */}
+      {/* ── Three-column domain layout ── */}
       <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-        gap: 2,
+        display: "flex",
+        gap: 0,
+        borderTop: "1px solid #111",
+        paddingTop: "6vh",
+        position: "relative",
+        zIndex: 1,
       }}>
-        {filtered.map((skill, i) => (
-          <SkillCard key={skill.name} skill={skill} index={i} visible={visible} />
+        {DOMAINS.map((domain, i) => (
+          <DomainColumn
+            key={domain.id}
+            domain={domain}
+            visible={visible}
+            colIndex={i}
+          />
         ))}
       </div>
 
+      {/* ── Bottom rule + note ── */}
+      <div style={{
+        marginTop: "7vh",
+        paddingTop: 24,
+        borderTop: "1px solid #111",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexWrap: "wrap",
+        gap: 16,
+        position: "relative",
+        zIndex: 1,
+        opacity: visible ? 1 : 0,
+        transition: "opacity 0.7s ease 1.2s",
+      }}>
+        <p style={{
+          fontFamily: "'DM Mono', monospace",
+          fontSize: 10,
+          color: "#222",
+          letterSpacing: "0.12em",
+          textTransform: "uppercase",
+        }}>
+          Hover any tool to see its real-world role
+        </p>
+        <p style={{
+          fontFamily: "'DM Mono', monospace",
+          fontSize: 10,
+          color: "#222",
+          letterSpacing: "0.12em",
+          textTransform: "uppercase",
+        }}>
+          Continuously updated · 2025
+        </p>
+      </div>
+
       <style>{`
-        @media (max-width: 640px) {
-          #skills { padding: 10vh 5vw !important; }
+        @media (max-width: 900px) {
+          #skills > div:nth-child(3) {
+            flex-direction: column !important;
+          }
+          #skills > div:nth-child(3) > div {
+            border-right: none !important;
+            border-bottom: 1px solid #111 !important;
+            padding: 5vh 0 !important;
+          }
+          #skills > div:nth-child(3) > div:last-child {
+            border-bottom: none !important;
+          }
         }
         @media (prefers-reduced-motion: reduce) {
-          * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+          #skills *, #skills *::before { animation: none !important; transition: none !important; }
         }
-        button { cursor: none !important; }
       `}</style>
     </section>
   );
 };
 
 export default EnhancedSkillsSection;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useState, useEffect, useRef } from 'react';
-// import { Brain, Database, Code, BarChart3, Cpu, Globe, Layers, Terminal, Sparkles, TrendingUp } from 'lucide-react';
-
-// const EnhancedSkillsSection = () => {
-//   const [isVisible, setIsVisible] = useState(false);
-//   const [activeCategory, setActiveCategory] = useState('all');
-//   const [hoveredSkill, setHoveredSkill] = useState(null);
-//   const skillsRef = useRef(null);
-
-//   const skillCategories = [
-//     { id: 'all', label: 'All Skills', icon: Sparkles },
-//     { id: 'ml', label: 'Machine Learning', icon: Brain },
-//     { id: 'data', label: 'Data Science', icon: BarChart3 },
-//     { id: 'dev', label: 'Development', icon: Code },
-//   ];
-
-//   const skills = [
-//     { name: 'Python', level: 95, icon: Terminal, color: 'from-blue-400 to-blue-600', iconColor: 'text-blue-400', category: 'ml', description: 'Advanced programming & data manipulation' },
-//     { name: 'Machine Learning', level: 92, icon: Brain, color: 'from-purple-400 to-purple-600', iconColor: 'text-purple-400', category: 'ml', description: 'Deep learning, NLP & computer vision' },
-//     { name: 'TensorFlow', level: 88, icon: Cpu, color: 'from-orange-400 to-orange-600', iconColor: 'text-orange-400', category: 'ml', description: 'Neural networks & model deployment' },
-//     { name: 'Data Analysis', level: 93, icon: BarChart3, color: 'from-green-400 to-green-600', iconColor: 'text-green-400', category: 'data', description: 'Statistical analysis & visualization' },
-//     { name: 'SQL & NoSQL', level: 90, icon: Database, color: 'from-cyan-400 to-cyan-600', iconColor: 'text-cyan-400', category: 'data', description: 'Database design & optimization' },
-//     { name: 'React & Next.js', level: 87, icon: Code, color: 'from-indigo-400 to-indigo-600', iconColor: 'text-indigo-400', category: 'dev', description: 'Modern web applications' },
-//     { name: 'APIs & Cloud', level: 85, icon: Globe, color: 'from-pink-400 to-pink-600', iconColor: 'text-pink-400', category: 'dev', description: 'AWS, GCP & microservices' },
-//     { name: 'MLOps', level: 83, icon: Layers, color: 'from-yellow-400 to-yellow-600', iconColor: 'text-yellow-400', category: 'ml', description: 'Model deployment & monitoring' },
-//     { name: 'Big Data', level: 86, icon: TrendingUp, color: 'from-red-400 to-red-600', iconColor: 'text-red-400', category: 'data', description: 'Spark, Hadoop & distributed systems' },
-//   ];
-
-//   const filteredSkills = activeCategory === 'all' 
-//     ? skills 
-//     : skills.filter(skill => skill.category === activeCategory);
-
-//   useEffect(() => {
-//     const observer = new IntersectionObserver(
-//       ([entry]) => {
-//         if (entry.isIntersecting) {
-//           setIsVisible(true);
-//         }
-//       },
-//       { threshold: 0.1 }
-//     );
-
-//     if (skillsRef.current) {
-//       observer.observe(skillsRef.current);
-//     }
-
-//     return () => observer.disconnect();
-//   }, []);
-
-//   return (
-//     <section
-//       id="skills"
-//       ref={skillsRef}
-//       className="relative py-20 sm:py-28 px-4 sm:px-6 bg-black text-white overflow-hidden"
-//     >
-//       {/* Enhanced background effects */}
-//       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-black to-black"></div>
-//       <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-//       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-//       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full">
-//         <div className="absolute top-1/4 left-1/3 w-2 h-2 bg-white/20 rounded-full animate-ping"></div>
-//         <div className="absolute bottom-1/3 right-1/4 w-2 h-2 bg-white/20 rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
-//       </div>
-
-//       <div className="max-w-7xl mx-auto relative z-10">
-//         {/* Header */}
-//         <div className="text-center mb-12 sm:mb-16">
-//           <div className="inline-block mb-4">
-//             <span className="px-4 py-2 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 border border-cyan-500/20 rounded-full text-sm font-medium text-cyan-400">
-//               Technical Arsenal
-//             </span>
-//           </div>
-//           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-cyan-100 to-purple-100 bg-clip-text text-transparent">
-//             Skills & Expertise
-//           </h2>
-//           <p className="text-gray-400 max-w-3xl mx-auto text-base sm:text-lg leading-relaxed">
-//             A comprehensive toolkit spanning machine learning, data science, and full-stack development—
-//             built through years of hands-on experience and continuous learning.
-//           </p>
-//         </div>
-
-//         {/* Category Filter */}
-//         <div className="flex flex-wrap justify-center gap-3 mb-12">
-//           {skillCategories.map((category) => {
-//             const Icon = category.icon;
-//             return (
-//               <button
-//                 key={category.id}
-//                 onClick={() => setActiveCategory(category.id)}
-//                 className={`group px-5 py-3 rounded-xl font-medium transition-all duration-300 flex items-center gap-2 ${
-//                   activeCategory === category.id
-//                     ? 'bg-gradient-to-r from-cyan-500 to-purple-500 text-white shadow-lg shadow-cyan-500/25'
-//                     : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white border border-white/10'
-//                 }`}
-//               >
-//                 <Icon size={18} className={activeCategory === category.id ? 'animate-pulse' : ''} />
-//                 {category.label}
-//               </button>
-//             );
-//           })}
-//         </div>
-
-//         {/* Skills Grid */}
-//         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-//           {filteredSkills.map((skill, index) => {
-//             const Icon = skill.icon;
-//             const isHovered = hoveredSkill === index;
-            
-//             return (
-//               <div
-//                 key={index}
-//                 onMouseEnter={() => setHoveredSkill(index)}
-//                 onMouseLeave={() => setHoveredSkill(null)}
-//                 className="group relative p-6 rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 hover:border-white/30 transition-all duration-500 cursor-pointer backdrop-blur-sm overflow-hidden"
-//                 style={{
-//                   animation: isVisible ? `fadeInUp 0.6s ease-out ${index * 0.1}s both` : 'none',
-//                 }}
-//               >
-//                 {/* Hover glow effect */}
-//                 <div className={`absolute inset-0 bg-gradient-to-r ${skill.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-xl`}></div>
-                
-//                 {/* Content */}
-//                 <div className="relative z-10">
-//                   <div className="flex items-start justify-between mb-4">
-//                     <div className="flex items-center gap-3">
-//                       <div className={`p-3 rounded-xl bg-gradient-to-r ${skill.color} group-hover:scale-110 transition-transform duration-300`}>
-//                         <Icon size={24} className="text-white" />
-//                       </div>
-//                       <div>
-//                         <h3 className="text-xl font-bold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-cyan-400 group-hover:to-purple-400 transition-all duration-300">
-//                           {skill.name}
-//                         </h3>
-//                         <p className="text-xs text-gray-500 mt-1">
-//                           {isHovered ? skill.description : `${skill.level}% mastery`}
-//                         </p>
-//                       </div>
-//                     </div>
-//                   </div>
-
-//                   {/* Circular progress indicator */}
-//                   <div className="relative">
-//                     <div className="flex items-center justify-between mb-2">
-//                       <span className="text-sm text-gray-400">Proficiency</span>
-//                       <span className={`text-sm font-bold ${skill.iconColor}`}>{skill.level}%</span>
-//                     </div>
-                    
-//                     {/* Progress bar with animation */}
-//                     <div className="relative w-full h-2.5 bg-gray-800/50 rounded-full overflow-hidden">
-//                       <div
-//                         className={`absolute inset-y-0 left-0 rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000 ease-out`}
-//                         style={{
-//                           width: isVisible ? `${skill.level}%` : '0%',
-//                           transitionDelay: `${index * 0.1}s`,
-//                         }}
-//                       >
-//                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer"></div>
-//                       </div>
-//                     </div>
-//                   </div>
-
-//                   {/* Skill level indicator */}
-//                   <div className="mt-4 flex gap-1">
-//                     {[...Array(5)].map((_, i) => (
-//                       <div
-//                         key={i}
-//                         className={`h-1 flex-1 rounded-full transition-all duration-500 ${
-//                           i < Math.ceil(skill.level / 20)
-//                             ? `bg-gradient-to-r ${skill.color}`
-//                             : 'bg-gray-800'
-//                         }`}
-//                         style={{ transitionDelay: `${(index * 0.1) + (i * 0.05)}s` }}
-//                       ></div>
-//                     ))}
-//                   </div>
-//                 </div>
-
-//                 {/* Corner accent */}
-//                 <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-20 blur-2xl transition-opacity duration-500`}></div>
-//               </div>
-//             );
-//           })}
-//         </div>
-
-//         {/* Stats Footer */}
-//         {/* <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
-//           {[
-//             { label: 'Years Experience', value: '5+', icon: TrendingUp },
-//             { label: 'Technologies', value: '20+', icon: Layers },
-//             { label: 'Projects Completed', value: '50+', icon: Sparkles },
-//             { label: 'Certifications', value: '10+', icon: Brain },
-//           ].map((stat, i) => {
-//             const Icon = stat.icon;
-//             return (
-//               <div key={i} className="text-center p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm group hover:bg-white/10 transition-all duration-300">
-//                 <Icon className="w-8 h-8 mx-auto mb-3 text-cyan-400 group-hover:scale-110 transition-transform duration-300" />
-//                 <div className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-1">
-//                   {stat.value}
-//                 </div>
-//                 <div className="text-sm text-gray-400">{stat.label}</div>
-//               </div>
-//             );
-//           })}
-//         </div> */}
-//       </div>
-
-//       <style jsx>{`
-//         @keyframes fadeInUp {
-//           from {
-//             opacity: 0;
-//             transform: translateY(30px);
-//           }
-//           to {
-//             opacity: 1;
-//             transform: translateY(0);
-//           }
-//         }
-        
-//         @keyframes shimmer {
-//           0% {
-//             transform: translateX(-100%);
-//           }
-//           100% {
-//             transform: translateX(100%);
-//           }
-//         }
-        
-//         .animate-shimmer {
-//           animation: shimmer 2s infinite;
-//         }
-//       `}</style>
-//     </section>
-//   );
-// };
-
-// export default EnhancedSkillsSection;

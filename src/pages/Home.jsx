@@ -43,6 +43,8 @@ import {
 import Projects from "../components/Projects";
 import { posts } from "../utils/utils";
 import PaypalDonate from "../components/PaypalDonate";
+import About from "../components/About";
+import Skills from "../components/EnhancedSkillsSection";
 
 /* ─────────────────────────────────────────────
    FONT LOADER
@@ -147,40 +149,28 @@ function CustomCursor() {
 /* ─────────────────────────────────────────────
    MAGNETIC BUTTON
 ───────────────────────────────────────────── */
-function MagneticBtn({ children, className = "", onClick, href, target }) {
+function MagneticBtn({ children, href, target, onClick, style, onMouseEnter, onMouseLeave }) {
   const ref = useRef(null);
-
   const onMove = useCallback((e) => {
-    const el = ref.current;
-    if (!el) return;
+    const el = ref.current; if (!el) return;
     const r = el.getBoundingClientRect();
-    const x = e.clientX - (r.left + r.width / 2);
-    const y = e.clientY - (r.top + r.height / 2);
-    el.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+    el.style.transform = `translate(${(e.clientX - (r.left + r.width / 2)) * 0.25}px,${(e.clientY - (r.top + r.height / 2)) * 0.25}px)`;
   }, []);
-
-  const onLeave = useCallback(() => {
-    if (ref.current)
-      ref.current.style.transform = "translate(0,0)";
-  }, []);
-
+  const onLeave = useCallback((e) => {
+    if (ref.current) ref.current.style.transform = "translate(0,0)";
+    onMouseLeave?.(e);
+  }, [onMouseLeave]);
   const Tag = href ? "a" : "button";
   return (
-    <Tag
-      ref={ref}
-      className={className}
-      onClick={onClick}
-      href={href}
-      target={target}
+    <Tag ref={ref} href={href} target={target}
       rel={target === "_blank" ? "noopener noreferrer" : undefined}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      style={{ display: "inline-flex", transition: "transform 0.3s cubic-bezier(.23,1,.32,1)" }}
-    >
+      onClick={onClick} style={{ display: "inline-flex", transition: "transform 0.3s cubic-bezier(.23,1,.32,1)", ...style }}
+      onMouseMove={onMove} onMouseLeave={onLeave} onMouseEnter={onMouseEnter}>
       {children}
     </Tag>
   );
 }
+
 
 /* ─────────────────────────────────────────────
    NOISE TEXTURE OVERLAY
@@ -204,47 +194,54 @@ function NoiseOverlay() {
 /* ─────────────────────────────────────────────
    HERO — KINETIC LETTERS
 ───────────────────────────────────────────── */
-function KineticHero() {
-  const letters = "KALVIN".split("");
+export function KineticHero() {
+  const letters      = "KALVIN".split("");
   const containerRef = useRef(null);
-  const letterRefs = useRef([]);
-  const mouseRef = useRef({ x: 0.5, y: 0.5 });
-  const raf = useRef(null);
-  const [entered, setEntered] = useState(false);
-
+  const letterRefs   = useRef([]);
+  const mouseRef     = useRef({ x: 0.5, y: 0.5 });
+  const raf          = useRef(null);
+  const [entered,   setEntered]   = useState(false);
+  const [menuOpen,  setMenuOpen]  = useState(false);
+  const [isMobile,  setIsMobile]  = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
+ 
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+ 
   useEffect(() => {
     const t = setTimeout(() => setEntered(true), 200);
     return () => clearTimeout(t);
   }, []);
-
+ 
   useEffect(() => {
+    if (isMobile) return;
     const onMove = (e) => {
-      mouseRef.current = {
-        x: e.clientX / window.innerWidth,
-        y: e.clientY / window.innerHeight,
-      };
+      mouseRef.current = { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight };
     };
     window.addEventListener("mousemove", onMove);
-
     const loop = () => {
       const { x, y } = mouseRef.current;
       letterRefs.current.forEach((el, i) => {
         if (!el) return;
-        const dx = (x - 0.5) * 22 * (i % 2 === 0 ? 1 : -1);
-        const dy = (y - 0.5) * 14;
-        const rot = (x - 0.5) * 4 * (i % 2 === 0 ? 1 : -1);
-        el.style.transform = `translate(${dx}px, ${dy}px) rotate(${rot}deg)`;
+        const dx  = (x - 0.5) * 22 * (i % 2 === 0 ? 1 : -1);
+        const dy  = (y - 0.5) * 14;
+        const rot = (x - 0.5) * 4  * (i % 2 === 0 ? 1 : -1);
+        el.style.transform = `translate(${dx}px,${dy}px) rotate(${rot}deg)`;
       });
       raf.current = requestAnimationFrame(loop);
     };
     raf.current = requestAnimationFrame(loop);
-
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      cancelAnimationFrame(raf.current);
-    };
-  }, []);
-
+    return () => { window.removeEventListener("mousemove", onMove); cancelAnimationFrame(raf.current); };
+  }, [isMobile]);
+ 
+  useEffect(() => { if (!isMobile) setMenuOpen(false); }, [isMobile]);
+ 
+  const navItems = ["Work", "About", "Contact"];
+ 
   return (
     <section
       id="home"
@@ -254,74 +251,247 @@ function KineticHero() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-end",
-        padding: "0 5vw 8vh",
+        padding: isMobile ? "0 6vw 10vh" : "0 5vw 8vh",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* Top bar */}
-      <div
-        style={{
-          position: "absolute",
-          top: "5vh",
-          left: "5vw",
-          right: "5vw",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          zIndex: 10,
-        }}
-      >
-        <span
+      {/* BACKGROUND — portrait image + vignette */}
+      <div style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none" }}>
+        <img
+          src="/1735390396166-removebg.png"
+          alt=""
+          aria-hidden
+          onLoad={() => setImgLoaded(true)}
           style={{
+            position: "absolute",
+            bottom: 0,
+            right: isMobile ? "-5%" : "3vw",
+            height: isMobile ? "62vh" : "90vh",
+            width: "auto",
+            objectFit: "contain",
+            objectPosition: "bottom",
+            opacity: imgLoaded ? (isMobile ? 0.13 : 0.22) : 0,
+            transition: "opacity 1.2s ease 0.4s",
+            userSelect: "none",
+            WebkitUserDrag: "none",
+            filter: "grayscale(20%)",
+          }}
+        />
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          background: isMobile
+            ? "linear-gradient(to bottom, #0a0a0a 0%, rgba(10,10,10,0.92) 40%, rgba(10,10,10,0.97) 100%)"
+            : "linear-gradient(to right, #0a0a0a 30%, rgba(10,10,10,0.7) 65%, rgba(10,10,10,0.2) 100%), linear-gradient(to bottom, rgba(10,10,10,0.5) 0%, transparent 30%, rgba(10,10,10,0.6) 100%)",
+        }} />
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.012) 2px, rgba(255,255,255,0.012) 4px)",
+          pointerEvents: "none",
+        }} />
+      </div>
+ 
+      {/* TOP BAR */}
+      <div style={{
+        position: "absolute",
+        top: isMobile ? "4vh" : "5vh",
+        left: isMobile ? "6vw" : "5vw",
+        right: isMobile ? "6vw" : "5vw",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        zIndex: 20,
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#c8f241", flexShrink: 0 }} />
+          <span style={{
             fontFamily: "'DM Mono', monospace",
-            fontSize: 11,
+            fontSize: isMobile ? 10 : 11,
             letterSpacing: "0.15em",
             color: "#6b6b6b",
             textTransform: "uppercase",
-          }}
-        >
-          Portfolio — 2025
-        </span>
-        <nav style={{ display: "flex", gap: 32 }}>
-          {["Work", "About", "Contact"].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: 13,
-                color: "#6b6b6b",
-                textDecoration: "none",
-                letterSpacing: "0.05em",
-                transition: "color 0.2s",
-              }}
-              onMouseEnter={(e) => (e.target.style.color = "#f0ede6")}
-              onMouseLeave={(e) => (e.target.style.color = "#6b6b6b")}
-            >
-              {item}
-            </a>
-          ))}
-        </nav>
+          }}>
+            {isMobile ? "KK" : "Kalvin Kayi — 2025"}
+          </span>
+        </div>
+ 
+        {!isMobile && (
+          <nav style={{
+            display: "flex",
+            gap: 0,
+            background: "rgba(15,15,15,0.7)",
+            backdropFilter: "blur(16px)",
+            border: "1px solid #1f1f1f",
+            borderRadius: 40,
+            padding: "8px 10px",
+            boxShadow: "0 8px 30px rgba(0,0,0,0.4)",
+          }}>
+            {navItems.map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: 14,
+                  color: "#9a9a9a",
+                  textDecoration: "none",
+                  letterSpacing: "0.04em",
+                  padding: "10px 24px",
+                  borderRadius: 32,
+                  transition: "color 0.2s, background 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = "#f0ede6";
+                  e.currentTarget.style.background = "rgba(255,255,255,0.06)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = "#9a9a9a";
+                  e.currentTarget.style.background = "transparent";
+                }}
+              >
+                {item}
+              </a>
+            ))}
+          </nav>
+        )}
+ 
+        {isMobile && (
+          <button
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            style={{
+              width: 44,
+              height: 44,
+              borderRadius: "50%",
+              border: "1px solid #1f1f1f",
+              background: "rgba(15,15,15,0.8)",
+              backdropFilter: "blur(12px)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "none",
+              transition: "border-color 0.2s",
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#c8f241"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#1f1f1f"; }}
+          >
+            {menuOpen
+              ? <X size={18} color="#f0ede6" />
+              : <Menu size={18} color="#9a9a9a" />}
+          </button>
+        )}
       </div>
-
+ 
+      {/* MOBILE DRAWER */}
+      {isMobile && (
+        <div style={{ position: "fixed", inset: 0, zIndex: 90, pointerEvents: menuOpen ? "all" : "none" }}>
+          <div
+            onClick={() => setMenuOpen(false)}
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "rgba(10,10,10,0.7)",
+              backdropFilter: "blur(8px)",
+              opacity: menuOpen ? 1 : 0,
+              transition: "opacity 0.3s ease",
+            }}
+          />
+          <div style={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            bottom: 0,
+            width: "72vw",
+            maxWidth: 300,
+            background: "#0d0d0d",
+            borderLeft: "1px solid #1f1f1f",
+            padding: "6vh 7vw",
+            display: "flex",
+            flexDirection: "column",
+            transform: menuOpen ? "translateX(0)" : "translateX(100%)",
+            transition: "transform 0.35s cubic-bezier(.23,1,.32,1)",
+          }}>
+            <button
+              onClick={() => setMenuOpen(false)}
+              aria-label="Close menu"
+              style={{ alignSelf: "flex-end", background: "none", border: "none", cursor: "none", marginBottom: 40 }}
+            >
+              <X size={18} color="#6b6b6b" />
+            </button>
+ 
+            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, letterSpacing: "0.15em", color: "#3a3a3a", textTransform: "uppercase", marginBottom: 24 }}>
+              Navigate
+            </p>
+ 
+            {navItems.map((item, i) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  fontFamily: "'DM Serif Display', serif",
+                  fontSize: "2rem",
+                  fontWeight: 400,
+                  color: "#f0ede6",
+                  textDecoration: "none",
+                  padding: "16px 0",
+                  borderBottom: "1px solid #1a1a1a",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  opacity: menuOpen ? 1 : 0,
+                  transform: menuOpen ? "translateX(0)" : "translateX(20px)",
+                  transition: `opacity 0.4s ease ${i * 0.06 + 0.15}s, transform 0.4s ease ${i * 0.06 + 0.15}s, color 0.2s`,
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = "#c8f241"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = "#f0ede6"; }}
+              >
+                {item}
+                <ArrowUpRight size={16} color="#3a3a3a" />
+              </a>
+            ))}
+ 
+            <div style={{ marginTop: "auto" }}>
+              <a
+                href="mailto:kayikalvin@gmail.com"
+                style={{
+                  fontFamily: "'DM Mono', monospace",
+                  fontSize: 11,
+                  letterSpacing: "0.08em",
+                  color: "#6b6b6b",
+                  textDecoration: "none",
+                  display: "block",
+                  paddingTop: 32,
+                  opacity: menuOpen ? 1 : 0,
+                  transition: "opacity 0.4s ease 0.35s",
+                }}
+              >
+                kayikalvin@gmail.com
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+ 
       {/* KINETIC NAME */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "flex-end",
-          gap: "0.02em",
-          marginBottom: "2vh",
-          perspective: 800,
-        }}
-      >
+      <div style={{
+        display: "flex",
+        alignItems: "flex-end",
+        gap: isMobile ? "0.01em" : "0.02em",
+        marginBottom: "2vh",
+        perspective: 800,
+        position: "relative",
+        zIndex: 2,
+      }}>
         {letters.map((letter, i) => (
           <span
             key={i}
             ref={(el) => (letterRefs.current[i] = el)}
             style={{
               fontFamily: "'DM Serif Display', serif",
-              fontSize: "clamp(5rem, 14vw, 14rem)",
+              fontSize: isMobile ? "clamp(3.2rem,16vw,5rem)" : "clamp(5rem,14vw,14rem)",
               fontWeight: 400,
               lineHeight: 0.88,
               color: "#f0ede6",
@@ -329,9 +499,7 @@ function KineticHero() {
               willChange: "transform",
               transition: "transform 0.6s cubic-bezier(.23,1,.32,1)",
               opacity: entered ? 1 : 0,
-              transform: entered
-                ? "translateY(0)"
-                : "translateY(60px)",
+              transform: entered ? "translateY(0)" : "translateY(60px)",
               transitionDelay: `${i * 0.06 + 0.1}s`,
               transitionProperty: "opacity, transform",
             }}
@@ -339,71 +507,66 @@ function KineticHero() {
             {letter}
           </span>
         ))}
-        {/* Italic "Kayi" slotted in differently */}
-        <span
-          style={{
-            fontFamily: "'DM Serif Display', serif",
-            fontStyle: "italic",
-            fontSize: "clamp(3rem, 8vw, 8rem)",
-            fontWeight: 400,
-            lineHeight: 0.88,
-            color: "#c8f241",
-            marginLeft: "0.08em",
-            alignSelf: "flex-end",
-            marginBottom: "0.06em",
-            opacity: entered ? 1 : 0,
-            transform: entered ? "translateY(0)" : "translateY(40px)",
-            transition: "opacity 0.7s ease 0.6s, transform 0.7s cubic-bezier(.23,1,.32,1) 0.6s",
-          }}
-        >
+        <span style={{
+          fontFamily: "'DM Serif Display', serif",
+          fontStyle: "italic",
+          fontSize: isMobile ? "clamp(1.8rem,9vw,3rem)" : "clamp(3rem,8vw,8rem)",
+          fontWeight: 400,
+          lineHeight: 0.88,
+          color: "#c8f241",
+          marginLeft: "0.08em",
+          alignSelf: "flex-end",
+          marginBottom: "0.06em",
+          opacity: entered ? 1 : 0,
+          transform: entered ? "translateY(0)" : "translateY(40px)",
+          transition: "opacity 0.7s ease 0.6s, transform 0.7s cubic-bezier(.23,1,.32,1) 0.6s",
+        }}>
           Kayi
         </span>
       </div>
-
-      {/* Bottom row */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-end",
-          gap: 24,
-          flexWrap: "wrap",
-        }}
-      >
-        <p
-          style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: "clamp(1rem, 1.6vw, 1.25rem)",
-            color: "#6b6b6b",
-            maxWidth: 420,
-            lineHeight: 1.6,
-            margin: 0,
-            opacity: entered ? 1 : 0,
-            transform: entered ? "translateY(0)" : "translateY(20px)",
-            transition: "opacity 0.7s ease 0.8s, transform 0.7s ease 0.8s",
-          }}
-        >
+ 
+      {/* TAGLINE + BUTTONS */}
+      <div style={{
+        display: "flex",
+        flexDirection: isMobile ? "column" : "row",
+        justifyContent: "space-between",
+        alignItems: isMobile ? "flex-start" : "flex-end",
+        gap: isMobile ? 28 : 24,
+        flexWrap: "wrap",
+        position: "relative",
+        zIndex: 2,
+      }}>
+        <p style={{
+          fontFamily: "'DM Sans', sans-serif",
+          fontSize: isMobile ? "clamp(0.9rem,4vw,1.05rem)" : "clamp(1rem,1.6vw,1.25rem)",
+          color: "#6b6b6b",
+          maxWidth: isMobile ? "100%" : 420,
+          lineHeight: 1.65,
+          margin: 0,
+          opacity: entered ? 1 : 0,
+          transform: entered ? "translateY(0)" : "translateY(20px)",
+          transition: "opacity 0.7s ease 0.8s, transform 0.7s ease 0.8s",
+        }}>
           Full-Stack Developer & ML Engineer building
           intelligent applications that merge data,
           design, and human experience.
         </p>
-
-        <div
-          style={{
-            display: "flex",
-            gap: 16,
-            opacity: entered ? 1 : 0,
-            transform: entered ? "translateY(0)" : "translateY(20px)",
-            transition: "opacity 0.7s ease 1s, transform 0.7s ease 1s",
-          }}
-        >
+ 
+        <div style={{
+          display: "flex",
+          gap: 12,
+          flexWrap: "wrap",
+          opacity: entered ? 1 : 0,
+          transform: entered ? "translateY(0)" : "translateY(20px)",
+          transition: "opacity 0.7s ease 1s, transform 0.7s ease 1s",
+        }}>
           <MagneticBtn
             href="#projects"
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: 14,
+              fontSize: isMobile ? 13 : 14,
               fontWeight: 500,
-              padding: "14px 28px",
+              padding: isMobile ? "12px 22px" : "14px 28px",
               background: "#c8f241",
               color: "#0a0a0a",
               borderRadius: 40,
@@ -411,47 +574,41 @@ function KineticHero() {
               letterSpacing: "0.02em",
               border: "none",
               cursor: "pointer",
-              display: "inline-flex",
               alignItems: "center",
               gap: 8,
             }}
           >
-            See my work <ArrowUpRight size={16} />
+            See my work <ArrowUpRight size={15} />
           </MagneticBtn>
-
+ 
           <MagneticBtn
             href="mailto:kayikalvin@gmail.com"
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: 14,
-              padding: "14px 28px",
-              background: "transparent",
+              fontSize: isMobile ? 13 : 14,
+              padding: isMobile ? "12px 22px" : "14px 28px",
+              background: "rgba(15,15,15,0.6)",
+              backdropFilter: "blur(12px)",
               color: "#f0ede6",
               borderRadius: 40,
               textDecoration: "none",
               letterSpacing: "0.02em",
-              border: "1.5px solid #1f1f1f",
+              border: "1.5px solid #2a2a2a",
               cursor: "pointer",
-              display: "inline-flex",
               alignItems: "center",
               gap: 8,
               transition: "border-color 0.2s",
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "#c8f241";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "#1f1f1f";
-            }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#c8f241"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#2a2a2a"; }}
           >
             Get in touch
           </MagneticBtn>
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <div
-        style={{
+ 
+      {!isMobile && (
+        <div style={{
           position: "absolute",
           bottom: "5vh",
           left: "50%",
@@ -460,25 +617,30 @@ function KineticHero() {
           flexDirection: "column",
           alignItems: "center",
           gap: 8,
-          opacity: 0.4,
+          opacity: 0.35,
           animation: "floatDown 2s ease-in-out infinite",
-        }}
-      >
-        <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, letterSpacing: "0.15em", color: "#6b6b6b" }}>
-          SCROLL
-        </span>
-        <ChevronDown size={14} color="#6b6b6b" />
-      </div>
-
+          zIndex: 2,
+        }}>
+          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, letterSpacing: "0.15em", color: "#6b6b6b" }}>
+            SCROLL
+          </span>
+          <ChevronDown size={14} color="#6b6b6b" />
+        </div>
+      )}
+ 
       <style>{`
         @keyframes floatDown {
-          0%, 100% { transform: translateX(-50%) translateY(0); }
-          50% { transform: translateX(-50%) translateY(6px); }
+          0%,100% { transform: translateX(-50%) translateY(0); }
+          50%      { transform: translateX(-50%) translateY(6px); }
+        }
+        @media (max-width: 767px) {
+          #home span[style*="willChange"] { transition: none !important; }
         }
       `}</style>
     </section>
   );
 }
+
 
 /* ─────────────────────────────────────────────
    HORIZONTAL MARQUEE
@@ -524,445 +686,7 @@ function Marquee({ items }) {
   );
 }
 
-/* ─────────────────────────────────────────────
-   ABOUT SECTION
-───────────────────────────────────────────── */
-function About() {
-  const ref = useRef(null);
-  const [vis, setVis] = useState(false);
 
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => e.isIntersecting && setVis(true),
-      { threshold: 0.15 }
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
-
-  const stats = [
-    { n: "45+", label: "Repositories" },
-    { n: "5+", label: "Years experience" },
-    { n: "15+", label: "Live products" },
-    { n: "100K+", label: "Lines shipped" },
-  ];
-
-  return (
-    <section
-      id="about"
-      ref={ref}
-      style={{
-        padding: "12vh 5vw",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "6vw",
-        alignItems: "start",
-        position: "relative",
-        zIndex: 2,
-      }}
-    >
-      {/* Left — headline */}
-      <div>
-        <p
-          style={{
-            fontFamily: "'DM Mono', monospace",
-            fontSize: 11,
-            letterSpacing: "0.15em",
-            color: "#c8f241",
-            textTransform: "uppercase",
-            marginBottom: 24,
-            opacity: vis ? 1 : 0,
-            transform: vis ? "none" : "translateY(20px)",
-            transition: "opacity 0.7s ease, transform 0.7s ease",
-          }}
-        >
-          About
-        </p>
-        <h2
-          style={{
-            fontFamily: "'DM Serif Display', serif",
-            fontSize: "clamp(2.5rem, 5vw, 5rem)",
-            fontWeight: 400,
-            lineHeight: 1.05,
-            color: "#f0ede6",
-            margin: 0,
-            opacity: vis ? 1 : 0,
-            transform: vis ? "none" : "translateY(30px)",
-            transition: "opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s",
-          }}
-        >
-          I make machines
-          <br />
-          <span style={{ fontStyle: "italic", color: "#c8f241" }}>
-            understand humans.
-          </span>
-        </h2>
-
-        {/* Photo */}
-        <div
-          style={{
-            marginTop: 48,
-            borderRadius: 16,
-            overflow: "hidden",
-            maxWidth: 340,
-            border: "1px solid #1f1f1f",
-            opacity: vis ? 1 : 0,
-            transform: vis ? "none" : "translateY(20px)",
-            transition: "opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s",
-          }}
-        >
-          <img
-            src="/1735390396166-removebg.png"
-            alt="Kalvin Kayi"
-            style={{
-              width: "100%",
-              display: "block",
-              background: "linear-gradient(135deg,#111,#1a1a1a)",
-              padding: "24px 24px 0",
-            }}
-          />
-        </div>
-      </div>
-
-      {/* Right — text + stats */}
-      <div
-        style={{
-          paddingTop: "calc(11px + 1.5em + 24px)",
-        }}
-      >
-        <p
-          style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: "clamp(1rem, 1.4vw, 1.2rem)",
-            lineHeight: 1.75,
-            color: "#a0a0a0",
-            marginBottom: 32,
-            opacity: vis ? 1 : 0,
-            transform: vis ? "none" : "translateY(20px)",
-            transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s",
-          }}
-        >
-          I'm a Full-Stack Developer and Machine Learning
-          Engineer based in Nairobi, Kenya. I build
-          production-ready systems — from AI-powered fact-checkers
-          and predictive healthcare models to real-time real estate
-          platforms and molecular diagnostics interfaces.
-        </p>
-        <p
-          style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: "clamp(1rem, 1.4vw, 1.2rem)",
-            lineHeight: 1.75,
-            color: "#a0a0a0",
-            marginBottom: 56,
-            opacity: vis ? 1 : 0,
-            transform: vis ? "none" : "translateY(20px)",
-            transition: "opacity 0.7s ease 0.3s, transform 0.7s ease 0.3s",
-          }}
-        >
-          My work sits at the intersection of rigorous data
-          engineering and considered design — solutions that don't
-          just function, they resonate.
-        </p>
-
-        {/* Stats */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "1px",
-            border: "1px solid #1f1f1f",
-            borderRadius: 12,
-            overflow: "hidden",
-            opacity: vis ? 1 : 0,
-            transform: vis ? "none" : "translateY(20px)",
-            transition: "opacity 0.7s ease 0.4s, transform 0.7s ease 0.4s",
-          }}
-        >
-          {stats.map((s, i) => (
-            <div
-              key={i}
-              style={{
-                padding: "28px 24px",
-                background: "#0f0f0f",
-                borderRight: i % 2 === 0 ? "1px solid #1f1f1f" : "none",
-                borderBottom: i < 2 ? "1px solid #1f1f1f" : "none",
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: "'DM Serif Display', serif",
-                  fontSize: "2.5rem",
-                  color: "#f0ede6",
-                  lineHeight: 1,
-                  marginBottom: 6,
-                }}
-              >
-                {s.n}
-              </div>
-              <div
-                style={{
-                  fontFamily: "'DM Mono', monospace",
-                  fontSize: 11,
-                  color: "#6b6b6b",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                }}
-              >
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Links */}
-        <div
-          style={{
-            display: "flex",
-            gap: 20,
-            marginTop: 40,
-            opacity: vis ? 1 : 0,
-            transition: "opacity 0.7s ease 0.5s",
-          }}
-        >
-          {[
-            { href: "https://github.com/kayikalvin", Icon: Github, label: "GitHub" },
-            { href: "https://linkedin.com/in/kayikalvin", Icon: Linkedin, label: "LinkedIn" },
-          ].map(({ href, Icon, label }) => (
-            <MagneticBtn
-              key={label}
-              href={href}
-              target="_blank"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: 13,
-                color: "#6b6b6b",
-                textDecoration: "none",
-                padding: "10px 18px",
-                border: "1px solid #1f1f1f",
-                borderRadius: 40,
-                transition: "color 0.2s, border-color 0.2s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = "#c8f241";
-                e.currentTarget.style.borderColor = "#c8f241";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = "#6b6b6b";
-                e.currentTarget.style.borderColor = "#1f1f1f";
-              }}
-            >
-              <Icon size={14} />
-              {label}
-            </MagneticBtn>
-          ))}
-        </div>
-      </div>
-
-      {/* Mobile override */}
-      <style>{`
-        @media (max-width: 768px) {
-          #about { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
-    </section>
-  );
-}
-
-/* ─────────────────────────────────────────────
-   SKILLS — HORIZONTAL SCROLL TAPE
-───────────────────────────────────────────── */
-function Skills() {
-  const ref = useRef(null);
-  const [vis, setVis] = useState(false);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => e.isIntersecting && setVis(true),
-      { threshold: 0.1 }
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
-
-  const categories = [
-    {
-      title: "Machine Learning",
-      items: [
-        { name: "Python", pct: 95 },
-        { name: "TensorFlow / PyTorch", pct: 88 },
-        { name: "Scikit-learn", pct: 91 },
-        { name: "NLP / LLMs", pct: 85 },
-        { name: "MLOps", pct: 83 },
-      ],
-    },
-    {
-      title: "Data Engineering",
-      items: [
-        { name: "Data Analysis", pct: 93 },
-        { name: "SQL & NoSQL", pct: 90 },
-        { name: "Spark / Hadoop", pct: 86 },
-        { name: "ETL Pipelines", pct: 88 },
-        { name: "Power BI / Tableau", pct: 84 },
-      ],
-    },
-    {
-      title: "Full-Stack Dev",
-      items: [
-        { name: "React / Next.js", pct: 87 },
-        { name: "Node.js", pct: 85 },
-        { name: "APIs & Microservices", pct: 85 },
-        { name: "AWS / GCP", pct: 82 },
-        { name: "Docker / CI-CD", pct: 80 },
-      ],
-    },
-  ];
-
-  return (
-    <section
-      id="skills"
-      ref={ref}
-      style={{ padding: "12vh 5vw", position: "relative", zIndex: 2 }}
-    >
-      {/* Header */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-end",
-          marginBottom: 64,
-          flexWrap: "wrap",
-          gap: 24,
-        }}
-      >
-        <div>
-          <p
-            style={{
-              fontFamily: "'DM Mono', monospace",
-              fontSize: 11,
-              letterSpacing: "0.15em",
-              color: "#c8f241",
-              textTransform: "uppercase",
-              marginBottom: 16,
-              opacity: vis ? 1 : 0,
-              transition: "opacity 0.6s ease",
-            }}
-          >
-            Expertise
-          </p>
-          <h2
-            style={{
-              fontFamily: "'DM Serif Display', serif",
-              fontSize: "clamp(2.5rem, 4vw, 4rem)",
-              fontWeight: 400,
-              lineHeight: 1.1,
-              color: "#f0ede6",
-              margin: 0,
-              opacity: vis ? 1 : 0,
-              transform: vis ? "none" : "translateY(20px)",
-              transition: "opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s",
-            }}
-          >
-            Technical
-            <br />
-            <span style={{ fontStyle: "italic", color: "#c8f241" }}>Arsenal</span>
-          </h2>
-        </div>
-      </div>
-
-      {/* Cards */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: 2,
-        }}
-      >
-        {categories.map((cat, ci) => (
-          <div
-            key={ci}
-            style={{
-              padding: "40px 36px",
-              background: "#0d0d0d",
-              border: "1px solid #1a1a1a",
-              borderRadius: 16,
-              opacity: vis ? 1 : 0,
-              transform: vis ? "none" : "translateY(30px)",
-              transition: `opacity 0.7s ease ${ci * 0.12}s, transform 0.7s ease ${ci * 0.12}s`,
-            }}
-          >
-            <h3
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: 13,
-                fontWeight: 500,
-                color: "#c8f241",
-                textTransform: "uppercase",
-                letterSpacing: "0.12em",
-                marginBottom: 36,
-              }}
-            >
-              {cat.title}
-            </h3>
-            <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-              {cat.items.map((skill, si) => (
-                <div key={si}>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      marginBottom: 8,
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontFamily: "'DM Sans', sans-serif",
-                        fontSize: 14,
-                        color: "#d0d0d0",
-                      }}
-                    >
-                      {skill.name}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: "'DM Mono', monospace",
-                        fontSize: 11,
-                        color: "#6b6b6b",
-                      }}
-                    >
-                      {skill.pct}
-                    </span>
-                  </div>
-                  <div
-                    style={{
-                      height: 2,
-                      background: "#1f1f1f",
-                      borderRadius: 2,
-                      overflow: "hidden",
-                    }}
-                  >
-                    <div
-                      style={{
-                        height: "100%",
-                        width: vis ? `${skill.pct}%` : "0%",
-                        background: si === 0 ? "#c8f241" : "#3a3a3a",
-                        borderRadius: 2,
-                        transition: `width 1.2s cubic-bezier(.23,1,.32,1) ${ci * 0.12 + si * 0.06 + 0.4}s`,
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
 
 /* ─────────────────────────────────────────────
    PROJECTS SECTION
@@ -1372,7 +1096,7 @@ function FloatingNav() {
           if (e.isIntersecting) setActive(e.target.id);
         });
       },
-      { threshold: 0.4 }
+      { threshold: 0.15 }  // ← was 0.4, About is too tall to ever hit 40%
     );
     sections.forEach((id) => {
       const el = document.getElementById(id);
@@ -1380,6 +1104,8 @@ function FloatingNav() {
     });
     return () => obs.disconnect();
   }, [sections]);
+
+  
 
   return (
     <div

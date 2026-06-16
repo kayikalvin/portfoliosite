@@ -2,21 +2,25 @@
  * KALVIN KAYI — PROJECTS GRID
  * Design system: "Machine Precision / Human Warmth"
  *
- * No Tailwind gradients, no cyan/purple/green accents.
- * Pure inline styles on the shared token set.
+ * Changes in this pass:
+ *  - Grid now has real breathing room (24px gap, not 2px hairlines)
+ *  - Cards reveal in capped batches instead of all 12+ firing at once
+ *  - "Load more" control appends the next batch + re-triggers stagger
  */
 
 import { Link } from "react-router-dom";
-import { ExternalLink, Github, BookOpen, ArrowUpRight } from "lucide-react";
+import { ExternalLink, Github, BookOpen, ArrowUpRight, Plus } from "lucide-react";
 import { projects as staticProjects } from "../utils/utils";
 import { useEffect, useState, useRef } from "react";
+
+const PAGE_SIZE = 6;
 
 /* ─────────────────────────────────────────────
    SKELETON
 ───────────────────────────────────────────── */
 function ProjectSkeleton() {
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 2 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(400px, 1fr))", gap: 24 }}>
       {[0, 1, 2].map((i) => (
         <div
           key={i}
@@ -98,6 +102,10 @@ function ProjectCard({ project, index, visible }) {
     status === "completed"   ? "#f0ede6" :
     status === "in progress" ? "#c8f241" : "#6b6b6b";
 
+  // index here is position WITHIN its batch, so stagger always restarts
+  // at a believable speed instead of compounding across 20 cards.
+  const delay = (index % PAGE_SIZE) * 0.08;
+
   return (
     <div
       onMouseEnter={() => setHov(true)}
@@ -113,7 +121,7 @@ function ProjectCard({ project, index, visible }) {
         overflow: "hidden",
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(28px)",
-        transition: `opacity 0.65s ease ${index * 0.09}s, transform 0.65s ease ${index * 0.09}s, border-color 0.2s, background 0.2s`,
+        transition: `opacity 0.6s ease ${delay}s, transform 0.6s ease ${delay}s, border-color 0.2s, background 0.2s`,
       }}
     >
       {/* Corner glow */}
@@ -277,6 +285,47 @@ function DocsLink({ to }) {
 }
 
 /* ─────────────────────────────────────────────
+   LOAD MORE BUTTON
+───────────────────────────────────────────── */
+function LoadMoreBtn({ onClick, remaining }) {
+  const [hov, setHov] = useState(false);
+  return (
+    <div style={{ display: "flex", justifyContent: "center", marginTop: 48 }}>
+      <button
+        onClick={onClick}
+        onMouseEnter={() => setHov(true)}
+        onMouseLeave={() => setHov(false)}
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 10,
+          fontFamily: "'DM Sans', sans-serif",
+          fontSize: 14,
+          letterSpacing: "0.02em",
+          color: hov ? "#0a0a0a" : "#f0ede6",
+          background: hov ? "#c8f241" : "transparent",
+          padding: "14px 30px",
+          borderRadius: 40,
+          border: `1.5px solid ${hov ? "#c8f241" : "#2a2a2a"}`,
+          cursor: "pointer",
+          transition: "background 0.25s ease, color 0.25s ease, border-color 0.25s ease",
+        }}
+      >
+        <Plus size={16} />
+        Show more
+        <span style={{
+          fontFamily: "'DM Mono', monospace",
+          fontSize: 11,
+          color: hov ? "#0a0a0a" : "#6b6b6b",
+        }}>
+          ({remaining} left)
+        </span>
+      </button>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
    EMPTY STATE
 ───────────────────────────────────────────── */
 function EmptyState() {
@@ -302,6 +351,7 @@ const Projects = () => {
   const [projects, setProjects] = useState(staticProjects || []);
   const [loading,  setLoading]  = useState(true);
   const [visible,  setVisible]  = useState(false);
+  const [count,    setCount]    = useState(PAGE_SIZE);
   const gridRef = useRef(null);
 
   /* Fetch */
@@ -328,6 +378,14 @@ const Projects = () => {
     return () => obs.disconnect();
   }, [loading]);
 
+  const visibleProjects = projects.slice(0, count);
+  const remaining = projects.length - visibleProjects.length;
+
+  // Re-arm the reveal animation for the newly appended batch only.
+  const handleLoadMore = () => {
+    setCount((c) => Math.min(c + PAGE_SIZE, projects.length));
+  };
+
   return (
     <div ref={gridRef}>
       {loading ? (
@@ -335,20 +393,26 @@ const Projects = () => {
       ) : projects.length === 0 ? (
         <EmptyState />
       ) : (
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-          gap: 2,
-        }}>
-          {projects.map((project, i) => (
-            <ProjectCard
-              key={project.id || i}
-              project={project}
-              index={i}
-              visible={visible}
-            />
-          ))}
-        </div>
+        <>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(400px, 1fr))",
+            gap: 24,
+          }}>
+            {visibleProjects.map((project, i) => (
+              <ProjectCard
+                key={project.id || project.title || i}
+                project={project}
+                index={i}
+                visible={visible}
+              />
+            ))}
+          </div>
+
+          {remaining > 0 && (
+            <LoadMoreBtn onClick={handleLoadMore} remaining={remaining} />
+          )}
+        </>
       )}
 
       <style>{`
