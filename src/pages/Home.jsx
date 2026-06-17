@@ -40,6 +40,7 @@ import {
   ExternalLink,
   ChevronDown,
   Menu,
+  X,
 } from "lucide-react";
 import Projects from "../components/Projects";
 import { posts } from "../utils/utils";
