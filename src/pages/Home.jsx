@@ -1019,66 +1019,280 @@ function Contact() {
 /* ─────────────────────────────────────────────
    FOOTER
 ───────────────────────────────────────────── */
+/* ─────────────────────────────────────────────
+   FOOTER — Awwwards-tier redesign
+───────────────────────────────────────────── */
+
+
+
 function Footer() {
   return (
-    <footer
-      style={{
-        padding: "32px 5vw",
-        borderTop: "1px solid #1a1a1a",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        flexWrap: "wrap",
-        gap: 16,
-        position: "relative",
-        zIndex: 2,
-      }}
-    >
-      <span
+    <footer style={{ background: "#0a0a0a", position: "relative", zIndex: 2 }}>
+      {/* PREMIUM SPLIT LAYOUT */}
+      <div
         style={{
-          fontFamily: "'DM Mono', monospace",
-          fontSize: 11,
-          color: "#3a3a3a",
-          letterSpacing: "0.1em",
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "80px",
+          padding: "120px 5vw 80px",
+          borderTop: "1px solid #1a1a1a",
+          position: "relative",
+        }}
+        onMouseMove={(e) => {
+          const el = e.currentTarget;
+          const rect = el.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          el.style.background = `radial-gradient(600px at ${x}% ${y}%, rgba(200,242,65,0.03) 0%, transparent 80%)`;
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background = "transparent";
         }}
       >
-        © {new Date().getFullYear()} Kalvin Kayi
-      </span>
-      <div style={{ display: "flex", gap: 24 }}>
-        {[
-          { href: "https://github.com/kayikalvin", Icon: Github },
-          { href: "https://linkedin.com/in/kayikalvin", Icon: Linkedin },
-        ].map(({ href, Icon }, i) => (
-          <a
-            key={i}
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              color: "#3a3a3a",
-              transition: "color 0.2s",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#c8f241")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "#3a3a3a")}
-          >
-            <Icon size={16} />
-          </a>
-        ))}
+        {/* LEFT: BRAND + STATEMENT */}
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+          <div>
+            <h2
+              style={{
+                fontFamily: "'DM Serif Display', serif",
+                fontSize: "clamp(2.5rem, 6vw, 5rem)",
+                fontWeight: 400,
+                lineHeight: 1.1,
+                color: "#f0ede6",
+                margin: "0 0 32px",
+              }}
+            >
+              Let's create
+              <br />
+              <em style={{ fontStyle: "italic", color: "#c8f241" }}>something remarkable</em>
+            </h2>
+
+            <p
+              style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: 15,
+                lineHeight: 1.8,
+                color: "#6b6b6b",
+                maxWidth: "420px",
+                margin: "0 0 48px",
+              }}
+            >
+              I build digital experiences with precision and intention. Let's talk about your next project.
+            </p>
+
+            <MagneticBtn
+              href="mailto:kayikalvin@gmail.com"
+              style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: 14,
+                fontWeight: 500,
+                padding: "16px 36px",
+                background: "#c8f241",
+                color: "#0a0a0a",
+                borderRadius: 40,
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 10,
+                border: "none",
+                cursor: "pointer",
+              }}
+            >
+              Start a project <ArrowUpRight size={15} />
+            </MagneticBtn>
+          </div>
+
+          {/* Bottom: Availability + Socials */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <div
+                style={{
+                  width: 8,
+                  height: 8,
+                  borderRadius: "50%",
+                  background: "#c8f241",
+                  animation: "footerPulse 2.5s ease-in-out infinite",
+                }}
+              />
+              <span
+                style={{
+                  fontFamily: "'DM Mono', monospace",
+                  fontSize: 12,
+                  letterSpacing: "0.12em",
+                  color: "#3a3a3a",
+                  textTransform: "uppercase",
+                }}
+              >
+                Open for work
+              </span>
+            </div>
+
+            <div style={{ display: "flex", gap: 16 }}>
+              {[
+                { href: "https://github.com/kayikalvin", label: "GitHub" },
+                { href: "https://linkedin.com/in/kayikalvin", label: "LinkedIn" },
+                { href: "mailto:kayikalvin@gmail.com", label: "Email" },
+              ].map(({ href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: 13,
+                    color: "#3a3a3a",
+                    textDecoration: "none",
+                    padding: "8px 0",
+                    borderBottom: "1px solid transparent",
+                    transition: "all 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "#c8f241";
+                    e.currentTarget.style.borderBottomColor = "#c8f241";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "#3a3a3a";
+                    e.currentTarget.style.borderBottomColor = "transparent";
+                  }}
+                >
+                  {label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT: GRID OF LINKS + METADATA */}
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+          {/* Link Grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px 40px" }}>
+            {/* Navigation */}
+            <div>
+              <p
+                style={{
+                  fontFamily: "'DM Mono', monospace",
+                  fontSize: 10,
+                  letterSpacing: "0.15em",
+                  color: "#c8f241",
+                  textTransform: "uppercase",
+                  margin: "0 0 24px",
+                }}
+              >
+                Navigate
+              </p>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 14 }}>
+                {[
+                  { label: "Work", href: "#projects" },
+                  { label: "About", href: "#about" },
+                  { label: "Skills", href: "#skills" },
+                  { label: "Writing", href: "#blog" },
+                  { label: "Contact", href: "#contact" },
+                ].map(({ label, href }) => (
+                  <li key={label}>
+                    <a
+                      href={href}
+                      style={{
+                        fontFamily: "'DM Sans', sans-serif",
+                        fontSize: 14,
+                        color: "#6b6b6b",
+                        textDecoration: "none",
+                        transition: "color 0.2s ease",
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "#f0ede6")}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "#6b6b6b")}
+                    >
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Resources */}
+            <div>
+              <p
+                style={{
+                  fontFamily: "'DM Mono', monospace",
+                  fontSize: 10,
+                  letterSpacing: "0.15em",
+                  color: "#c8f241",
+                  textTransform: "uppercase",
+                  margin: "0 0 24px",
+                }}
+              >
+                Resources
+              </p>
+              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 14 }}>
+                {[
+                  { label: "Download CV", href: "/Alvin Kayi CV.pdf", external: true },
+                  { label: "GitHub", href: "https://github.com/kayikalvin", external: true },
+                  { label: "LinkedIn", href: "https://linkedin.com/in/kayikalvin", external: true },
+                  { label: "Get in touch", href: "mailto:kayikalvin@gmail.com" },
+                ].map(({ label, href, external }) => (
+                  <li key={label}>
+                    <a
+                      href={href}
+                      target={external ? "_blank" : undefined}
+                      rel={external ? "noopener noreferrer" : undefined}
+                      style={{
+                        fontFamily: "'DM Sans', sans-serif",
+                        fontSize: 14,
+                        color: "#6b6b6b",
+                        textDecoration: "none",
+                        transition: "color 0.2s ease",
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "#f0ede6")}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "#6b6b6b")}
+                    >
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Footer Meta */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <div style={{ height: 1, background: "#1a1a1a" }} />
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+              <p
+                style={{
+                  fontFamily: "'DM Mono', monospace",
+                  fontSize: 11,
+                  color: "#3a3a3a",
+                  letterSpacing: "0.08em",
+                  margin: 0,
+                }}
+              >
+                © {new Date().getFullYear()} Kalvin Kayi
+              </p>
+              <p
+                style={{
+                  fontFamily: "'DM Mono', monospace",
+                  fontSize: 11,
+                  color: "#3a3a3a",
+                  letterSpacing: "0.08em",
+                  margin: 0,
+                }}
+              >
+                Nairobi, Kenya
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-      <span
-        style={{
-          fontFamily: "'DM Mono', monospace",
-          fontSize: 11,
-          color: "#3a3a3a",
-          letterSpacing: "0.1em",
-        }}
-      >
-        Full-Stack Dev · ML Engineer
-      </span>
+
+      <style>{`
+        @keyframes footerPulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.4; }
+        }
+      `}</style>
     </footer>
   );
 }
-
 /* ─────────────────────────────────────────────
    FLOATING NAV DOTS
 ───────────────────────────────────────────── */
