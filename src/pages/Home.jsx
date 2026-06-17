@@ -197,28 +197,28 @@ function NoiseOverlay() {
    HERO — KINETIC LETTERS
 ───────────────────────────────────────────── */
 export function KineticHero() {
-  const letters      = "KALVIN".split("");
+  const letters = "KALVIN".split("");
   const containerRef = useRef(null);
-  const letterRefs   = useRef([]);
-  const mouseRef     = useRef({ x: 0.5, y: 0.5 });
-  const raf          = useRef(null);
-  const [entered,   setEntered]   = useState(false);
-  const [menuOpen,  setMenuOpen]  = useState(false);
-  const [isMobile,  setIsMobile]  = useState(false);
+  const letterRefs = useRef([]);
+  const mouseRef = useRef({ x: 0.5, y: 0.5 });
+  const raf = useRef(null);
+  const [entered, setEntered] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
- 
+
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
- 
+
   useEffect(() => {
     const t = setTimeout(() => setEntered(true), 200);
     return () => clearTimeout(t);
   }, []);
- 
+
   useEffect(() => {
     if (isMobile) return;
     const onMove = (e) => {
@@ -229,166 +229,184 @@ export function KineticHero() {
       const { x, y } = mouseRef.current;
       letterRefs.current.forEach((el, i) => {
         if (!el) return;
-        const dx  = (x - 0.5) * 22 * (i % 2 === 0 ? 1 : -1);
-        const dy  = (y - 0.5) * 14;
-        const rot = (x - 0.5) * 4  * (i % 2 === 0 ? 1 : -1);
+        const dx = (x - 0.5) * 22 * (i % 2 === 0 ? 1 : -1);
+        const dy = (y - 0.5) * 14;
+        const rot = (x - 0.5) * 4 * (i % 2 === 0 ? 1 : -1);
         el.style.transform = `translate(${dx}px,${dy}px) rotate(${rot}deg)`;
       });
       raf.current = requestAnimationFrame(loop);
     };
     raf.current = requestAnimationFrame(loop);
-    return () => { window.removeEventListener("mousemove", onMove); cancelAnimationFrame(raf.current); };
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(raf.current);
+    };
   }, [isMobile]);
- 
-  useEffect(() => { if (!isMobile) setMenuOpen(false); }, [isMobile]);
- 
-  const navItems = ["Work", "About", "Contact"];
- 
+
+  useEffect(() => {
+    if (!isMobile) setMenuOpen(false);
+  }, [isMobile]);
+
+  const navItems = ["Projects", "About", "Contact","Skills","Blog"];
+
   return (
     <section
       id="home"
       ref={containerRef}
+      className="hero-section"
       style={{
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-end",
-        padding: isMobile ? "0 6vw 10vh" : "0 5vw 8vh",
+        padding: "0 5vw 8vh",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      {/* BACKGROUND — portrait image + vignette */}
+      {/* BACKGROUND */}
       <div style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none" }}>
         <img
           src="/1735390396166-removebg.png"
           alt=""
           aria-hidden
           onLoad={() => setImgLoaded(true)}
+          className="hero-portrait"
           style={{
             position: "absolute",
             bottom: 0,
-            right: isMobile ? "-5%" : "3vw",
-            height: isMobile ? "62vh" : "90vh",
+            right: "3vw",
+            height: "90vh",
             width: "auto",
             objectFit: "contain",
             objectPosition: "bottom",
-            opacity: imgLoaded ? (isMobile ? 0.13 : 0.22) : 0,
+            opacity: imgLoaded ? 0.22 : 0,
             transition: "opacity 1.2s ease 0.4s",
             userSelect: "none",
             WebkitUserDrag: "none",
             filter: "grayscale(20%)",
           }}
         />
-        <div style={{
-          position: "absolute",
-          inset: 0,
-          background: isMobile
-            ? "linear-gradient(to bottom, #0a0a0a 0%, rgba(10,10,10,0.92) 40%, rgba(10,10,10,0.97) 100%)"
-            : "linear-gradient(to right, #0a0a0a 30%, rgba(10,10,10,0.7) 65%, rgba(10,10,10,0.2) 100%), linear-gradient(to bottom, rgba(10,10,10,0.5) 0%, transparent 30%, rgba(10,10,10,0.6) 100%)",
-        }} />
-        <div style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.012) 2px, rgba(255,255,255,0.012) 4px)",
-          pointerEvents: "none",
-        }} />
+        <div
+          className="hero-gradient"
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(to right, #0a0a0a 30%, rgba(10,10,10,0.7) 65%, rgba(10,10,10,0.2) 100%), " +
+              "linear-gradient(to bottom, rgba(10,10,10,0.5) 0%, transparent 30%, rgba(10,10,10,0.6) 100%)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage:
+              "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.012) 2px, rgba(255,255,255,0.012) 4px)",
+            pointerEvents: "none",
+          }}
+        />
       </div>
- 
+
       {/* TOP BAR */}
-      <div style={{
-        position: "absolute",
-        top: isMobile ? "4vh" : "5vh",
-        left: isMobile ? "6vw" : "5vw",
-        right: isMobile ? "6vw" : "5vw",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        zIndex: 20,
-      }}>
+      <div
+        className="top-bar"
+        style={{
+          position: "absolute",
+          top: "5vh",
+          left: "5vw",
+          right: "5vw",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          zIndex: 20,
+        }}
+      >
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#c8f241", flexShrink: 0 }} />
-          <span style={{
-            fontFamily: "'DM Mono', monospace",
-            fontSize: isMobile ? 10 : 11,
-            letterSpacing: "0.15em",
-            color: "#6b6b6b",
-            textTransform: "uppercase",
-          }}>
-            {isMobile ? "KK" : "Kalvin Kayi — 2025"}
+          <div
+            style={{
+              width: 8,
+              height: 8,
+              borderRadius: "50%",
+              background: "#c8f241",
+              flexShrink: 0,
+            }}
+          />
+          <span className="top-bar-label">
+            Kalvin Kayi — {new Date().getFullYear()}
           </span>
         </div>
- 
-        {!isMobile && (
-          <nav style={{
-            display: "flex",
-            gap: 0,
-            background: "rgba(15,15,15,0.7)",
-            backdropFilter: "blur(16px)",
+
+        {/* Desktop nav */}
+        <nav className="desktop-nav">
+          {navItems.map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="nav-link"
+              style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: 14,
+                color: "#9a9a9a",
+                textDecoration: "none",
+                letterSpacing: "0.04em",
+                padding: "10px 24px",
+                borderRadius: 32,
+                transition: "color 0.2s, background 0.2s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = "#f0ede6";
+                e.currentTarget.style.background = "rgba(255,255,255,0.06)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = "#9a9a9a";
+                e.currentTarget.style.background = "transparent";
+              }}
+            >
+              {item}
+            </a>
+          ))}
+        </nav>
+
+        {/* Mobile menu button */}
+        <button
+          className="mobile-menu-btn"
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          style={{
+            width: 44,
+            height: 44,
+            borderRadius: "50%",
             border: "1px solid #1f1f1f",
-            borderRadius: 40,
-            padding: "8px 10px",
-            boxShadow: "0 8px 30px rgba(0,0,0,0.4)",
-          }}>
-            {navItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: 14,
-                  color: "#9a9a9a",
-                  textDecoration: "none",
-                  letterSpacing: "0.04em",
-                  padding: "10px 24px",
-                  borderRadius: 32,
-                  transition: "color 0.2s, background 0.2s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "#f0ede6";
-                  e.currentTarget.style.background = "rgba(255,255,255,0.06)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "#9a9a9a";
-                  e.currentTarget.style.background = "transparent";
-                }}
-              >
-                {item}
-              </a>
-            ))}
-          </nav>
-        )}
- 
-        {isMobile && (
-          <button
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            style={{
-              width: 44,
-              height: 44,
-              borderRadius: "50%",
-              border: "1px solid #1f1f1f",
-              background: "rgba(15,15,15,0.8)",
-              backdropFilter: "blur(12px)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "none",
-              transition: "border-color 0.2s",
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#c8f241"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#1f1f1f"; }}
-          >
-            {menuOpen
-              ? <X size={18} color="#f0ede6" />
-              : <Menu size={18} color="#9a9a9a" />}
-          </button>
-        )}
+            background: "rgba(15,15,15,0.8)",
+            backdropFilter: "blur(12px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "none",
+            transition: "border-color 0.2s",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#c8f241")}
+          onMouseLeave={(e) => (e.currentTarget.style.borderColor = "#1f1f1f")}
+        >
+          {menuOpen ? (
+            <X size={18} color="#f0ede6" />
+          ) : (
+            <Menu size={18} color="#9a9a9a" />
+          )}
+        </button>
       </div>
- 
-      {/* MOBILE DRAWER */}
+
+      {/* MOBILE DRAWER (same as before, no changes needed) */}
       {isMobile && (
-        <div style={{ position: "fixed", inset: 0, zIndex: 90, pointerEvents: menuOpen ? "all" : "none" }}>
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 90,
+            pointerEvents: menuOpen ? "all" : "none",
+          }}
+        >
           <div
             onClick={() => setMenuOpen(false)}
             style={{
@@ -400,33 +418,50 @@ export function KineticHero() {
               transition: "opacity 0.3s ease",
             }}
           />
-          <div style={{
-            position: "absolute",
-            top: 0,
-            right: 0,
-            bottom: 0,
-            width: "72vw",
-            maxWidth: 300,
-            background: "#0d0d0d",
-            borderLeft: "1px solid #1f1f1f",
-            padding: "6vh 7vw",
-            display: "flex",
-            flexDirection: "column",
-            transform: menuOpen ? "translateX(0)" : "translateX(100%)",
-            transition: "transform 0.35s cubic-bezier(.23,1,.32,1)",
-          }}>
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              right: 0,
+              bottom: 0,
+              width: "72vw",
+              maxWidth: 300,
+              background: "#0d0d0d",
+              borderLeft: "1px solid #1f1f1f",
+              padding: "6vh 7vw",
+              display: "flex",
+              flexDirection: "column",
+              transform: menuOpen ? "translateX(0)" : "translateX(100%)",
+              transition: "transform 0.35s cubic-bezier(.23,1,.32,1)",
+            }}
+          >
             <button
               onClick={() => setMenuOpen(false)}
               aria-label="Close menu"
-              style={{ alignSelf: "flex-end", background: "none", border: "none", cursor: "none", marginBottom: 40 }}
+              style={{
+                alignSelf: "flex-end",
+                background: "none",
+                border: "none",
+                cursor: "none",
+                marginBottom: 40,
+              }}
             >
               <X size={18} color="#6b6b6b" />
             </button>
- 
-            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, letterSpacing: "0.15em", color: "#3a3a3a", textTransform: "uppercase", marginBottom: 24 }}>
+
+            <p
+              style={{
+                fontFamily: "'DM Mono', monospace",
+                fontSize: 10,
+                letterSpacing: "0.15em",
+                color: "#3a3a3a",
+                textTransform: "uppercase",
+                marginBottom: 24,
+              }}
+            >
               Navigate
             </p>
- 
+
             {navItems.map((item, i) => (
               <a
                 key={item}
@@ -447,14 +482,14 @@ export function KineticHero() {
                   transform: menuOpen ? "translateX(0)" : "translateX(20px)",
                   transition: `opacity 0.4s ease ${i * 0.06 + 0.15}s, transform 0.4s ease ${i * 0.06 + 0.15}s, color 0.2s`,
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = "#c8f241"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = "#f0ede6"; }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#c8f241")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#f0ede6")}
               >
                 {item}
                 <ArrowUpRight size={16} color="#3a3a3a" />
               </a>
             ))}
- 
+
             <div style={{ marginTop: "auto" }}>
               <a
                 href="mailto:kayikalvin@gmail.com"
@@ -476,24 +511,28 @@ export function KineticHero() {
           </div>
         </div>
       )}
- 
+
       {/* KINETIC NAME */}
-      <div style={{
-        display: "flex",
-        alignItems: "flex-end",
-        gap: isMobile ? "0.01em" : "0.02em",
-        marginBottom: "2vh",
-        perspective: 800,
-        position: "relative",
-        zIndex: 2,
-      }}>
+      <div
+        className="kinetic-name"
+        style={{
+          display: "flex",
+          alignItems: "flex-end",
+          gap: "0.02em",
+          marginBottom: "2vh",
+          perspective: 800,
+          position: "relative",
+          zIndex: 2,
+        }}
+      >
         {letters.map((letter, i) => (
           <span
             key={i}
             ref={(el) => (letterRefs.current[i] = el)}
+            className="kinetic-letter"
             style={{
               fontFamily: "'DM Serif Display', serif",
-              fontSize: isMobile ? "clamp(3.2rem,16vw,5rem)" : "clamp(5rem,14vw,14rem)",
+              fontSize: "clamp(5rem, 14vw, 14rem)",
               fontWeight: 400,
               lineHeight: 0.88,
               color: "#f0ede6",
@@ -509,66 +548,77 @@ export function KineticHero() {
             {letter}
           </span>
         ))}
-        <span style={{
-          fontFamily: "'DM Serif Display', serif",
-          fontStyle: "italic",
-          fontSize: isMobile ? "clamp(1.8rem,9vw,3rem)" : "clamp(3rem,8vw,8rem)",
-          fontWeight: 400,
-          lineHeight: 0.88,
-          color: "#c8f241",
-          marginLeft: "0.08em",
-          alignSelf: "flex-end",
-          marginBottom: "0.06em",
-          opacity: entered ? 1 : 0,
-          transform: entered ? "translateY(0)" : "translateY(40px)",
-          transition: "opacity 0.7s ease 0.6s, transform 0.7s cubic-bezier(.23,1,.32,1) 0.6s",
-        }}>
+        <span
+          className="last-name"
+          style={{
+            fontFamily: "'DM Serif Display', serif",
+            fontStyle: "italic",
+            fontSize: "clamp(3rem, 8vw, 8rem)",
+            fontWeight: 400,
+            lineHeight: 0.88,
+            color: "#c8f241",
+            marginLeft: "0.08em",
+            alignSelf: "flex-end",
+            marginBottom: "0.06em",
+            opacity: entered ? 1 : 0,
+            transform: entered ? "translateY(0)" : "translateY(40px)",
+            transition:
+              "opacity 0.7s ease 0.6s, transform 0.7s cubic-bezier(.23,1,.32,1) 0.6s",
+          }}
+        >
           Kayi
         </span>
       </div>
- 
+
       {/* TAGLINE + BUTTONS */}
-      <div style={{
-        display: "flex",
-        flexDirection: isMobile ? "column" : "row",
-        justifyContent: "space-between",
-        alignItems: isMobile ? "flex-start" : "flex-end",
-        gap: isMobile ? 28 : 24,
-        flexWrap: "wrap",
-        position: "relative",
-        zIndex: 2,
-      }}>
-        <p style={{
-          fontFamily: "'DM Sans', sans-serif",
-          fontSize: isMobile ? "clamp(0.9rem,4vw,1.05rem)" : "clamp(1rem,1.6vw,1.25rem)",
-          color: "#6b6b6b",
-          maxWidth: isMobile ? "100%" : 420,
-          lineHeight: 1.65,
-          margin: 0,
-          opacity: entered ? 1 : 0,
-          transform: entered ? "translateY(0)" : "translateY(20px)",
-          transition: "opacity 0.7s ease 0.8s, transform 0.7s ease 0.8s",
-        }}>
-          Full-Stack Developer & ML Engineer building
-          intelligent applications that merge data,
-          design, and human experience.
-        </p>
- 
-        <div style={{
+      <div
+        className="tagline-row"
+        style={{
           display: "flex",
-          gap: 12,
+          justifyContent: "space-between",
+          alignItems: "flex-end",
+          gap: 24,
           flexWrap: "wrap",
-          opacity: entered ? 1 : 0,
-          transform: entered ? "translateY(0)" : "translateY(20px)",
-          transition: "opacity 0.7s ease 1s, transform 0.7s ease 1s",
-        }}>
+          position: "relative",
+          zIndex: 2,
+        }}
+      >
+        <p
+          className="hero-description"
+          style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: "clamp(1rem, 1.6vw, 1.25rem)",
+            color: "#6b6b6b",
+            maxWidth: 420,
+            lineHeight: 1.65,
+            margin: 0,
+            opacity: entered ? 1 : 0,
+            transform: entered ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.7s ease 0.8s, transform 0.7s ease 0.8s",
+          }}
+        >
+          Full-Stack Developer & ML Engineer building intelligent applications
+          that merge data, design, and human experience.
+        </p>
+
+        <div
+          className="hero-buttons"
+          style={{
+            display: "flex",
+            gap: 12,
+            flexWrap: "wrap",
+            opacity: entered ? 1 : 0,
+            transform: entered ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.7s ease 1s, transform 0.7s ease 1s",
+          }}
+        >
           <MagneticBtn
             href="#projects"
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: isMobile ? 13 : 14,
+              fontSize: 14,
               fontWeight: 500,
-              padding: isMobile ? "12px 22px" : "14px 28px",
+              padding: "14px 28px",
               background: "#c8f241",
               color: "#0a0a0a",
               borderRadius: 40,
@@ -582,13 +632,13 @@ export function KineticHero() {
           >
             See my work <ArrowUpRight size={15} />
           </MagneticBtn>
- 
+
           <MagneticBtn
             href="mailto:kayikalvin@gmail.com"
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: isMobile ? 13 : 14,
-              padding: isMobile ? "12px 22px" : "14px 28px",
+              fontSize: 14,
+              padding: "14px 28px",
               background: "rgba(15,15,15,0.6)",
               backdropFilter: "blur(12px)",
               color: "#f0ede6",
@@ -601,47 +651,187 @@ export function KineticHero() {
               gap: 8,
               transition: "border-color 0.2s",
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#c8f241"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#2a2a2a"; }}
+            onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#c8f241")}
+            onMouseLeave={(e) => (e.currentTarget.style.borderColor = "#2a2a2a")}
           >
             Get in touch
           </MagneticBtn>
         </div>
       </div>
- 
-      {!isMobile && (
-        <div style={{
-          position: "absolute",
-          bottom: "5vh",
-          left: "50%",
-          transform: "translateX(-50%)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: 8,
-          opacity: 0.35,
-          animation: "floatDown 2s ease-in-out infinite",
-          zIndex: 2,
-        }}>
-          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, letterSpacing: "0.15em", color: "#6b6b6b" }}>
-            SCROLL
-          </span>
-          <ChevronDown size={14} color="#6b6b6b" />
-        </div>
-      )}
- 
+
+      {/* SCROLL INDICATOR (hidden on mobile via CSS) */}
+      <div className="scroll-indicator">
+        <span>SCROLL</span>
+        <ChevronDown size={14} color="#6b6b6b" />
+      </div>
+
       <style>{`
+        /* === RESPONSIVE CSS === */
+        .hero-section {
+          padding: 0 5vw 8vh;
+        }
+
+        /* Top bar */
+        .top-bar-label {
+          font-family: 'DM Mono', monospace;
+          font-size: 11px;
+          letter-spacing: 0.15em;
+          color: #6b6b6b;
+          text-transform: uppercase;
+        }
+
+        .desktop-nav {
+          display: flex;
+          gap: 0;
+          background: rgba(15,15,15,0.7);
+          backdrop-filter: blur(16px);
+          border: 1px solid #1f1f1f;
+          border-radius: 40px;
+          padding: 8px 10px;
+          box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        }
+
+        .mobile-menu-btn {
+          display: none;
+        }
+
+        /* Kinetic letters & last name */
+        .kinetic-letter {
+          font-size: clamp(5rem, 14vw, 14rem);
+        }
+        .last-name {
+          font-size: clamp(3rem, 8vw, 8rem);
+        }
+
+        /* Tagline row */
+        .tagline-row {
+          flex-direction: row;
+          align-items: flex-end;
+        }
+        .hero-description {
+          font-size: clamp(1rem, 1.6vw, 1.25rem);
+          max-width: 420px;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+          position: absolute;
+          bottom: 5vh;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 8px;
+          opacity: 0.35;
+          animation: floatDown 2s ease-in-out infinite;
+          z-index: 2;
+        }
+        .scroll-indicator span {
+          font-family: 'DM Mono', monospace;
+          font-size: 10px;
+          letter-spacing: 0.15em;
+          color: #6b6b6b;
+        }
+
         @keyframes floatDown {
-          0%,100% { transform: translateX(-50%) translateY(0); }
+          0%, 100% { transform: translateX(-50%) translateY(0); }
           50%      { transform: translateX(-50%) translateY(6px); }
         }
+
+        /* ===== TABLET BREAKPOINT (768px - 1024px) ===== */
+        @media (min-width: 768px) and (max-width: 1024px) {
+          .hero-section {
+            padding-bottom: 6vh;
+          }
+          .hero-portrait {
+            height: 78vh !important;
+            right: 1vw !important;
+            opacity: ${imgLoaded ? 0.2 : 0} !important;
+          }
+          .kinetic-letter {
+            font-size: clamp(4rem, 12vw, 9rem) !important;
+          }
+          .last-name {
+            font-size: clamp(2.6rem, 7vw, 6rem) !important;
+          }
+          .tagline-row {
+            gap: 32px;
+          }
+          .hero-description {
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
+            max-width: 360px;
+          }
+        }
+
+        /* ===== PHONE BREAKPOINT (max-width: 767px) ===== */
         @media (max-width: 767px) {
-          #home span[style*="willChange"] { transition: none !important; }
+          .hero-section {
+            padding: 0 6vw 10vh;
+          }
+          .top-bar {
+            top: 4vh;
+            left: 6vw;
+            right: 6vw;
+          }
+          .top-bar-label {
+            font-size: 10px;
+          }
+          .desktop-nav {
+            display: none !important;
+          }
+          .mobile-menu-btn {
+            display: flex;
+          }
+
+          .hero-portrait {
+            right: -5% !important;
+            height: 62vh !important;
+            opacity: ${imgLoaded ? 0.13 : 0} !important;
+          }
+          .hero-gradient {
+            background: linear-gradient(to bottom, #0a0a0a 0%, rgba(10,10,10,0.92) 40%, rgba(10,10,10,0.97) 100%) !important;
+          }
+
+          .kinetic-name {
+            gap: 0.01em;
+            margin-bottom: 2.5vh;
+          }
+          .kinetic-letter {
+            font-size: clamp(3.2rem, 16vw, 5rem) !important;
+            /* disable kinetic movement on mobile? you can keep or remove */
+          }
+          .last-name {
+            font-size: clamp(1.8rem, 9vw, 3rem) !important;
+          }
+
+          .tagline-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 28px;
+          }
+          .hero-description {
+            font-size: clamp(0.9rem, 4vw, 1.05rem);
+            max-width: 100%;
+          }
+
+          .scroll-indicator {
+            display: none;
+          }
+        }
+
+        /* Disable kinetic move on mobile if desired */
+        @media (max-width: 767px) {
+          .kinetic-letter {
+            will-change: auto !important;
+            transition: none !important;
+          }
         }
       `}</style>
     </section>
   );
 }
+
 
 
 /* ─────────────────────────────────────────────
@@ -1032,6 +1222,7 @@ function Footer() {
     <footer style={{ background: "#0a0a0a", position: "relative", zIndex: 2 }}>
       {/* PREMIUM SPLIT LAYOUT */}
       <div
+        className="footer-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
@@ -1072,7 +1263,7 @@ function Footer() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: 15,
+                fontSize: "clamp(14px, 1.2vw, 15px)",
                 lineHeight: 1.8,
                 color: "#6b6b6b",
                 maxWidth: "420px",
@@ -1105,7 +1296,7 @@ function Footer() {
           </div>
 
           {/* Bottom: Availability + Socials */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+          <div className="social-block" style={{ display: "flex", flexDirection: "column", gap: 24 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
               <div
                 style={{
@@ -1129,7 +1320,7 @@ function Footer() {
               </span>
             </div>
 
-            <div style={{ display: "flex", gap: 16 }}>
+            <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
               {[
                 { href: "https://github.com/kayikalvin", label: "GitHub" },
                 { href: "https://linkedin.com/in/kayikalvin", label: "LinkedIn" },
@@ -1168,7 +1359,14 @@ function Footer() {
         {/* RIGHT: GRID OF LINKS + METADATA */}
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           {/* Link Grid */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px 40px" }}>
+          <div
+            className="footer-links-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "60px 40px",
+            }}
+          >
             {/* Navigation */}
             <div>
               <p
@@ -1256,9 +1454,9 @@ function Footer() {
           </div>
 
           {/* Footer Meta */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div className="footer-meta" style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             <div style={{ height: 1, background: "#1a1a1a" }} />
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 8 }}>
               <p
                 style={{
                   fontFamily: "'DM Mono', monospace",
@@ -1290,6 +1488,28 @@ function Footer() {
         @keyframes footerPulse {
           0%, 100% { opacity: 1; }
           50% { opacity: 0.4; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+          .footer-grid {
+            grid-template-columns: 1fr !important;
+            gap: 60px !important;
+            padding: 80px 5vw 60px !important;
+          }
+          .footer-links-grid {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+          }
+          .social-block {
+            margin-top: 48px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .footer-grid {
+            padding: 60px 5vw 40px !important;
+          }
         }
       `}</style>
     </footer>
