@@ -39,6 +39,7 @@ import {
   Mail,
   ExternalLink,
   ChevronDown,
+  Menu,
 } from "lucide-react";
 import Projects from "../components/Projects";
 import { posts } from "../utils/utils";
