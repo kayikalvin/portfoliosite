@@ -32,7 +32,7 @@ export const projects = [
 
   ## Project Description
 
-  A full-stack real estate platform designed to connect 🏘️ clients, 🏠 landlords, and 🛠️ administrators through a comprehensive property management system. The platform streamlines the real estate process by providing property browsing, listing management, real-time communication, and integrated payment processing.
+  A full-stack real estate platform designed to connect  clients,  landlords, and  administrators through a comprehensive property management system. The platform streamlines the real estate process by providing property browsing, listing management, real-time communication, and integrated payment processing.
 
   ## Key Features
 
@@ -144,7 +144,7 @@ export const projects = [
   {
     title: "Xgene Labs - Molecular Diagnostics Website",
     description:
-      "🔬 Professional website for Xgene Labs, a clinical-grade molecular diagnostics company in Kenya. Showcases genetic testing services, diagnostic kits, medical equipment, and transparent prepaid testing programs with M-Pesa integration.",
+      " Professional website for Xgene Labs, a clinical-grade molecular diagnostics company in Kenya. Showcases genetic testing services, diagnostic kits, medical equipment, and transparent prepaid testing programs with M-Pesa integration.",
     tech: ["React", "Tailwind CSS", "Framer Motion", "Lucide Icons", "shadcn/ui", "JavaScript", "Vite", "Vercel"],
     gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/xgenelabs",
@@ -162,7 +162,7 @@ export const projects = [
       "Building trust through design for a healthcare brand",
     ],
     markdown: `
-# 🔬 Xgene Labs - Molecular Diagnostics Website
+#  Xgene Labs - Molecular Diagnostics Website
 
 ## Project Description
 
@@ -219,7 +219,7 @@ The website establishes Xgene Labs as a trusted molecular diagnostics provider i
   {
     title: "Siprosa Foundation - Educational Non-Profit Website",
     description:
-      "📚 Website for Siprosa Foundation, a non-profit transforming education in Kenya through 'Futures Green Schools' – focusing on early childhood education, environmental stewardship, and holistic child development.",
+      " Website for Siprosa Foundation, a non-profit transforming education in Kenya through 'Futures Green Schools' – focusing on early childhood education, environmental stewardship, and holistic child development.",
     tech: ["React", "Tailwind CSS", "Framer Motion", "Lucide Icons", "shadcn/ui", "JavaScript", "Vite", "Vercel"],
     gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/siprosa-foundation",
@@ -237,7 +237,7 @@ The website establishes Xgene Labs as a trusted molecular diagnostics provider i
       "Ensuring accessibility for users with varying internet speeds",
     ],
     markdown: `
-# 📚 Siprosa Foundation - Educational Non-Profit Website
+#  Siprosa Foundation - Educational Non-Profit Website
 
 ## Project Description
 
@@ -292,7 +292,7 @@ The website amplifies Siprosa Foundation’s reach, helping them secure resource
   {
     title: "Somanasi - Tech Training & Solutions Company",
     description:
-      "💻 Corporate website for Somanasi, a Kenyan tech training and solutions provider offering courses in AI, software development, data analytics, and cybersecurity, plus custom AI agents and chatbots.",
+      " Corporate website for Somanasi, a Kenyan tech training and solutions provider offering courses in AI, software development, data analytics, and cybersecurity, plus custom AI agents and chatbots.",
     tech: ["React", "Tailwind CSS", "Framer Motion", "Lucide Icons", "shadcn/ui", "JavaScript", "Vite", "Vercel"],
     gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/somanasi",
@@ -310,7 +310,7 @@ The website amplifies Siprosa Foundation’s reach, helping them secure resource
       "Creating a scalable component structure for future course expansion",
     ],
     markdown: `
-# 💻 Somanasi - Tech Training & Solutions Company
+#  Somanasi - Tech Training & Solutions Company
 
 ## Project Description
 
@@ -366,7 +366,7 @@ The website positions Somanasi as a leader in practical tech education in Kenya,
   {
     title: "DigiMagicTech - Computer Programming Educator",
     description:
-      "🎓 Educational website for DigiMagicTech, teaching computer programming and digital skills to primary and secondary school students and teachers in Kenya. Structured courses with age-appropriate content.",
+      " Educational website for DigiMagicTech, teaching computer programming and digital skills to primary and secondary school students and teachers in Kenya. Structured courses with age-appropriate content.",
     tech: ["React", "Tailwind CSS", "Framer Motion", "Lucide Icons", "shadcn/ui", "JavaScript", "Vite", "Vercel"],
     gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/digimagictech",
@@ -384,7 +384,7 @@ The website positions Somanasi as a leader in practical tech education in Kenya,
       "Ensuring fast load times for schools with limited bandwidth",
     ],
     markdown: `
-# 🎓 DigiMagicTech - Computer Programming Educator
+#  DigiMagicTech - Computer Programming Educator
 
 ## Project Description
 
@@ -441,7 +441,7 @@ The website increases enrollment in DigiMagicTech’s programs, helps secure par
   {
     title: "Gym Sable One - Fitness Landing Page",
     description:
-      "💪 A sleek and modern fitness website showcasing gym programs, membership plans, and services with a responsive React-based interface and smooth animations.",
+      " A sleek and modern fitness website showcasing gym programs, membership plans, and services with a responsive React-based interface and smooth animations.",
     tech: ["React", "Tailwind CSS", "Framer Motion", "Lucide Icons", "Vite", "Vercel"],
     gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/gym",
@@ -459,7 +459,7 @@ The website increases enrollment in DigiMagicTech’s programs, helps secure par
       "Optimising images for fast loading on mobile devices",
     ],
     markdown: `
-# 💪 Gym Sable One - Fitness Landing Page
+#  Gym Sable One - Fitness Landing Page
 
 ## Project Description
 
@@ -516,7 +516,7 @@ This web application enhances the digital presence of fitness businesses, improv
   {
     title: "The Eleventh Hour - Coffee Shop Demo Site (UK)",
     description:
-      "☕ Demo website for a UK-based coffee shop. Showcases menu items, shop ambiance, location, and contact details with a warm, inviting design – built as a modern frontend prototype.",
+      " Demo website for a UK-based coffee shop. Showcases menu items, shop ambiance, location, and contact details with a warm, inviting design – built as a modern frontend prototype.",
     tech: ["React", "Tailwind CSS", "Framer Motion", "Lucide Icons", "Vite", "Vercel"],
     gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/eleventh-hour",
@@ -534,7 +534,7 @@ This web application enhances the digital presence of fitness businesses, improv
       "Ensuring the gallery loads quickly while maintaining image quality",
     ],
     markdown: `
-# ☕ The Eleventh Hour - Coffee Shop Demo Site (UK)
+#  The Eleventh Hour - Coffee Shop Demo Site (UK)
 
 ## Project Description
 
@@ -593,7 +593,7 @@ Provides an appealing digital storefront for a coffee shop, helping increase foo
   {
     title: "Matakiri Client Portal - Community Organisation Website",
     description:
-      "🌍 Client-facing website for Matakiri, a community organisation. Showcases mission, community projects, impact stories, and ways to get involved (donate, volunteer, partner). Fully responsive and accessible.",
+      " Client-facing website for Matakiri, a community organisation. Showcases mission, community projects, impact stories, and ways to get involved (donate, volunteer, partner). Fully responsive and accessible.",
     tech: ["React", "Tailwind CSS", "Framer Motion", "Lucide Icons", "React Router DOM", "Vite", "Vercel"],
     gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/matakiri-client",
@@ -611,7 +611,7 @@ Provides an appealing digital storefront for a coffee shop, helping increase foo
       "Building a trust‑worthy design for a non‑profit audience",
     ],
     markdown: `
-# 🌍 Matakiri Client Portal - Community Organisation Website
+#  Matakiri Client Portal - Community Organisation Website
 
 ## Project Description
 
@@ -671,7 +671,7 @@ Increases visibility of the organisation's work, streamlines volunteer/donor sig
   {
     title: "Matakiri Admin Dashboard - Content Management System",
     description:
-      "🛠️ Secure admin dashboard for Matakiri community organisation. Manage website content (projects, success stories, team bios) and view contact form submissions. Empowers non-technical staff to update the site.",
+      " Secure admin dashboard for Matakiri community organisation. Manage website content (projects, success stories, team bios) and view contact form submissions. Empowers non-technical staff to update the site.",
     tech: ["React", "Tailwind CSS", "Framer Motion", "Lucide Icons", "Chart.js / Recharts", "React Router DOM", "Vite", "Vercel"],
     gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/matakiri-admin",
@@ -690,7 +690,7 @@ Increases visibility of the organisation's work, streamlines volunteer/donor sig
       "Designing analytics widgets that are simple yet insightful",
     ],
     markdown: `
-# 🛠️ Matakiri Admin Dashboard - Content Management System
+#  Matakiri Admin Dashboard - Content Management System
 
 ## Project Description
 
@@ -754,7 +754,7 @@ Reduces turnaround time for website updates from days to minutes, empowers staff
   {
     title: "Dantra Limited - FMCG Distributor Website",
     description:
-      "🌍 Professional web platform for Dantra Limited, a leading FMCG distributor in Kenya. Showcases services, product categories, and brand partnerships with a sleek, mobile-first React interface.",
+      " Professional web platform for Dantra Limited, a leading FMCG distributor in Kenya. Showcases services, product categories, and brand partnerships with a sleek, mobile-first React interface.",
     tech: ["React", "Tailwind CSS", "Framer Motion", "Lucide Icons", "shadcn/ui", "JavaScript", "Vite", "Vercel"],
     gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
     code: "https://github.com/kayikalvin/dantra-limited",
@@ -773,7 +773,7 @@ Reduces turnaround time for website updates from days to minutes, empowers staff
       "Ensuring mobile‑first responsiveness for Kenya’s market",
     ],
     markdown: `
-# 🌍 Dantra Limited - FMCG Distributor Website
+#  Dantra Limited - FMCG Distributor Website
 
 ## Project Description
 
