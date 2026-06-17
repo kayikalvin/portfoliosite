@@ -17,7 +17,7 @@
 import { Link } from "react-router-dom";
 import { ExternalLink, Github, BookOpen, ArrowUpRight, Plus } from "lucide-react";
 import { projects as staticProjects } from "../utils/utils";
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const PAGE_SIZE = 6;
 
@@ -26,7 +26,7 @@ const PAGE_SIZE = 6;
 ───────────────────────────────────────────── */
 function ProjectSkeleton() {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
       {/* Hero skeleton */}
       <div style={{
         border: "1px solid #1a1a1a", borderRadius: 20, background: "#0d0d0d",
@@ -38,7 +38,7 @@ function ProjectSkeleton() {
         <div style={{ height: 14, width: "60%", borderRadius: 4, background: "#1a1a1a" }} />
       </div>
       {/* Grid skeleton */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 3, marginTop: 3 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, marginTop: 0 }}>
         {[0, 1, 2, 3].map(i => (
           <div key={i} style={{
             border: "1px solid #1a1a1a", borderRadius: 16, background: "#0d0d0d",
@@ -97,7 +97,7 @@ function RadarRing() {
           inset: 0,
           borderRadius: "50%",
           border: "1px solid rgba(200,242,65,0.08)",
-          transform: `scale(${0.5 + i * 0.25})`,
+          "--s": 0.5 + i * 0.25,
           animation: `radarPulse 3s ease-out ${i * 1}s infinite`,
         }} />
       ))}
@@ -122,6 +122,7 @@ function FeaturedCard({ project, visible }) {
 
   return (
     <div
+      id="featured-project-card"
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
@@ -650,7 +651,32 @@ const Projects = () => {
   const remaining = projects.length - count;
 
   return (
-    <div ref={gridRef}>
+    <div ref={gridRef} style={{ position: "relative" }}>
+      {/* Ambient background glow — sits behind everything, low opacity */}
+      <div aria-hidden="true" style={{
+        position: "absolute",
+        top: "-8%",
+        left: "-6%",
+        width: "55%",
+        height: "65%",
+        background: "radial-gradient(circle, rgba(200,242,65,0.07), transparent 70%)",
+        filter: "blur(40px)",
+        pointerEvents: "none",
+        zIndex: 0,
+      }} />
+      <div aria-hidden="true" style={{
+        position: "absolute",
+        bottom: "0%",
+        right: "-4%",
+        width: "45%",
+        height: "55%",
+        background: "radial-gradient(circle, rgba(200,242,65,0.045), transparent 70%)",
+        filter: "blur(50px)",
+        pointerEvents: "none",
+        zIndex: 0,
+      }} />
+
+      <div style={{ position: "relative", zIndex: 1 }}>
       {loading ? (
         <ProjectSkeleton />
       ) : projects.length === 0 ? (
@@ -664,12 +690,15 @@ const Projects = () => {
 
           {/* Rest: asymmetric 2-col grid */}
           {rest.length > 0 && (
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: 3,
-              marginTop: 3,
-            }}>
+            <div
+              id="projects-grid"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2, 1fr)",
+                gap: 24,
+                marginTop: 28,
+              }}
+            >
               {rest.map((project, i) => (
                 <ProjectCard
                   key={project.id || project.title || i}
@@ -690,6 +719,7 @@ const Projects = () => {
           )}
         </>
       )}
+      </div>
 
       <style>{`
         @keyframes skshimmer {
@@ -703,6 +733,24 @@ const Projects = () => {
         a, button { cursor: none !important; }
         @media (max-width: 680px) {
           #projects-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 900px) and (min-width: 681px) {
+          #projects-grid { gap: 16px !important; }
+        }
+        @media (max-width: 760px) {
+          #featured-project-card {
+            grid-template-columns: 1fr !important;
+          }
+          #featured-project-card > div:last-child {
+            border-left: none !important;
+            border-top: 1px solid #111 !important;
+            padding-left: 0 !important;
+            padding-top: 24px !important;
+            flex-direction: row !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            width: 100% !important;
+          }
         }
         @media (prefers-reduced-motion: reduce) {
           * { animation: none !important; transition: none !important; }
