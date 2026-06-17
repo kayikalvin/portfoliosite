@@ -24,13 +24,7 @@
  * large typographic anchors with small supporting elements.
  */
 
-import {
-  useEffect,
-  useRef,
-  useState,
-  useCallback,
-  useMemo,
-} from "react";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
@@ -78,10 +72,7 @@ function CustomCursor() {
       pos.current = { x: e.clientX, y: e.clientY };
     };
     const over = (e) => {
-      if (
-        e.target.closest("a, button, [data-cursor-expand]")
-      )
-        setHovered(true);
+      if (e.target.closest("a, button, [data-cursor-expand]")) setHovered(true);
     };
     const out = () => setHovered(false);
 
@@ -151,28 +142,50 @@ function CustomCursor() {
 /* ─────────────────────────────────────────────
    MAGNETIC BUTTON
 ───────────────────────────────────────────── */
-function MagneticBtn({ children, href, target, onClick, style, onMouseEnter, onMouseLeave }) {
+function MagneticBtn({
+  children,
+  href,
+  target,
+  onClick,
+  style,
+  onMouseEnter,
+  onMouseLeave,
+}) {
   const ref = useRef(null);
   const onMove = useCallback((e) => {
-    const el = ref.current; if (!el) return;
+    const el = ref.current;
+    if (!el) return;
     const r = el.getBoundingClientRect();
     el.style.transform = `translate(${(e.clientX - (r.left + r.width / 2)) * 0.25}px,${(e.clientY - (r.top + r.height / 2)) * 0.25}px)`;
   }, []);
-  const onLeave = useCallback((e) => {
-    if (ref.current) ref.current.style.transform = "translate(0,0)";
-    onMouseLeave?.(e);
-  }, [onMouseLeave]);
+  const onLeave = useCallback(
+    (e) => {
+      if (ref.current) ref.current.style.transform = "translate(0,0)";
+      onMouseLeave?.(e);
+    },
+    [onMouseLeave],
+  );
   const Tag = href ? "a" : "button";
   return (
-    <Tag ref={ref} href={href} target={target}
+    <Tag
+      ref={ref}
+      href={href}
+      target={target}
       rel={target === "_blank" ? "noopener noreferrer" : undefined}
-      onClick={onClick} style={{ display: "inline-flex", transition: "transform 0.3s cubic-bezier(.23,1,.32,1)", ...style }}
-      onMouseMove={onMove} onMouseLeave={onLeave} onMouseEnter={onMouseEnter}>
+      onClick={onClick}
+      style={{
+        display: "inline-flex",
+        transition: "transform 0.3s cubic-bezier(.23,1,.32,1)",
+        ...style,
+      }}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      onMouseEnter={onMouseEnter}
+    >
       {children}
     </Tag>
   );
 }
-
 
 /* ─────────────────────────────────────────────
    NOISE TEXTURE OVERLAY
@@ -222,7 +235,10 @@ export function KineticHero() {
   useEffect(() => {
     if (isMobile) return;
     const onMove = (e) => {
-      mouseRef.current = { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight };
+      mouseRef.current = {
+        x: e.clientX / window.innerWidth,
+        y: e.clientY / window.innerHeight,
+      };
     };
     window.addEventListener("mousemove", onMove);
     const loop = () => {
@@ -247,7 +263,7 @@ export function KineticHero() {
     if (!isMobile) setMenuOpen(false);
   }, [isMobile]);
 
-  const navItems = ["Projects", "About", "Contact","Skills","Blog"];
+  const navItems = ["Projects", "About", "Contact", "Skills", "Blog"];
 
   return (
     <section
@@ -265,7 +281,14 @@ export function KineticHero() {
       }}
     >
       {/* BACKGROUND */}
-      <div style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none" }}>
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          pointerEvents: "none",
+        }}
+      >
         <img
           src="/1735390396166-removebg.png"
           alt=""
@@ -369,7 +392,7 @@ export function KineticHero() {
         </nav>
 
         {/* Mobile menu button */}
-        <button
+        {/* <button
           className="mobile-menu-btn"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -394,8 +417,40 @@ export function KineticHero() {
           ) : (
             <Menu size={18} color="#9a9a9a" />
           )}
-        </button>
+        </button> */}
       </div>
+      {/* FIXED MOBILE MENU BUTTON – always visible */}
+      {isMobile && (
+        <button
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          style={{
+            position: "fixed",
+            top: "4vh",
+            right: "6vw",
+            width: 44,
+            height: 44,
+            borderRadius: "50%",
+            border: "1px solid #1f1f1f",
+            background: "rgba(15,15,15,0.8)",
+            backdropFilter: "blur(12px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "none",
+            zIndex: 120,
+            transition: "border-color 0.2s",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#c8f241")}
+          onMouseLeave={(e) => (e.currentTarget.style.borderColor = "#1f1f1f")}
+        >
+          {menuOpen ? (
+            <X size={18} color="#f0ede6" />
+          ) : (
+            <Menu size={18} color="#9a9a9a" />
+          )}
+        </button>
+      )}
 
       {/* MOBILE DRAWER (same as before, no changes needed) */}
       {isMobile && (
@@ -651,8 +706,12 @@ export function KineticHero() {
               gap: 8,
               transition: "border-color 0.2s",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#c8f241")}
-            onMouseLeave={(e) => (e.currentTarget.style.borderColor = "#2a2a2a")}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.borderColor = "#c8f241")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.borderColor = "#2a2a2a")
+            }
           >
             Get in touch
           </MagneticBtn>
@@ -691,9 +750,7 @@ export function KineticHero() {
           box-shadow: 0 8px 30px rgba(0,0,0,0.4);
         }
 
-        .mobile-menu-btn {
-          display: none;
-        }
+        
 
         /* Kinetic letters & last name */
         .kinetic-letter {
@@ -832,8 +889,6 @@ export function KineticHero() {
   );
 }
 
-
-
 /* ─────────────────────────────────────────────
    HORIZONTAL MARQUEE
 ───────────────────────────────────────────── */
@@ -869,7 +924,15 @@ function Marquee({ items }) {
             }}
           >
             {item}
-            <span style={{ color: "#c8f241", margin: "0 24px", fontStyle: "normal" }}>·</span>
+            <span
+              style={{
+                color: "#c8f241",
+                margin: "0 24px",
+                fontStyle: "normal",
+              }}
+            >
+              ·
+            </span>
           </span>
         ))}
       </div>
@@ -877,8 +940,6 @@ function Marquee({ items }) {
     </div>
   );
 }
-
-
 
 /* ─────────────────────────────────────────────
    PROJECTS SECTION
@@ -890,7 +951,7 @@ function ProjectsSection() {
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([e]) => e.isIntersecting && setVis(true),
-      { threshold: 0.05 }
+      { threshold: 0.05 },
     );
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
@@ -942,7 +1003,9 @@ function ProjectsSection() {
           >
             Products I've
             <br />
-            <span style={{ fontStyle: "italic", color: "#c8f241" }}>shipped</span>
+            <span style={{ fontStyle: "italic", color: "#c8f241" }}>
+              shipped
+            </span>
           </h2>
         </div>
       </div>
@@ -961,7 +1024,7 @@ function Blog() {
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([e]) => e.isIntersecting && setVis(true),
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
@@ -1001,9 +1064,7 @@ function Blog() {
         }}
       >
         Insights &{" "}
-        <span style={{ fontStyle: "italic", color: "#c8f241" }}>
-          Articles
-        </span>
+        <span style={{ fontStyle: "italic", color: "#c8f241" }}>Articles</span>
       </h2>
 
       <div
@@ -1082,7 +1143,7 @@ function Contact() {
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([e]) => e.isIntersecting && setVis(true),
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
@@ -1130,9 +1191,7 @@ function Contact() {
       >
         Have a project
         <br />
-        <span style={{ fontStyle: "italic", color: "#c8f241" }}>
-          in mind?
-        </span>
+        <span style={{ fontStyle: "italic", color: "#c8f241" }}>in mind?</span>
       </h2>
 
       <div
@@ -1185,8 +1244,12 @@ function Contact() {
             cursor: "pointer",
             transition: "border-color 0.2s",
           }}
-          onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#c8f241"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#2a2a2a"; }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = "#c8f241";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = "#2a2a2a";
+          }}
         >
           Download CV <ExternalLink size={14} />
         </MagneticBtn>
@@ -1215,8 +1278,6 @@ function Contact() {
    FOOTER — Awwwards-tier redesign
 ───────────────────────────────────────────── */
 
-
-
 function Footer() {
   return (
     <footer style={{ background: "#0a0a0a", position: "relative", zIndex: 2 }}>
@@ -1243,7 +1304,13 @@ function Footer() {
         }}
       >
         {/* LEFT: BRAND + STATEMENT */}
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
           <div>
             <h2
               style={{
@@ -1257,7 +1324,9 @@ function Footer() {
             >
               Let's create
               <br />
-              <em style={{ fontStyle: "italic", color: "#c8f241" }}>something remarkable</em>
+              <em style={{ fontStyle: "italic", color: "#c8f241" }}>
+                something remarkable
+              </em>
             </h2>
 
             <p
@@ -1270,7 +1339,8 @@ function Footer() {
                 margin: "0 0 48px",
               }}
             >
-              I build digital experiences with precision and intention. Let's talk about your next project.
+              I build digital experiences with precision and intention. Let's
+              talk about your next project.
             </p>
 
             <MagneticBtn
@@ -1296,7 +1366,10 @@ function Footer() {
           </div>
 
           {/* Bottom: Availability + Socials */}
-          <div className="social-block" style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+          <div
+            className="social-block"
+            style={{ display: "flex", flexDirection: "column", gap: 24 }}
+          >
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
               <div
                 style={{
@@ -1323,14 +1396,19 @@ function Footer() {
             <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
               {[
                 { href: "https://github.com/kayikalvin", label: "GitHub" },
-                { href: "https://linkedin.com/in/kayikalvin", label: "LinkedIn" },
+                {
+                  href: "https://linkedin.com/in/kayikalvin",
+                  label: "LinkedIn",
+                },
                 { href: "mailto:kayikalvin@gmail.com", label: "Email" },
               ].map(({ href, label }) => (
                 <a
                   key={label}
                   href={href}
                   target={href.startsWith("http") ? "_blank" : undefined}
-                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  rel={
+                    href.startsWith("http") ? "noopener noreferrer" : undefined
+                  }
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
                     fontSize: 13,
@@ -1357,7 +1435,13 @@ function Footer() {
         </div>
 
         {/* RIGHT: GRID OF LINKS + METADATA */}
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
           {/* Link Grid */}
           <div
             className="footer-links-grid"
@@ -1381,7 +1465,16 @@ function Footer() {
               >
                 Navigate
               </p>
-              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 14 }}>
+              <ul
+                style={{
+                  listStyle: "none",
+                  margin: 0,
+                  padding: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 14,
+                }}
+              >
                 {[
                   { label: "Work", href: "#projects" },
                   { label: "About", href: "#about" },
@@ -1399,8 +1492,12 @@ function Footer() {
                         textDecoration: "none",
                         transition: "color 0.2s ease",
                       }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "#f0ede6")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "#6b6b6b")}
+                      onMouseEnter={(e) =>
+                        (e.currentTarget.style.color = "#f0ede6")
+                      }
+                      onMouseLeave={(e) =>
+                        (e.currentTarget.style.color = "#6b6b6b")
+                      }
                     >
                       {label}
                     </a>
@@ -1423,12 +1520,36 @@ function Footer() {
               >
                 Resources
               </p>
-              <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 14 }}>
+              <ul
+                style={{
+                  listStyle: "none",
+                  margin: 0,
+                  padding: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 14,
+                }}
+              >
                 {[
-                  { label: "Download CV", href: "/Alvin Kayi CV.pdf", external: true },
-                  { label: "GitHub", href: "https://github.com/kayikalvin", external: true },
-                  { label: "LinkedIn", href: "https://linkedin.com/in/kayikalvin", external: true },
-                  { label: "Get in touch", href: "mailto:kayikalvin@gmail.com" },
+                  {
+                    label: "Download CV",
+                    href: "/Alvin Kayi CV.pdf",
+                    external: true,
+                  },
+                  {
+                    label: "GitHub",
+                    href: "https://github.com/kayikalvin",
+                    external: true,
+                  },
+                  {
+                    label: "LinkedIn",
+                    href: "https://linkedin.com/in/kayikalvin",
+                    external: true,
+                  },
+                  {
+                    label: "Get in touch",
+                    href: "mailto:kayikalvin@gmail.com",
+                  },
                 ].map(({ label, href, external }) => (
                   <li key={label}>
                     <a
@@ -1442,8 +1563,12 @@ function Footer() {
                         textDecoration: "none",
                         transition: "color 0.2s ease",
                       }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "#f0ede6")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "#6b6b6b")}
+                      onMouseEnter={(e) =>
+                        (e.currentTarget.style.color = "#f0ede6")
+                      }
+                      onMouseLeave={(e) =>
+                        (e.currentTarget.style.color = "#6b6b6b")
+                      }
                     >
                       {label}
                     </a>
@@ -1454,9 +1579,20 @@ function Footer() {
           </div>
 
           {/* Footer Meta */}
-          <div className="footer-meta" style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div
+            className="footer-meta"
+            style={{ display: "flex", flexDirection: "column", gap: 16 }}
+          >
             <div style={{ height: 1, background: "#1a1a1a" }} />
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 8 }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+                flexWrap: "wrap",
+                gap: 8,
+              }}
+            >
               <p
                 style={{
                   fontFamily: "'DM Mono', monospace",
@@ -1520,57 +1656,215 @@ function Footer() {
 ───────────────────────────────────────────── */
 function FloatingNav() {
   const [active, setActive] = useState("home");
+  const [isMobile, setIsMobile] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [btnHover, setBtnHover] = useState(false);
+
   const sections = useMemo(
     () => ["home", "about", "skills", "projects", "blog", "contact"],
-    []
+    [],
   );
 
+  // Detect mobile screens
   useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  // IntersectionObserver for active section tracking
+  useEffect(() => {
+    if (!isMobile) return;
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) setActive(e.target.id);
         });
       },
-      { threshold: 0.15 }  // ← was 0.4, About is too tall to ever hit 40%
+      { threshold: 0.15 },
     );
     sections.forEach((id) => {
       const el = document.getElementById(id);
       if (el) obs.observe(el);
     });
     return () => obs.disconnect();
-  }, [sections]);
+  }, [sections, isMobile]);
 
-  
+  // Close panel on outside click
+  useEffect(() => {
+    if (!expanded) return;
+    const handler = (e) => {
+      const panel = document.getElementById("nav-panel");
+      if (panel && !panel.contains(e.target)) {
+        setExpanded(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [expanded]);
+
+  // Don't render on desktop / tablet
+  if (!isMobile) return null;
+
+  const activeLabel = active.charAt(0).toUpperCase() + active.slice(1);
 
   return (
     <div
-      style={{
-        position: "fixed",
-        right: 28,
-        top: "50%",
-        transform: "translateY(-50%)",
-        display: "flex",
-        flexDirection: "column",
-        gap: 12,
-        zIndex: 100,
-      }}
+      id="nav-panel"
+      style={{ position: "fixed", right: 28, bottom: 28, zIndex: 150 }}
     >
-      {sections.map((id) => (
-        <a
-          key={id}
-          href={`#${id}`}
-          title={id.charAt(0).toUpperCase() + id.slice(1)}
+      {/* ── Expanded panel ── */}
+      {expanded && (
+        <div
           style={{
-            width: active === id ? 24 : 6,
-            height: 6,
-            borderRadius: 4,
-            background: active === id ? "#c8f241" : "#2a2a2a",
-            display: "block",
-            transition: "width 0.3s ease, background 0.3s ease",
+            position: "absolute",
+            bottom: "calc(100% + 16px)",
+            right: 0,
+            width: 260,
+            background: "#0a0a0a",
+            border: "1px solid #1f1f1f",
+            borderRadius: 20,
+            overflow: "hidden",
+            animation: "panelIn 0.28s cubic-bezier(.23,1,.32,1) both",
+            boxShadow: "0 32px 64px rgba(0,0,0,0.6)",
           }}
-        />
-      ))}
+        >
+          {/* Header */}
+          <div
+            style={{
+              padding: "16px 18px",
+              borderBottom: "1px solid #1a1a1a",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "'DM Serif Display', serif",
+                fontSize: "1.1rem",
+                fontWeight: 400,
+                color: "#f0ede6",
+              }}
+            >
+              Jump to
+            </span>
+            <button
+              onClick={() => setExpanded(false)}
+              aria-label="Close navigation"
+              style={{
+                width: 28,
+                height: 28,
+                borderRadius: "50%",
+                border: "1px solid #1f1f1f",
+                background: "none",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "none",
+                transition: "border-color 0.2s",
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.borderColor = "#6b6b6b")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.borderColor = "#1f1f1f")
+              }
+            >
+              <X size={12} color="#6b6b6b" />
+            </button>
+          </div>
+
+          {/* Section list */}
+          <ul style={{ listStyle: "none", margin: 0, padding: "12px" }}>
+            {sections.map((id) => {
+              const isActive = active === id;
+              return (
+                <li key={id}>
+                  <a
+                    href={`#${id}`}
+                    onClick={() => setExpanded(false)}
+                    style={{
+                      display: "block",
+                      padding: "12px 16px",
+                      borderRadius: 10,
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: 14,
+                      color: isActive ? "#c8f241" : "#6b6b6b",
+                      textDecoration: "none",
+                      background: isActive
+                        ? "rgba(200,242,65,0.06)"
+                        : "transparent",
+                      border: isActive
+                        ? "1px solid rgba(200,242,65,0.2)"
+                        : "1px solid transparent",
+                      transition:
+                        "background 0.15s, border-color 0.15s, color 0.15s",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive) e.currentTarget.style.color = "#f0ede6";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive) e.currentTarget.style.color = "#6b6b6b";
+                    }}
+                  >
+                    {id.charAt(0).toUpperCase() + id.slice(1)}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+
+      {/* ── Main Floating Button ── */}
+      <div style={{ position: "relative" }}>
+        <button
+          onClick={() => setExpanded(!expanded)}
+          aria-label="Open section navigation"
+          onMouseEnter={() => setBtnHover(true)}
+          onMouseLeave={() => setBtnHover(false)}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 10,
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: 13,
+            fontWeight: 500,
+            padding: "13px 22px",
+            borderRadius: 40,
+            border: `1.5px solid ${btnHover ? "#c8f241" : "#1f1f1f"}`,
+            background: btnHover ? "rgba(200,242,65,0.06)" : "#0d0d0d",
+            color: btnHover ? "#c8f241" : "#6b6b6b",
+            cursor: "none",
+            transition:
+              "color 0.2s, border-color 0.2s, background 0.2s, transform 0.3s cubic-bezier(.23,1,.32,1)",
+            transform: btnHover ? "translateY(-2px)" : "translateY(0)",
+            animation: "fabFloat 3.5s ease-in-out infinite",
+            boxShadow: btnHover
+              ? "0 8px 32px rgba(200,242,65,0.08)"
+              : "0 4px 24px rgba(0,0,0,0.4)",
+          }}
+        >
+          <Menu size={14} color={btnHover ? "#c8f241" : "#6b6b6b"} />
+          <span>{activeLabel}</span>
+        </button>
+      </div>
+
+      <style>{`
+        @keyframes fabFloat {
+          0%, 100% { transform: translateY(0); }
+          50%       { transform: translateY(-4px); }
+        }
+        @keyframes panelIn {
+          from { opacity: 0; transform: translateY(8px) scale(0.97); }
+          to   { opacity: 1; transform: translateY(0)  scale(1);    }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+        }
+      `}</style>
     </div>
   );
 }
@@ -1639,30 +1933,6 @@ export default function Home() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import {
 //   Code,
@@ -2157,7 +2427,7 @@ export default function Home() {
 //                 <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
 //                   Kalvin
 //                 </span>{" "}
-                
+
 //               </h1>
 
 //               <p className="hero-subtitle text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed">
@@ -2393,12 +2663,12 @@ export default function Home() {
 //                   <div className="space-y-3">
 //                     {[
 //                       {
-                        
+
 //                         title: "Machine Learning",
 //                         items: ["Deep Learning", "NLP", "Predictive Analytics"],
 //                       },
 //                       {
-                        
+
 //                         title: "Full-Stack Dev",
 //                         items: [
 //                           "React/Next.js",
@@ -2407,7 +2677,7 @@ export default function Home() {
 //                         ],
 //                       },
 //                       {
-                        
+
 //                         title: "Data Engineering",
 //                         items: [
 //                           "ETL Pipelines",
