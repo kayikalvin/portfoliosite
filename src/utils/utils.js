@@ -3,145 +3,6 @@ import { Code, Database, Brain, BarChart3, Cpu } from "lucide-react";
 // projects
 export const projects = [
   {
-    title: "Kenyan Real Estate Website",
-    description:
-      "Full-stack real estate platform connecting clients, landlords, and administrators through property listings, real-time messaging, and payment processing. Features role-based dashboards, Google Maps integration, M-Pesa payments, and comprehensive property management with secure JWT authentication.",
-    tech: ["React", "Machine Learning", "Tailwind CSS", "Lucide Icons", "JavaScript"],
-    gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
-    code: "https://github.com/kayikalvin/real-estate",
-    url: "https://real-estate-psi-weld.vercel.app/",
-    features: [
-      "Property Management – Complete CRUD operations for listings",
-      "Real-time chat between clients and landlords (Socket.IO)",
-      "Google Maps integration for property location",
-      "M-Pesa payment processing for landlord subscriptions",
-      "Role-based dashboards (Client, Landlord, Admin)",
-      "Media uploads (images/videos) via Cloudinary",
-      "Review and rating system for properties",
-    ],
-    challenges: [
-      "Implementing real-time messaging with Socket.IO while maintaining message persistence in MongoDB",
-      "Integrating M-Pesa API for secure mobile payments in Kenya",
-      "Building a responsive, role-based UI that works across devices",
-      "Securing JWT authentication and route protection",
-      "Managing file uploads and cloud storage efficiently",
-    ],
-    markdown: `
-
-  # Real Estate Web Application
-
-  ## Project Description
-
-  A full-stack real estate platform designed to connect  clients,  landlords, and  administrators through a comprehensive property management system. The platform streamlines the real estate process by providing property browsing, listing management, real-time communication, and integrated payment processing.
-
-  ## Key Features
-
-  ### Core Functionality
-  - Property Management: Complete CRUD operations for property listings
-  - Real-time Communication: Socket.IO-powered chat between clients and landlords
-  - Location Integration: Google Maps API for property location visualization
-  - Payment Processing: M-Pesa API integration for landlord subscription payments
-  - Role-based Access: Three distinct user roles with specific permissions
-
-  ### User Experience
-  - Public Website: Browse properties with advanced search and filtering
-  - Responsive Design: Mobile-friendly interface across all devices
-  - Role-based Dashboards: Secure dashboards for landlords and administrators
-  - Media Management: Image and video uploads for property listings
-  - Review System: Client reviews and ratings for properties
-
-  ### Technical Capabilities
-  - JWT Authentication: Secure token-based authentication system
-  - RESTful API: Well-structured API endpoints for all operations
-  - Real-time Features: Live messaging and notifications
-  - Cloud Integration: Media hosting and database management
-  - Analytics Ready: Foundation for dashboard analytics and reporting
-
-  ## Technologies Used
-
-  ### Frontend Stack
-  - React with React Router DOM for navigation
-  - Tailwind CSS for modern, responsive styling
-  - Material-UI (MUI) for data grids and UI components
-  - Google Maps API for location services
-  - Socket.IO Client for real-time messaging
-
-  ### Backend Stack
-  - Node.js & Express.js server framework
-  - MongoDB with Mongoose ODM for data management
-  - JWT & bcrypt for authentication and password security
-  - Socket.IO for real-time chat server
-  - M-Pesa API for payment processing (Kenya)
-  - Cloudinary for media file hosting
-
-  ### Deployment & Infrastructure
-  - Vercel for frontend hosting
-  - Render for backend deployment
-  - MongoDB Atlas for cloud database
-  - Secure Architecture with protected routes and middleware
-
-  ## User Roles & Permissions
-
-  ### Clients
-  - Public Access: Browse and search property listings
-  - Property Details: View detailed property information with media
-  - Direct Communication: Message landlords in real-time
-  - Reviews: Leave ratings and reviews for properties
-  - Authentication Required: Login needed for detailed property access
-
-  ### Landlords
-  - Dashboard Access: Secure landlord management portal
-  - Property Management: Create, update, and delete listings
-  - Media Uploads: Add images and videos to properties
-  - Client Communication: Respond to inquiries in real-time
-  - Payment Integration: Monthly payments via M-Pesa
-  - Listing Analytics: Track property status and performance
-
-  ### Administrators
-  - Full Control: Complete system administration capabilities
-  - User Management: Manage all clients and landlords
-  - Property Oversight: Full CRUD operations on all listings
-  - Payment Monitoring: Track all transactions and payments
-  - Analytics Dashboard: System-wide analytics and reporting
-  - Content Moderation: Review and moderate user content
-
-  ## Use Cases
-
-  - Property Discovery: Help clients find suitable rental properties
-  - Property Management: Assist landlords in managing their listings
-  - Business Operations: Streamline real estate business processes
-  - Market Expansion: Scale real estate operations across regions
-  - Data Analytics: Gather insights on property market trends
-
-  ## Project Impact
-
-  The application addresses key challenges in the real estate industry by providing a centralized platform that eliminates communication barriers, streamlines property management, and facilitates secure transactions. It demonstrates modern web development practices with real-world business applications.
-
-  ## Real-time Features
-
-  ### Messaging System
-  - Socket.IO Integration: Instant messaging between users
-  - Live Notifications: Real-time message alerts
-  - Message Persistence: Chat history stored in database
-  - Connection Management: Automatic reconnection and status tracking
-
-  ### Payment Workflow
-  - M-Pesa Integration: Mobile money payments for Kenya
-  - STK Push: Direct payment prompts to user phones
-  - Payment Verification: Automatic status updates
-  - Transaction Tracking: Complete payment history
-
-  ## Future Enhancements
-
-  - AI-powered Property Matching: Intelligent recommendation system
-  - Advanced Analytics: Dashboard insights for all user roles
-  - Progressive Web App: Offline functionality and app-like experience
-  - Notification System: Email and SMS alerts
-  - Document Generation: Automated invoice and contract creation
-  - Multi-region Support: Expand beyond Kenya market
-    `, // paste your full markdown
-  },
-  {
     title: "Xgene Labs - Molecular Diagnostics Website",
     description:
       " Professional website for Xgene Labs, a clinical-grade molecular diagnostics company in Kenya. Showcases genetic testing services, diagnostic kits, medical equipment, and transparent prepaid testing programs with M-Pesa integration.",
@@ -751,84 +612,144 @@ Reduces turnaround time for website updates from days to minutes, empowers staff
 - Export submissions to CSV/Excel.
     `,
   },
-  {
-    title: "Dantra Limited - FMCG Distributor Website",
+ {
+    title: "Kenyan Real Estate Website",
     description:
-      " Professional web platform for Dantra Limited, a leading FMCG distributor in Kenya. Showcases services, product categories, and brand partnerships with a sleek, mobile-first React interface.",
-    tech: ["React", "Tailwind CSS", "Framer Motion", "Lucide Icons", "shadcn/ui", "JavaScript", "Vite", "Vercel"],
+      "Full-stack real estate platform connecting clients, landlords, and administrators through property listings, real-time messaging, and payment processing. Features role-based dashboards, Google Maps integration, M-Pesa payments, and comprehensive property management with secure JWT authentication.",
+    tech: ["React", "Machine Learning", "Tailwind CSS", "Lucide Icons", "JavaScript"],
     gradient: "bg-white/20 backdrop-blur-lg border border-white/30 rounded-xl shadow-lg",
-    code: "https://github.com/kayikalvin/dantra-limited",
-    url: "https://dantra-limited.vercel.app/",
+    code: "https://github.com/kayikalvin/real-estate",
+    url: "https://real-estate-psi-weld.vercel.app/",
     features: [
-      "Hero section with animated headline and CTA buttons",
-      "Product category display (Beverages, Snacks, Personal Care, etc.)",
-      "Services showcase for FMCG distribution capabilities",
-      "Partnership inquiry via WhatsApp integration",
-      "Click‑to‑call for quick communication",
-      "Brand partners section",
+      "Property Management – Complete CRUD operations for listings",
+      "Real-time chat between clients and landlords (Socket.IO)",
+      "Google Maps integration for property location",
+      "M-Pesa payment processing for landlord subscriptions",
+      "Role-based dashboards (Client, Landlord, Admin)",
+      "Media uploads (images/videos) via Cloudinary",
+      "Review and rating system for properties",
     ],
     challenges: [
-      "Creating a professional red‑based gradient palette that aligns with FMCG branding",
-      "Integrating WhatsApp and click‑to‑call without backend complexity",
-      "Ensuring mobile‑first responsiveness for Kenya’s market",
+      "Implementing real-time messaging with Socket.IO while maintaining message persistence in MongoDB",
+      "Integrating M-Pesa API for secure mobile payments in Kenya",
+      "Building a responsive, role-based UI that works across devices",
+      "Securing JWT authentication and route protection",
+      "Managing file uploads and cloud storage efficiently",
     ],
     markdown: `
-#  Dantra Limited - FMCG Distributor Website
 
-## Project Description
+  # Real Estate Web Application
 
-A professional, mobile-responsive website for Dantra Limited, an FMCG distribution company based in Kenya. The platform highlights their services, showcases product categories, and provides seamless contact methods for manufacturers, wholesalers, and retailers.
+  ## Project Description
 
-## Key Features
+  A full-stack real estate platform designed to connect  clients,  landlords, and  administrators through a comprehensive property management system. The platform streamlines the real estate process by providing property browsing, listing management, real-time communication, and integrated payment processing.
 
-### Core Functionality
-- Hero Section with animated headline, tagline, and call-to-action buttons
-- Product Category Display for FMCG sectors (Beverages, Snacks, Personal Care, etc.)
-- Services Showcase highlighting FMCG-specific distribution capabilities
-- Partnership Inquiry with WhatsApp integration for direct messaging
-- Click-to-Call for quick communication
-- Brand Partners Section for visual representation of collaboration potential
+  ## Key Features
 
-### User Experience
-- Sleek, professional UI with red-based gradient palette
-- Framer Motion animations for smooth transitions
-- Fully mobile-responsive design optimized for Kenya's mobile-first market
-- Interactive buttons for WhatsApp, email, and phone calls
+  ### Core Functionality
+  - Property Management: Complete CRUD operations for property listings
+  - Real-time Communication: Socket.IO-powered chat between clients and landlords
+  - Location Integration: Google Maps API for property location visualization
+  - Payment Processing: M-Pesa API integration for landlord subscription payments
+  - Role-based Access: Three distinct user roles with specific permissions
 
-### Technical Capabilities
-- React components with reusable, scalable architecture
-- Tailwind CSS utility-first styling with modern gradients and shadows
-- Lucide Icons & shadcn/ui for clean UI elements
-- Deployed via Vercel for high performance and reliability
+  ### User Experience
+  - Public Website: Browse properties with advanced search and filtering
+  - Responsive Design: Mobile-friendly interface across all devices
+  - Role-based Dashboards: Secure dashboards for landlords and administrators
+  - Media Management: Image and video uploads for property listings
+  - Review System: Client reviews and ratings for properties
 
-## Technologies Used
+  ### Technical Capabilities
+  - JWT Authentication: Secure token-based authentication system
+  - RESTful API: Well-structured API endpoints for all operations
+  - Real-time Features: Live messaging and notifications
+  - Cloud Integration: Media hosting and database management
+  - Analytics Ready: Foundation for dashboard analytics and reporting
 
-- React 18+
-- Tailwind CSS
-- Framer Motion
-- Lucide React Icons
-- shadcn/ui
-- Vite
-- Vercel Deployment
+  ## Technologies Used
 
-## Use Cases
+  ### Frontend Stack
+  - React with React Router DOM for navigation
+  - Tailwind CSS for modern, responsive styling
+  - Material-UI (MUI) for data grids and UI components
+  - Google Maps API for location services
+  - Socket.IO Client for real-time messaging
 
-- Company Showcase: Highlights Dantra Limited’s distribution expertise.
-- Business Partnerships: Easy contact options for manufacturers, wholesalers, and retailers.
-- Online Presence: Modern platform that builds credibility and brand authority.
+  ### Backend Stack
+  - Node.js & Express.js server framework
+  - MongoDB with Mongoose ODM for data management
+  - JWT & bcrypt for authentication and password security
+  - Socket.IO for real-time chat server
+  - M-Pesa API for payment processing (Kenya)
+  - Cloudinary for media file hosting
 
-## Project Impact
+  ### Deployment & Infrastructure
+  - Vercel for frontend hosting
+  - Render for backend deployment
+  - MongoDB Atlas for cloud database
+  - Secure Architecture with protected routes and middleware
 
-The site enhances Dantra Limited's professional image, streamlines partnership inquiries, and provides a visually engaging platform for business connections in Kenya's fast-growing FMCG market.
+  ## User Roles & Permissions
 
-## Future Enhancements
+  ### Clients
+  - Public Access: Browse and search property listings
+  - Property Details: View detailed property information with media
+  - Direct Communication: Message landlords in real-time
+  - Reviews: Leave ratings and reviews for properties
+  - Authentication Required: Login needed for detailed property access
 
-- Product Catalog Integration with dynamic inventory
-- Interactive Distribution Map
-- Market Insights Dashboard
-- Multi-Language Support for broader reach
-    
-    `,
+  ### Landlords
+  - Dashboard Access: Secure landlord management portal
+  - Property Management: Create, update, and delete listings
+  - Media Uploads: Add images and videos to properties
+  - Client Communication: Respond to inquiries in real-time
+  - Payment Integration: Monthly payments via M-Pesa
+  - Listing Analytics: Track property status and performance
+
+  ### Administrators
+  - Full Control: Complete system administration capabilities
+  - User Management: Manage all clients and landlords
+  - Property Oversight: Full CRUD operations on all listings
+  - Payment Monitoring: Track all transactions and payments
+  - Analytics Dashboard: System-wide analytics and reporting
+  - Content Moderation: Review and moderate user content
+
+  ## Use Cases
+
+  - Property Discovery: Help clients find suitable rental properties
+  - Property Management: Assist landlords in managing their listings
+  - Business Operations: Streamline real estate business processes
+  - Market Expansion: Scale real estate operations across regions
+  - Data Analytics: Gather insights on property market trends
+
+  ## Project Impact
+
+  The application addresses key challenges in the real estate industry by providing a centralized platform that eliminates communication barriers, streamlines property management, and facilitates secure transactions. It demonstrates modern web development practices with real-world business applications.
+
+  ## Real-time Features
+
+  ### Messaging System
+  - Socket.IO Integration: Instant messaging between users
+  - Live Notifications: Real-time message alerts
+  - Message Persistence: Chat history stored in database
+  - Connection Management: Automatic reconnection and status tracking
+
+  ### Payment Workflow
+  - M-Pesa Integration: Mobile money payments for Kenya
+  - STK Push: Direct payment prompts to user phones
+  - Payment Verification: Automatic status updates
+  - Transaction Tracking: Complete payment history
+
+  ## Future Enhancements
+
+  - AI-powered Property Matching: Intelligent recommendation system
+  - Advanced Analytics: Dashboard insights for all user roles
+  - Progressive Web App: Offline functionality and app-like experience
+  - Notification System: Email and SMS alerts
+  - Document Generation: Automated invoice and contract creation
+  - Multi-region Support: Expand beyond Kenya market
+    `, // paste your full markdown
   },
   {
     title: "Sonar-Rock-vs-Mine-UI",
