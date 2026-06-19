@@ -1227,7 +1227,7 @@ function Contact() {
         </MagneticBtn>
 
         <MagneticBtn
-          href="/Alvin Kayi CV.pdf"
+          href="/Kalvin_Kayi_Mwashi_Resumee.pdf"
           target="_blank"
           style={{
             fontFamily: "'DM Sans', sans-serif",
@@ -1533,7 +1533,7 @@ function Footer() {
                 {[
                   {
                     label: "Download CV",
-                    href: "/Alvin Kayi CV.pdf",
+                    href: "/Kalvin_Kayi_Mwashi_Resumee.pdf",
                     external: true,
                   },
                   {
@@ -2869,7 +2869,7 @@ export default function Home() {
 //                 Get In Touch
 //               </a>
 //               <a
-//                 href="/Alvin Kayi CV.pdf"
+//                 href="/Kalvin_Kayi_Mwashi_Resumee.pdf"
 //                 target="_blank"
 //                 rel="noopener noreferrer"
 //                 className="group px-8 py-4 rounded-full border-2 border-white/20 bg-white/5 backdrop-blur-sm font-semibold hover:bg-white/10 hover:border-white/30 transition-all duration-300 flex items-center justify-center gap-3"
