@@ -298,12 +298,15 @@ export function KineticHero() {
           style={{
             position: "absolute",
             bottom: 0,
-            right: "3vw",
-            height: "90vh",
-            width: "auto",
+            left: isMobile ? "50%" : undefined,
+            right: isMobile ? undefined : "3vw",
+            transform: isMobile ? "translateX(-50%)" : "none",
+            height: isMobile ? "60vh" : "90vh",
+            width: isMobile ? "auto" : "auto",
+            maxWidth: isMobile ? "none" : undefined,
             objectFit: "contain",
             objectPosition: "bottom",
-            opacity: imgLoaded ? 0.22 : 0,
+            opacity: imgLoaded ? (isMobile ? 0.5 : 0.22) : 0,
             transition: "opacity 1.2s ease 0.4s",
             userSelect: "none",
             WebkitUserDrag: "none",
@@ -842,13 +845,15 @@ export function KineticHero() {
           }
 
           .hero-portrait {
-            right: -5% !important;
-            height: 62vh !important;
-            opacity: ${imgLoaded ? 0.13 : 0} !important;
+            right: -8% !important;
+            height: 95vh !important;
+            bottom: 0 !important;
+            opacity: ${imgLoaded ? 0.32 : 0} !important;
+            filter: grayscale(20%) !important;
           }
           .hero-gradient {
-            background: linear-gradient(to bottom, #0a0a0a 0%, rgba(10,10,10,0.92) 40%, rgba(10,10,10,0.97) 100%) !important;
-          }
+  background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.5) 50%, rgba(10,10,10,0.75) 100%) !important;
+}
 
           .kinetic-name {
             gap: 0.01em;
@@ -856,7 +861,6 @@ export function KineticHero() {
           }
           .kinetic-letter {
             font-size: clamp(3.2rem, 16vw, 5rem) !important;
-            /* disable kinetic movement on mobile? you can keep or remove */
           }
           .last-name {
             font-size: clamp(1.8rem, 9vw, 3rem) !important;

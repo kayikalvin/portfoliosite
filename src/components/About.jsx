@@ -20,7 +20,7 @@ const GLYPHS = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&+=";
 
 const STATS = [
   { value: 45, suffix: "+", label: "Repos" },
-  { value: 5,  suffix: "+", label: "Yrs exp" },
+  { value: 5, suffix: "+", label: "Yrs exp" },
   { value: 15, suffix: "+", label: "Products" },
   { value: 100, suffix: "K+", label: "Lines" },
 ];
@@ -29,7 +29,14 @@ const STATS = [
    DECODE TEXT
    Chars resolve left-to-right from random glyphs. Fires once on active.
 ───────────────────────────────────────────────────────────────────────────── */
-function DecodeText({ text, active, color, italic = false, delay = 0, speed = 24 }) {
+function DecodeText({
+  text,
+  active,
+  color,
+  italic = false,
+  delay = 0,
+  speed = 24,
+}) {
   const [display, setDisplay] = useState(() => text.replace(/[^ ]/g, "\u00A0"));
   const firedRef = useRef(false);
 
@@ -46,14 +53,18 @@ function DecodeText({ text, active, color, italic = false, delay = 0, speed = 24
       const tick = () => {
         const frontier = Math.floor(frame / 2);
         for (let i = 0; i <= frontier && i < chars.length; i++) {
-          if (chars[i] === " ") { resolved[i] = true; continue; }
+          if (chars[i] === " ") {
+            resolved[i] = true;
+            continue;
+          }
           if (frontier - i > 3) resolved[i] = true;
         }
         const next = chars
           .map((c, i) => {
             if (c === " ") return " ";
             if (resolved[i]) return c;
-            if (i > frontier) return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+            if (i > frontier)
+              return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
             return c;
           })
           .join("");
@@ -112,7 +123,12 @@ function Counter({ target, suffix, visible, delay = 0 }) {
     return () => cancelAnimationFrame(raf);
   }, [visible, target, delay]);
 
-  return <>{n}{suffix}</>;
+  return (
+    <>
+      {n}
+      {suffix}
+    </>
+  );
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -153,19 +169,21 @@ function MagneticLink({ href, children }) {
    ABOUT — main section
 ───────────────────────────────────────────────────────────────────────────── */
 export default function About() {
-  const sectionRef  = useRef(null);
+  const sectionRef = useRef(null);
   const portraitRef = useRef(null);
-  const overlayRef  = useRef(null);   // chartreuse duotone overlay
-  const inkRef      = useRef(null);   // dark ink overlay
+  const overlayRef = useRef(null); // chartreuse duotone overlay
+  const inkRef = useRef(null); // dark ink overlay
 
   const [visible, setVisible] = useState(false);
-  const [scrollP, setScrollP] = useState(0);   // 0 → 1 as section crosses viewport
+  const [scrollP, setScrollP] = useState(0); // 0 → 1 as section crosses viewport
 
   /* Intersection → fire entrance */
   useEffect(() => {
     const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) setVisible(true); },
-      { threshold: 0.15 }
+      ([e]) => {
+        if (e.isIntersecting) setVisible(true);
+      },
+      { threshold: 0.15 },
     );
     if (sectionRef.current) obs.observe(sectionRef.current);
     return () => obs.disconnect();
@@ -176,15 +194,17 @@ export default function About() {
     const onScroll = () => {
       const el = sectionRef.current;
       if (!el) return;
-      const r  = el.getBoundingClientRect();
+      const r = el.getBoundingClientRect();
       const vh = window.innerHeight;
       // 0 when section top is at viewport bottom, 1 when section bottom clears viewport top
       const p = Math.min(1, Math.max(0, 1 - r.top / vh));
       setScrollP(p);
 
       // Duotone develop: overlay fades out as section scrolls into view
-      if (overlayRef.current) overlayRef.current.style.opacity = Math.max(0, 1 - p * 2).toString();
-      if (inkRef.current)     inkRef.current.style.opacity     = Math.max(0, 0.72 - p * 1.1).toString();
+      if (overlayRef.current)
+        overlayRef.current.style.opacity = Math.max(0, 1 - p * 2).toString();
+      if (inkRef.current)
+        inkRef.current.style.opacity = Math.max(0, 0.72 - p * 1.1).toString();
 
       // Slow parallax on portrait
       if (portraitRef.current) {
@@ -204,7 +224,7 @@ export default function About() {
     if (!el) return;
     const r = el.getBoundingClientRect();
     const xPct = ((e.clientX - r.left) / r.width) * 100;
-    const yPct = ((e.clientY - r.top)  / r.height) * 100;
+    const yPct = ((e.clientY - r.top) / r.height) * 100;
     const light = el.querySelector(".cursor-light");
     if (light) {
       light.style.background = `radial-gradient(circle at ${xPct}% ${yPct}%, rgba(200,242,65,0.09) 0%, transparent 55%)`;
@@ -212,8 +232,8 @@ export default function About() {
   }, []);
 
   const T = (delay) => ({
-    opacity:    visible ? 1 : 0,
-    transform:  visible ? "none" : "translateY(22px)",
+    opacity: visible ? 1 : 0,
+    transform: visible ? "none" : "translateY(22px)",
     transition: `opacity 0.75s ease ${delay}s, transform 0.75s ease ${delay}s`,
   });
 
@@ -300,13 +320,19 @@ export default function About() {
         /* Mobile */
         @media (max-width: 760px) {
           .about-inner { flex-direction: column !important; }
-          .about-portrait-col { width: 100% !important; height: 62vw !important; min-height: 260px !important; }
+          .about-portrait-col { width: 100% !important; height: 65vh !important; min-height: 480px !important; }
           .about-content-col { padding: 36px 24px 48px !important; }
           .overlap-headline { position: relative !important; bottom: auto !important; left: auto !important; padding: 28px 24px 0 !important; }
           .headline-size { font-size: clamp(2rem, 7vw, 3rem) !important; }
           .stat-strip-wrap { flex-wrap: wrap; gap: 20px 0 !important; }
           .stat-divider { display: none !important; }
           .stat-item { padding: 0 16px !important; }
+
+          /* NEW: lighten and enlarge the portrait on mobile */
+          .about-portrait-col img { object-position: center top !important; }
+          .about-ink-overlay { opacity: 0.35 !important; }
+          .about-duotone-overlay { opacity: 0.5 !important; }
+          .about-vignette { background: radial-gradient(ellipse at 60% 40%, transparent 45%, rgba(0,0,0,0.4) 100%) !important; }
         }
       `}</style>
 
@@ -315,14 +341,23 @@ export default function About() {
         ref={sectionRef}
         onMouseMove={onPortraitMove}
         style={{
-          position:   "relative",
+          position: "relative",
           background: "#080808",
-          overflow:   "hidden",
-          zIndex:     2,
+          overflow: "hidden",
+          zIndex: 2,
         }}
       >
         {/* Cursor light — follows mouse across whole section */}
-        <div className="cursor-light" style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, transition: "background 0.12s ease" }} />
+        <div
+          className="cursor-light"
+          style={{
+            position: "absolute",
+            inset: 0,
+            pointerEvents: "none",
+            zIndex: 0,
+            transition: "background 0.12s ease",
+          }}
+        />
 
         {/* ── Top ruled line ── */}
         {/* <div style={{ position: "relative", zIndex: 3 }}>
@@ -347,21 +382,21 @@ export default function About() {
         <div
           className="about-inner"
           style={{
-            display:    "flex",
+            display: "flex",
             alignItems: "stretch",
-            position:   "relative",
-            zIndex:     3,
+            position: "relative",
+            zIndex: 3,
           }}
         >
           {/* ────────────────── LEFT: Portrait column ────────────────── */}
           <div
             className="about-portrait-col"
             style={{
-              position:   "relative",
-              width:      "42%",
-              minHeight:  "88vh",
+              position: "relative",
+              width: "42%",
+              minHeight: "88vh",
               flexShrink: 0,
-              overflow:   "hidden",
+              overflow: "hidden",
               borderRight: "1px solid #141414",
             }}
           >
@@ -370,8 +405,8 @@ export default function About() {
               ref={portraitRef}
               className={visible ? "portrait-reveal" : ""}
               style={{
-                position:   "absolute",
-                inset:      "-8% 0",
+                position: "absolute",
+                inset: "-8% 0",
                 willChange: "transform",
                 transition: "transform 0.08s linear",
               }}
@@ -380,12 +415,13 @@ export default function About() {
                 src="/1735390396166-removebg.png"
                 alt="Kalvin Kayi"
                 style={{
-                  width:    "100%",
-                  height:   "100%",
+                  width: "100%",
+                  height: "100%",
                   objectFit: "cover",
                   objectPosition: "center top",
-                  display:  "block",
-                  background: "linear-gradient(170deg, #121409 0%, #0a0a0a 100%)",
+                  display: "block",
+                  background:
+                    "linear-gradient(170deg, #121409 0%, #0a0a0a 100%)",
                   padding: "0 24px",
                 }}
               />
@@ -394,75 +430,85 @@ export default function About() {
             {/* ── Duotone layer — chartreuse tint ── */}
             <div
               ref={overlayRef}
+              className="about-duotone-overlay"
               style={{
-                position:   "absolute",
-                inset:      0,
+                position: "absolute",
+                inset: 0,
                 mixBlendMode: "color",
-                background: "linear-gradient(160deg, #c8f241 0%, #a0bf30 40%, #2a3300 100%)",
+                background:
+                  "linear-gradient(160deg, #c8f241 0%, #a0bf30 40%, #2a3300 100%)",
                 pointerEvents: "none",
                 transition: "opacity 0.6s ease",
-                zIndex:     2,
+                zIndex: 2,
               }}
             />
 
             {/* ── Ink darken layer ── */}
             <div
               ref={inkRef}
+              className="about-ink-overlay"
               style={{
-                position:   "absolute",
-                inset:      0,
+                position: "absolute",
+                inset: 0,
                 background: "linear-gradient(160deg, #000 0%, #0d0d0d 100%)",
                 mixBlendMode: "multiply",
                 pointerEvents: "none",
-                opacity:    0.72,
+                opacity: 0.72,
                 transition: "opacity 0.6s ease",
-                zIndex:     1,
+                zIndex: 1,
               }}
             />
 
             {/* Vignette — always on */}
-            <div style={{
-              position:   "absolute",
-              inset:      0,
-              background: "radial-gradient(ellipse at 60% 40%, transparent 30%, rgba(0,0,0,0.65) 100%)",
-              pointerEvents: "none",
-              zIndex:     3,
-            }} />
+            <div
+              className="about-vignette"
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "radial-gradient(ellipse at 60% 40%, transparent 30%, rgba(0,0,0,0.65) 100%)",
+                pointerEvents: "none",
+                zIndex: 3,
+              }}
+            />
 
             {/* Bottom fade */}
-            <div style={{
-              position:   "absolute",
-              bottom:     0,
-              left:       0,
-              right:      0,
-              height:     "45%",
-              background: "linear-gradient(to top, #080808 0%, transparent 100%)",
-              pointerEvents: "none",
-              zIndex:     4,
-            }} />
+            <div
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: "45%",
+                background:
+                  "linear-gradient(to top, #080808 0%, transparent 100%)",
+                pointerEvents: "none",
+                zIndex: 4,
+              }}
+            />
 
             {/* ── Headline overlaid on portrait ── */}
             <div
               className="overlap-headline"
               style={{
-                position:  "absolute",
-                bottom:    "9%",
-                left:      0,
-                right:     "-8%",
-                zIndex:    5,
-                padding:   "0 5vw 0 5vw",
-                opacity:   visible ? 1 : 0,
+                position: "absolute",
+                bottom: "9%",
+                left: 0,
+                right: "-8%",
+                zIndex: 5,
+                padding: "0 5vw 0 5vw",
+                opacity: visible ? 1 : 0,
                 transform: visible ? "none" : "translateY(24px)",
-                transition:"opacity 0.8s ease 0.1s, transform 0.8s ease 0.1s",
+                transition: "opacity 0.8s ease 0.1s, transform 0.8s ease 0.1s",
               }}
             >
               <h2
                 className="headline-size"
                 style={{
-                  fontSize:   "clamp(2.4rem, 3.8vw, 4.6rem)",
+                  fontSize: "clamp(2.4rem, 3.8vw, 4.6rem)",
                   fontWeight: 400,
                   lineHeight: 1.04,
-                  margin:     0,
+                  margin: 0,
                   letterSpacing: "-0.015em",
                 }}
               >
@@ -485,16 +531,26 @@ export default function About() {
               </h2>
 
               {/* Scroll indicator — bottom-left of portrait */}
-              <div style={{
-                display:    "flex",
-                alignItems: "center",
-                gap:        10,
-                marginTop:  32,
-                opacity:    visible ? 0.35 : 0,
-                transition: "opacity 0.8s ease 2s",
-              }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 10,
+                  marginTop: 32,
+                  opacity: visible ? 0.35 : 0,
+                  transition: "opacity 0.8s ease 2s",
+                }}
+              >
                 <div style={{ width: 40, height: 1, background: "#c8f241" }} />
-                <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 9, color: "#c8f241", letterSpacing: "0.18em", textTransform: "uppercase" }}>
+                <span
+                  style={{
+                    fontFamily: "'DM Mono', monospace",
+                    fontSize: 9,
+                    color: "#c8f241",
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                  }}
+                >
                   Scroll to develop
                 </span>
               </div>
@@ -505,7 +561,7 @@ export default function About() {
           <div
             className="about-content-col"
             style={{
-              flex:    1,
+              flex: 1,
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
@@ -515,32 +571,36 @@ export default function About() {
             {/* Top area */}
             <div>
               {/* Eyebrow */}
-              <p style={{
-                fontFamily: "'DM Mono', monospace",
-                fontSize:   10,
-                letterSpacing: "0.2em",
-                color:      "#c8f241",
-                textTransform: "uppercase",
-                margin:     "0 0 48px",
-                ...T(0.05),
-              }}>
+              <p
+                style={{
+                  fontFamily: "'DM Mono', monospace",
+                  fontSize: 10,
+                  letterSpacing: "0.2em",
+                  color: "#c8f241",
+                  textTransform: "uppercase",
+                  margin: "0 0 48px",
+                  ...T(0.05),
+                }}
+              >
                 About
               </p>
 
               {/* Large pull quote — stacked right of the headline overflow */}
-              <p style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontWeight: 300,
-                fontSize:   "clamp(1.05rem, 1.3vw, 1.22rem)",
-                lineHeight: 1.82,
-                color:      "#4a4a4a",
-                maxWidth:   400,
-                margin:     "0 0 56px",
-                ...T(0.18),
-              }}>
-                Based in Nairobi. I build production systems where rigorous
-                data engineering meets considered design — fact-checkers,
-                predictive healthcare models, real-time platforms —{" "}
+              <p
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontWeight: 300,
+                  fontSize: "clamp(1.05rem, 1.3vw, 1.22rem)",
+                  lineHeight: 1.82,
+                  color: "#4a4a4a",
+                  maxWidth: 400,
+                  margin: "0 0 56px",
+                  ...T(0.18),
+                }}
+              >
+                Based in Nairobi. I build production systems where rigorous data
+                engineering meets considered design — fact-checkers, predictive
+                healthcare models, real-time platforms —{" "}
                 <em style={{ color: "#787878", fontStyle: "italic" }}>
                   work that doesn't just function, it resonates.
                 </em>
@@ -569,13 +629,15 @@ export default function About() {
                         padding: i === 0 ? "0 28px 0 0" : "0 28px",
                       }}
                     >
-                      <span style={{
-                        fontFamily: "'DM Serif Display', serif",
-                        fontSize:   "2.1rem",
-                        color:      "#f0ede6",
-                        lineHeight: 1,
-                        letterSpacing: "-0.02em",
-                      }}>
+                      <span
+                        style={{
+                          fontFamily: "'DM Serif Display', serif",
+                          fontSize: "2.1rem",
+                          color: "#f0ede6",
+                          lineHeight: 1,
+                          letterSpacing: "-0.02em",
+                        }}
+                      >
                         <Counter
                           target={s.value}
                           suffix={s.suffix}
@@ -583,29 +645,35 @@ export default function About() {
                           delay={0.65 + i * 0.08}
                         />
                       </span>
-                      <span style={{
-                        fontFamily: "'DM Mono', monospace",
-                        fontSize:   9,
-                        color:      "#303030",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.12em",
-                        whiteSpace: "nowrap",
-                      }}>
+                      <span
+                        style={{
+                          fontFamily: "'DM Mono', monospace",
+                          fontSize: 9,
+                          color: "#303030",
+                          textTransform: "uppercase",
+                          letterSpacing: "0.12em",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
                         {s.label}
                       </span>
                     </div>
-                    {i < STATS.length - 1 && <div key={`div-${i}`} className="stat-divider" />}
+                    {i < STATS.length - 1 && (
+                      <div key={`div-${i}`} className="stat-divider" />
+                    )}
                   </>
                 ))}
               </div>
 
               {/* ── Links ── */}
-              <div style={{
-                display: "flex",
-                gap: 12,
-                flexWrap: "wrap",
-                ...T(0.45),
-              }}>
+              <div
+                style={{
+                  display: "flex",
+                  gap: 12,
+                  flexWrap: "wrap",
+                  ...T(0.45),
+                }}
+              >
                 <MagneticLink href="https://github.com/kayikalvin">
                   <span className="about-link-pill">
                     <Github size={13} />
@@ -624,44 +692,72 @@ export default function About() {
             </div>
 
             {/* ── Bottom: skills marquee ── */}
-            <div style={{
-              marginTop:    "auto",
-              paddingTop:   60,
-              borderTop:    "1px solid #111",
-              overflow:     "hidden",
-              ...T(0.55),
-            }}>
-              <p style={{
-                fontFamily: "'DM Mono', monospace",
-                fontSize:   9,
-                color:      "#242424",
-                letterSpacing: "0.16em",
-                textTransform: "uppercase",
-                marginBottom: 14,
-              }}>
+            <div
+              style={{
+                marginTop: "auto",
+                paddingTop: 60,
+                borderTop: "1px solid #111",
+                overflow: "hidden",
+                ...T(0.55),
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: "'DM Mono', monospace",
+                  fontSize: 9,
+                  color: "#242424",
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  marginBottom: 14,
+                }}
+              >
                 Stack
               </p>
-              <div style={{ overflow: "hidden", maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
+              <div
+                style={{
+                  overflow: "hidden",
+                  maskImage:
+                    "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+                }}
+              >
                 <div className="ticker-track" style={{ width: "max-content" }}>
                   {[
-                    "Python", "React", "TypeScript", "PostgreSQL",
-                    "TensorFlow", "FastAPI", "Next.js", "Docker",
-                    "Airflow", "dbt", "Redis", "GraphQL",
-                    "Python", "React", "TypeScript", "PostgreSQL",
-                    "TensorFlow", "FastAPI", "Next.js", "Docker",
-                    "Airflow", "dbt", "Redis", "GraphQL",
+                    "Python",
+                    "React",
+                    "TypeScript",
+                    "PostgreSQL",
+                    "TensorFlow",
+                    "FastAPI",
+                    "Next.js",
+                    "Docker",
+                    "Airflow",
+                    "dbt",
+                    "Redis",
+                    "GraphQL",
+                    "Python",
+                    "React",
+                    "TypeScript",
+                    "PostgreSQL",
+                    "TensorFlow",
+                    "FastAPI",
+                    "Next.js",
+                    "Docker",
+                    "Airflow",
+                    "dbt",
+                    "Redis",
+                    "GraphQL",
                   ].map((tech, i) => (
                     <span
                       key={i}
                       style={{
-                        display:     "inline-block",
-                        fontFamily:  "'DM Mono', monospace",
-                        fontSize:    11,
-                        color:       i % 2 === 0 ? "#2a2a2a" : "#1a1a1a",
+                        display: "inline-block",
+                        fontFamily: "'DM Mono', monospace",
+                        fontSize: 11,
+                        color: i % 2 === 0 ? "#2a2a2a" : "#1a1a1a",
                         letterSpacing: "0.08em",
-                        padding:     "0 22px",
+                        padding: "0 22px",
                         borderRight: "1px solid #141414",
-                        whiteSpace:  "nowrap",
+                        whiteSpace: "nowrap",
                       }}
                     >
                       {tech}
@@ -674,35 +770,41 @@ export default function About() {
         </div>
 
         {/* ── Full-width bottom ticker ── */}
-        <div style={{
-          borderTop: "1px solid #111",
-          overflow:  "hidden",
-          position:  "relative",
-          zIndex:    3,
-          height:    44,
-          display:   "flex",
-          alignItems: "center",
-          ...T(0.6),
-        }}>
+        <div
+          style={{
+            borderTop: "1px solid #111",
+            overflow: "hidden",
+            position: "relative",
+            zIndex: 3,
+            height: 44,
+            display: "flex",
+            alignItems: "center",
+            ...T(0.6),
+          }}
+        >
           <div
             className="ticker-track"
-            style={{ width: "max-content", animationDuration: "24s", animationDirection: "reverse" }}
+            style={{
+              width: "max-content",
+              animationDuration: "24s",
+              animationDirection: "reverse",
+            }}
           >
             {Array.from({ length: 8 }, (_, i) => (
               <span
                 key={i}
                 style={{
-                  display:     "inline-flex",
-                  alignItems:  "center",
-                  gap:         14,
-                  fontFamily:  "'DM Mono', monospace",
-                  fontSize:    10,
-                  color:       "#1c1c1c",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 14,
+                  fontFamily: "'DM Mono', monospace",
+                  fontSize: 10,
+                  color: "#1c1c1c",
                   letterSpacing: "0.16em",
                   textTransform: "uppercase",
-                  padding:     "0 32px",
+                  padding: "0 32px",
                   borderRight: "1px solid #111",
-                  whiteSpace:  "nowrap",
+                  whiteSpace: "nowrap",
                 }}
               >
                 Data Engineering
