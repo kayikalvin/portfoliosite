@@ -937,8 +937,14 @@ export const skills = [
 
 // posts
 export const posts = [
-  { title: "Building Scalable ML Platforms with Kubernetes", link: "#" },
-  { title: "Designing Data-Driven Dashboards Users Actually Love", link: "#" },
+  { title: "M-Pesa Integration Boosts Sales and Convenience for Kenyan Businesses.", link: "https://www.linkedin.com/feed/update/urn:li:activity:7451896096873717760/" },
+  { title: "Closing the Digital Divide with Digital Literacy in Dandora", link: "https://www.linkedin.com/feed/update/urn:li:activity:7446965418403229696/" },
+  { title: "The M-Pesa integration that nearly broke me.", link: "https://www.linkedin.com/feed/update/urn:li:activity:7440623196443418625/" },
+  { title: "Teamwork: The Messy Truth and Lessons Learned", link: "https://www.linkedin.com/feed/update/urn:li:activity:7440434684825870336/" },
+  { title: "The Kenyan government portal experience", link: "https://www.linkedin.com/feed/update/urn:li:activity:7437898103451475968/" },
+  { title: "Years of experience is the laziest filter in tech hiring.", link: "https://www.linkedin.com/pulse/years-experience-laziest-filter-tech-hiring-kalvin-kayi-8r87f?trk=public_post" },
+  { title: "Why Backend Thinking Creates Better Full-Stack Developers", link: "https://www.linkedin.com/pulse/why-backend-thinking-creates-better-full-stack-developers-kalvin-kayi-ccfhf" },
+  
 ];
 
 
